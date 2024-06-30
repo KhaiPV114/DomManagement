@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class Bed {
-    private int bedId;
-    private boolean bedStatus;
-    private int roomId;
+@AllArgsConstructor
+public class Dom {
+    private int domId;
+    private String domName;
+    private int campusId;
 }
