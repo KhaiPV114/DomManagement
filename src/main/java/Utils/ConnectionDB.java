@@ -2,31 +2,22 @@ package Utils;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Properties;
+
 
 public class ConnectionDB {
+    private static final String JDBC_URL = "jdbc:sqlserver://localhost:1433;databaseName=DOM;encrypt=true;trustServerCertificate=true";
+    private static final String USERNAME = "sa";
+    private static final String PASSWORD = "123";
     private static Connection conn;
+
     public static Connection getDataSource() throws SQLException {
-        if(conn != null && !conn.isClosed()) return conn;
+        if (conn != null && !conn.isClosed()) return conn;
         SQLServerDataSource dataSource = new SQLServerDataSource();
-        Properties properties = new Properties();
-        try(FileInputStream fileInputStream = new FileInputStream("db.properties")) {
-            properties.load(fileInputStream);
-            String jdbcUrl = (String) properties.get("jdbcUrl");
-            String userName = (String) properties.get("userName");
-            String password = (String) properties.get("password");
-
-            dataSource.setURL(jdbcUrl);
-            dataSource.setUser(userName);
-            dataSource.setPassword(password);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        dataSource.setURL(JDBC_URL);
+        dataSource.setUser(USERNAME);
+        dataSource.setPassword(PASSWORD);
         conn = dataSource.getConnection();
         return conn;
     }
