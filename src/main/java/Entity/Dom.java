@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Dom {
-    private int domId;
+    private Integer domId;
     private String domName;
-    private int campusId;
+    private Integer campusId;
 }

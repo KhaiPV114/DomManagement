@@ -12,10 +12,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class News {
-    private int newsId;
+    private Integer newsId;
     private String newsTitle;
     private String newsDetail;
     private LocalDate createdTime;
     private String picture;
-    private int author;
+    private Integer author;
 }

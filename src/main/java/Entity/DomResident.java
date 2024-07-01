@@ -12,11 +12,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DomResident {
-    private int residentId;
+    private Integer residentId;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
-    private long balance;
-    private int userId;
-    private int bedId;
-    private int termId;
+    private Long balance;
+    private Integer userId;
+    private Integer bedId;
+    private Integer termId;
 }
