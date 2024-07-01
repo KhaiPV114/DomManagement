@@ -17,7 +17,7 @@
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/3186023da8.js" crossorigin="anonymous"></script>
     <style>
-        <%@ include file="/css/index.css" %>
+        <%@ include file="assets/css/index.css" %>
     </style>
 </head>
 <body>
@@ -92,7 +92,7 @@
         https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js
         "></script>
 <script>
-    <%@ include file="/js/index.js" %>
+    <%@ include file="assets/js/index.js" %>
 </script>
 
 </body>
