@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bed {
-    private int bedId;
-    private boolean bedStatus;
-    private int roomId;
+public class Role {
+    private int roleId;
+    private String roleName;
 }
