@@ -1,20 +1,19 @@
 package Entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
-@Data
+@Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@ToString
 public class DomResident {
     private Integer residentId;
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
+    private Timestamp checkInDate;
+    private Timestamp checkOutDate;
     private Long balance;
     private Integer userId;
     private Integer bedId;

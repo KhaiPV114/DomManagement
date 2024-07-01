@@ -1,6 +1,6 @@
-package Dao.Impl;
+package Dao.GenericDao.Impl;
 
-import Dao.GenericDao;
+import Dao.GenericDao.GenericDao;
 import Mapper.RowMapper;
 import Utils.ConnectionDB;
 
