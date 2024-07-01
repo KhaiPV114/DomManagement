@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Room {
-    private int roomId;
+    private Integer roomId;
     private String roomName;
     private long price;
     private String roomType;
+    private Integer domId;
 }

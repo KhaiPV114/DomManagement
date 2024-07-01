@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Users {
-    private int userId;
-    private int roleId;
-    private String fullName;
+    private Integer userId;
+    private String rollId;
+    private Integer roleId;
+    private String fullName;    
     private String phoneNumber;
     private String gender;
-    private long balance;
+    private Long balance;
     private String gmail;
 }

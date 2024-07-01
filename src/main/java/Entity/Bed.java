@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Bed {
-    private int bedId;
+    private Integer bedId;
     private boolean bedStatus;
-    private int roomId;
+    private Integer roomId;
 }

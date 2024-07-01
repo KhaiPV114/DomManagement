@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Request {
-    private int requestId;
+    private Integer requestId;
     private String requestStatus;
     private String requestDetail;
-    private int residentId;
+    private Integer residentId;
+    private String rollId;
 }

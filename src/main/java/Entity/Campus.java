@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Campus {
-    private int campusId;
+    private Integer campusId;
     private String campusName;
 }
