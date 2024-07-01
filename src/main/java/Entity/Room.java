@@ -15,4 +15,5 @@ public class Room {
     private long price;
     private String roomType;
     private Integer domId;
+    private String roomStatus;
 }
