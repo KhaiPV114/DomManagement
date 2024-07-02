@@ -11,8 +11,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Document</title>
+    <title>KTX</title>
+    <link rel="icon" type="image/png" href="<%=request.getContextPath()%>/assets/images/favicon.png">
     <style>
         <%@ include file="assets/css/index.css" %>
     </style>
@@ -426,7 +426,7 @@
                             </div>
                             <div id="login-google" class="">
                                 <a id="google_login" class="btn-google-login"
-                                   href="/google-login">
+                                   href="<%=request.getContextPath()%>/google-login">
                                     <img src="assets/images/btn_google.png">
                                     <p>Sign in with Google</p>
                                 </a>
