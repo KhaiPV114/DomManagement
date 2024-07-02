@@ -15,7 +15,7 @@ public class GoogleLogin extends HttpServlet {
             throws ServletException, IOException {
 
         String googleLoginUrl = "https://accounts.google.com/o/oauth2/auth?"
-                + "scope=email&"
+                + "scope=openid%20email%20profile&"
                 + "redirect_uri=" + AppConfig.getProperty("gg.uri") + "&"
                 + "response_type=code&"
                 + "approval_prompt=force&"
