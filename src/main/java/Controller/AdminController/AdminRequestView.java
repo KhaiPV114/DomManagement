@@ -15,25 +15,14 @@ import java.sql.Timestamp;
 @WebServlet("/test")
 public class AdminRequestView extends HttpServlet {
 
-    private final ResidentRequestService residentRequestService;
+    private final ResidentRequestService residentRequestService = new ResidentRequestServiceImpl();
 
-    public AdminRequestView(ResidentRequestServiceImpl residentRequestServiceImpl) {
-        this.residentRequestService = residentRequestServiceImpl;
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("a");
-        DomResident dom = DomResident.builder()
-                .balance(100L)
-                .bedId(1)
-                .termId(1)
-                .userId(1)
-                .checkInDate(new Timestamp(2024,10,20,10,00,00,00))
-                .checkOutDate(new Timestamp(2024,10,20,10,00,00,00))
-                .build();
+        System.out.println("dom: " + residentRequestService.findById(3));
+      
 
-        System.out.println(residentRequestService.save(dom));
         resp.sendRedirect(req.getContextPath() +"/views/login.jsp");
 
     }
