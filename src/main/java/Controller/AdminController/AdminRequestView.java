@@ -12,14 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
 
+
 @WebServlet("/test")
 public class AdminRequestView extends HttpServlet {
 
-    private final ResidentRequestService residentRequestService;
-
-    public AdminRequestView(ResidentRequestServiceImpl residentRequestServiceImpl) {
-        this.residentRequestService = residentRequestServiceImpl;
-    }
+    private final ResidentRequestService residentRequestService =  new ResidentRequestServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +30,7 @@ public class AdminRequestView extends HttpServlet {
                 .checkOutDate(new Timestamp(2024,10,20,10,00,00,00))
                 .build();
 
-        System.out.println(residentRequestService.save(dom));
+        System.out.println(dom.toString());
         resp.sendRedirect(req.getContextPath() +"/views/login.jsp");
 
     }

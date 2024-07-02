@@ -6,12 +6,7 @@ import Entity.DomResident;
 import Service.StudentService.ResidentRequestService;
 
 public class ResidentRequestServiceImpl implements ResidentRequestService {
-    private final ResidentRequestDao residentRequestDao;
-
-    public ResidentRequestServiceImpl(ResidentRequestDaoImpl residentRequestDaoImpl) {
-        this.residentRequestDao = residentRequestDaoImpl;
-    }
-
+    private final ResidentRequestDao residentRequestDao = new ResidentRequestDaoImpl();
 
     @Override
     public DomResident findById(Integer id) {
