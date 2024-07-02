@@ -1,4 +1,4 @@
-package Dao;
+package Dao.GenericDao;
 
 import Mapper.RowMapper;
 

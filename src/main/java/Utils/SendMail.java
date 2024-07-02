@@ -22,7 +22,7 @@ public class SendMail {
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("cuden20101998@gmail.com","mazymdjlmeuafsub");
+                return new PasswordAuthentication(AppConfig.getProperty("gmail.username"),AppConfig.getProperty("gmail.password"));
             }
         });
         Message m = new MimeMessage(session);
