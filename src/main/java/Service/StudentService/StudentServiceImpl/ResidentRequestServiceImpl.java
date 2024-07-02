@@ -10,11 +10,8 @@ public class ResidentRequestServiceImpl implements ResidentRequestService {
 
     @Override
     public DomResident findById(Integer id) {
-        return residentRequestDao.findById(id);
-    }
+       return residentRequestDao.findById(id)    ;
+               }
 
-    @Override
-    public long save(DomResident dom) {
-        return residentRequestDao.save(dom);
-    }
+ 
 }
