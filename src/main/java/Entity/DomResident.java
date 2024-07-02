@@ -18,4 +18,7 @@ public class DomResident {
     private Integer userId;
     private Integer bedId;
     private Integer termId;
+    private String roomName;
+    private String rollId;
+    private Integer floor;
 }

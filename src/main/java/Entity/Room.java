@@ -3,17 +3,17 @@ package Entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-@Data
+import Enum.*;
+@Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Room {
-    private Integer roomId;
     private String roomName;
     private long price;
-    private String roomType;
+    private RoomType roomType;
     private Integer domId;
-    private String roomStatus;
+    private RoomStatus roomStatus;
+    private Integer floor;
 }

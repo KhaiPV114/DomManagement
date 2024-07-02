@@ -1,16 +1,16 @@
 package Entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.ToString;
 
-@Data
+
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@ToString
 public class Bed {
     private Integer bedId;
     private boolean bedStatus;
-    private Integer roomId;
+    private String  roomName;
+    private Integer floor;
 }

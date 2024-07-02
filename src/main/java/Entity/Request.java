@@ -1,18 +1,20 @@
 package Entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
+@Getter
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class Request {
     private Integer requestId;
     private String requestStatus;
     private String requestDetail;
     private Integer residentId;
     private String rollId;
+    private String requestType;
+    private Integer domId;
+    private Integer floor;
+    private String roomName;
+    private Integer termId;
 }
