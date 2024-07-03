@@ -2,9 +2,11 @@ package Entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @Builder
+@ToString
 public class Request {
     private Integer requestId;
     private String requestStatus;

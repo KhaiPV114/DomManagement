@@ -1,7 +1,6 @@
 package Entity;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -10,7 +9,7 @@ import java.sql.Timestamp;
 @Getter
 @Builder
 @ToString
-public class DomResident {
+public class DormResident {
     private Integer residentId;
     private Timestamp checkInDate;
     private Timestamp checkOutDate;

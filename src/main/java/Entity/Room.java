@@ -1,14 +1,14 @@
 package Entity;
 
-import lombok.AllArgsConstructor;
+import Enum.RoomStatus;
+import Enum.RoomType;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import Enum.*;
+import lombok.ToString;
+
 @Getter
 @Builder
-
+@ToString
 public class Room {
     private String roomName;
     private long price;
