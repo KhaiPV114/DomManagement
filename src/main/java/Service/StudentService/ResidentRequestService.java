@@ -4,8 +4,8 @@
  */
 package Service.StudentService;
 
-import Dao.StudentDao.ResidentRequestDao;
-import Entity.DomResident;
+import Entity.Request;
+
 import java.util.List;
 
 /**
@@ -14,7 +14,11 @@ import java.util.List;
  */
 public interface ResidentRequestService {
    
-    DomResident findById(Integer id);
+    Request findById(Integer id);
     
-    
+    long createNewRequest(Request request);
+
+    void update(Request request);
+
+    List<Request> findAll();
 }

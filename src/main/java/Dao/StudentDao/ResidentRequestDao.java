@@ -5,13 +5,19 @@
 package Dao.StudentDao;
 
 import Dao.GenericDao.GenericDao;
-import Entity.DomResident;
+import Entity.Request;
+
+import java.util.List;
 
 /**
  *
  * @author ADMIN
  */
-public interface ResidentRequestDao  extends GenericDao<DomResident>{
-    long save(DomResident domResident);
-    DomResident findById(Integer id);
+public interface ResidentRequestDao  extends GenericDao<Request>{
+    long createNewRequest(Request request);
+    Request findById(Integer id);
+
+    void update (Request request);
+
+    List<Request> findAll();
 }

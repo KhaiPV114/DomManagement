@@ -6,32 +6,44 @@ package Dao.StudentDao.Impl;
 
 import Dao.GenericDao.Impl.GenericDaoImpl;
 import Dao.StudentDao.ResidentRequestDao;
-import Entity.DomResident;
-import Mapper.DomResidentMap;
+import Entity.Request;
+import Mapper.RequestMap;
+
+import java.util.List;
 
 
 /**
  *
  * @author ADMIN
  */
-public class ResidentRequestDaoImpl extends GenericDaoImpl<DomResident> implements ResidentRequestDao   {
+public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements ResidentRequestDao   {
 
-    
-    
-   
+
     @Override
-    public DomResident findById(Integer id) {
-        String sql = "SELECT * FROM DomResident WHERE residentId = ?";
-        return query(sql, new DomResidentMap(), id).stream().findFirst().orElse(null);
+    public Request findById(Integer id) {
+        String sql = "SELECT * FROM Request WHERE requestId = ?";
+        return query(sql, new RequestMap(), id).stream().findFirst().orElse(null);
     }
 
     @Override
-    public long save(DomResident domResident) {
-     StringBuilder sql = new StringBuilder("INSERT INTO DomResident (balance, checkInDate, checkOutDate , userId, bedId, termId) ");
+    public void update(Request request) {
+        String sql = "UPDATE Request SET requestStatus= ?, requestDetail = ?, residentId = ?, rollId = ?, requestType = ?, domId = ?, floor = ?, roomName = ?, termId = ?";
+        update(sql, request.getRequestStatus(), request.getRequestDetail(), request.getResidentId(), request.getRollId(), request.getRequestType(), request.getDomId(), request.getFloor(),
+                request.getRoomName(), request.getTermId());
+    }
+
+    @Override
+    public List<Request> findAll() {
+        String sql = "SELECT * FROM Request";
+        return query(sql, new RequestMap()).stream().toList();
+    }
+
+    @Override
+    public long createNewRequest(Request request) {
+     StringBuilder sql = new StringBuilder("INSERT INTO Request (requestStatus, requestDetail, residentId, rollId, requestType, domId, floor, roomName, termId) ");
         sql.append(" VALUES(?,?,?,?,?,?) ");
 
-        return insert(sql.toString(), domResident.getBalance(), domResident.getCheckInDate(),
-                domResident.getCheckOutDate(), domResident.getUserId(), domResident.getBedId(), domResident.getTermId());
+        return insert(sql.toString(), request.getRequestStatus(), request.getRequestDetail(), request.getResidentId(), request.getRollId(), request.getRequestType(), request.getDomId(), request.getFloor(), request.getRoomName(), request.getTermId());
      }
 
 
