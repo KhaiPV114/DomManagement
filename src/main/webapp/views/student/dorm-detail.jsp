@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 <body>
 <%@ include file="navbar.jsp" %>
 <div id="content-body" class="content-body pl-328">
@@ -13,7 +13,7 @@
                 <div class="flex flex-wrap" style="gap: 24px;">
                     <div class="">
                         <div class="my-select">
-                            <label for="Month" class="SAB-label">
+                            <label class="SAB-label">
                                 Term
                             </label>
                             <select class="form-control" id="Term" name="Term"
@@ -26,7 +26,7 @@
                     </div>
                     <div class="">
                         <div class="my-select">
-                            <label for="Month" class="SAB-label">
+                            <label  class="SAB-label">
                                 Year
                             </label>
                             <select class="form-control" id="Year" name="Year"
@@ -160,6 +160,6 @@
     </div>
 </div>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

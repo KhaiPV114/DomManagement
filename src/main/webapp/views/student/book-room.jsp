@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 <body>
 <%@ include file="navbar.jsp" %>
 <div id="content-body" class="content-body pl-328">
@@ -122,7 +122,7 @@
             <div class="flex-1">
               <label class="SBB-input-label no-margin" for="Semester">Semester</label>
               <div class="my-select-style">
-                <select class="SBB-input" id="SemesterYear" name="SemesterYear">
+                <select class="SBB-input" id="Semester" name="SemesterYear">
                   <option selected="selected" value="2|2024">Summer - 2024</option>
                   <option value="3|2024">Fall - 2024</option>
                 </select>
@@ -189,6 +189,6 @@
   </div>
 
 </div>
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>
