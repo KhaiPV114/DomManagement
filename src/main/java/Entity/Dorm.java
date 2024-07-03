@@ -2,11 +2,13 @@ package Entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 
 @Builder
 @Getter
-public class Dom {
+@ToString
+public class Dorm {
     private Integer domId;
     private String domName;
     private Integer numberOfFloor;

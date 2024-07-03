@@ -27,7 +27,6 @@
                     </div>
                 </form>
             </div>
-            <p class="SAB-msg">"Available beds" Report (Male only) at 02/07/2024 14:06:44</p>
             <div class="container-block">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-advance table-hover">
