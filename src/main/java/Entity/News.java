@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 @Getter
 @Builder
-
 public class News {
     private Integer newsId;
     private String newsTitle;

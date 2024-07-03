@@ -1,4 +1,4 @@
-package Controller.Student;
+package Controller.AdminController;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/student/home")
-public class Home extends HttpServlet {
+@WebServlet("/admin/user")
+public class UserView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect(req.getContextPath() + "/views/student/home.jsp");
+        resp.sendRedirect(req.getContextPath() + "/views/admin/user.jsp");
     }
 }
