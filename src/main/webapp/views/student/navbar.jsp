@@ -1,11 +1,4 @@
 <%@ page import="Entity.GoogleUser" %>
-<%@ page import="org.checkerframework.common.returnsreceiver.qual.This" %><%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 02/07/2024
-  Time: 9:04 CH
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="my-navbar">
