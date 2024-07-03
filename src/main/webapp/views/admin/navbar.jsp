@@ -41,19 +41,19 @@
             <a href="#" class="sidebar-linkItem flex items-center sidebar-linkItem-active">
                 <p>Dashboard</p>
             </a>
-            <a href="#" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/dorm" class="sidebar-linkItem flex items-center">
                 <p>Dorm</p>
             </a>
-            <a href="#" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/user" class="sidebar-linkItem flex items-center">
                 <p>User</p>
             </a>
-            <a href="#" class="sidebar-linkItem flex items-center ">
+            <a href="<%=request.getContextPath()%>/admin/student" class="sidebar-linkItem flex items-center ">
                 <p>Student</p>
             </a>
-            <a href="#" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/request" class="sidebar-linkItem flex items-center">
                 <p>Request</p>
             </a>
-            <a href="#" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/dorm-details" class="sidebar-linkItem flex items-center">
                 <p>Dorm Risedent</p>
             </a>
             <a href="#" class="sidebar-linkItem flex items-center">

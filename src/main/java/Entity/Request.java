@@ -5,7 +5,6 @@ import lombok.Getter;
 
 @Getter
 @Builder
-
 public class Request {
     private Integer requestId;
     private String requestStatus;

@@ -24,16 +24,15 @@ public class GoogleCallback extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String code = request.getParameter("code");
-        String error = request.getParameter("error");
         if(ACCESS_DENIED.equals(request.getParameter("error"))){
-            response.sendRedirect(request.getContextPath() + "/views/student/error.jsp");
+            response.sendRedirect(request.getContextPath() + "/views/error.jsp");
             return;
         }
         String accessToken = getToken(code);
         JSONObject user = getUserInformation(accessToken);
         String email = user.getString("email");
         if(!Strings.isNullOrEmpty(email) && !email.endsWith(END_POINT)){
-            response.sendRedirect(request.getContextPath() + "/views/student/error.jsp");
+            response.sendRedirect(request.getContextPath() + "/views/error.jsp");
         }else {
             String name = user.getString("given_name").replaceAll("\\d","");
             String rollName= email.substring(0,email.indexOf("@"));
@@ -45,7 +44,6 @@ public class GoogleCallback extends HttpServlet {
                     .build();
             HttpSession session = request.getSession();
             session.setAttribute("user", googleUser);
-            System.out.println(user);
             response.sendRedirect(request.getContextPath() + "/views/student/home.jsp");
         }
 
