@@ -12,7 +12,7 @@ import lombok.ToString;
 public class Room {
     private String roomName;
     private long price;
-    private RoomType roomType;
+    private String roomType;
     private Integer domId;
     private RoomStatus roomStatus;
     private Integer floor;

@@ -1,4 +1,4 @@
-package Service.StudentService.StudentServiceImpl;
+package Service.StudentService.Impl;
 
 import Dao.DomDao;
 import Dao.Impl.DomDaoImpl;
