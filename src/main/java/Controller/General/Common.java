@@ -1,5 +1,6 @@
 package Controller.General;
 
+import Dto.BedTotalDto;
 import Dto.DomTotalDto;
 import Entity.Bed;
 import Entity.Dom;
@@ -23,7 +24,6 @@ public class Common {
 
         Map<String, List<Bed>> bedMap = bedService.getAll().stream().collect(Collectors.groupingBy(Bed::getKey));
 
-
         for(String domName : domNames){
             String domId = domName.substring(domName.length() - 1);
             int usedBed = 0;
@@ -38,7 +38,7 @@ public class Common {
             }
             DomTotalDto dto =  DomTotalDto.builder()
                     .domName(domName)
-                    .domID(domId)
+                    .domId(domId)
                     .freeBed(freeBed)
                     .usedBed(usedBed)
                     .totalBed(freeBed + usedBed)
@@ -47,4 +47,5 @@ public class Common {
         }
         return domTotalDtoList;
     }
+
 }

@@ -12,6 +12,7 @@ import Service.StudentService.Impl.DomServiceImpl;
 import Service.StudentService.Impl.RoomServiceImpl;
 import Service.StudentService.RoomService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +33,7 @@ public class DomView extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<DomTotalDto> domTotalDtoList = new Common().getListDomDto();
         req.setAttribute("domTotalDto", domTotalDtoList);
-        req.getRequestDispatcher("/views/student/dom.jsp");
-
+        RequestDispatcher rd = req.getRequestDispatcher("/views/student/dom.jsp");
+        rd.forward(req, resp);
     }
 }
