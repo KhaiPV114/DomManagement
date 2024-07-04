@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Dao.StudentDao.Impl;
+package Dao.Impl;
 
 import Dao.GenericDao.Impl.GenericDaoImpl;
-import Dao.StudentDao.ResidentRequestDao;
+import Dao.ResidentRequestDao;
 import Entity.Request;
 import Mapper.RequestMap;
 

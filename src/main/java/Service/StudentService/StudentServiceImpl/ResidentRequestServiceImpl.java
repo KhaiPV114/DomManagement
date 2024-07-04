@@ -1,7 +1,7 @@
 package Service.StudentService.StudentServiceImpl;
 
-import Dao.StudentDao.Impl.ResidentRequestDaoImpl;
-import Dao.StudentDao.ResidentRequestDao;
+import Dao.Impl.ResidentRequestDaoImpl;
+import Dao.ResidentRequestDao;
 import Entity.Request;
 import Service.StudentService.ResidentRequestService;
 

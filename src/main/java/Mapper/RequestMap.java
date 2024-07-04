@@ -10,25 +10,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
  * @author ADMIN
  */
-public class RequestMap implements RowMapper<Request>{
+public class RequestMap implements RowMapper<Request> {
     public Request mapRow(ResultSet rs) {
-    Request.RequestBuilder request = Request.builder();
-    try{
-        request.requestDetail(rs.getString("requestDetail"));
-        request.requestStatus(rs.getString("requestStatus"));
-        request.requestType(rs.getString("requestType"));
-        request.residentId(rs.getInt("residentId"));
-        request.rollId(rs.getString("rollId"));
-        request.domId(rs.getInt("domId"));
-        request.floor(rs.getInt("floor"));
-        request.roomName(rs.getString("roomName"));
-        request.termId(rs.getInt("termId"));
-    }catch(SQLException e){
-        throw new RuntimeException();
+        Request.RequestBuilder request = Request.builder();
+        try {
+            request.requestDetail(rs.getString("requestDetail"))
+                    .requestStatus(rs.getString("requestStatus"))
+                    .requestType(rs.getString("requestType"))
+                    .residentId(rs.getInt("residentId"))
+                    .rollId(rs.getString("rollId"))
+                    .domId(rs.getInt("domId"))
+                    .floor(rs.getInt("floor"))
+                    .roomName(rs.getString("roomName"))
+                    .termId(rs.getInt("termId"));
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+        return request.build();
     }
-    return request.build();
-}
 }

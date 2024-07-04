@@ -1,4 +1,4 @@
-package Controller.AdminController;
+package Controller.Admin;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/admin/dorm")
-public class DormView extends HttpServlet {
+public class DomView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect(req.getContextPath() + "/views/admin/dorm.jsp");
+        resp.sendRedirect(req.getContextPath() + "/views/admin/dom.jsp");
     }
 }

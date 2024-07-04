@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 @Getter
 @Builder
@@ -13,9 +13,9 @@ public class RoomBill {
     private int billId;
     private long electricMoney;
     private long waterMoney;
-    private LocalDate dayCreate;
     private String roomName;
     private String billStatus;
     private Long totalAmount;
     private String description;
+    private Timestamp dayCreate;
 }
