@@ -1,5 +1,6 @@
 package Controller.Student;
 
+import Controller.General.Common;
 import Dto.DomTotalDto;
 import Entity.Bed;
 import Entity.Dom;
@@ -17,8 +18,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @WebServlet("/student/dom")
 public class DomView extends HttpServlet {
@@ -27,25 +30,9 @@ public class DomView extends HttpServlet {
     private final RoomService roomService = new RoomServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Dom> doms = dormService.getAll();
-        List<DomTotalDto> domTotalDtoList = doms.stream()
-                .map(x -> DomTotalDto.builder()
-                        .domName(x.getDomName())
-                        .domID(String.valueOf(x.getDomName().charAt(x.getDomName().length() - 1)))
-                        .build())
-                .toList();
-        List<Bed> beds = bedService.getAll();
-        for(Bed bed : beds){
-            String domId = bed.getRoomName().substring(1);
-            switch (domId){
-                case "A" :
-                    if (BedStatus.AVAILABLE.equals(bed.getBedStatus())){
+        List<DomTotalDto> domTotalDtoList = new Common().getListDomDto();
+        req.setAttribute("domTotalDto", domTotalDtoList);
+        req.getRequestDispatcher("/views/student/dom.jsp");
 
-                    }
-            }
-        }
-        beds.forEach(System.out::println);
-        roomService.getAll().forEach(System.out::println);
-        resp.sendRedirect(req.getContextPath()+ "/views/student/dom.jsp");
     }
 }
