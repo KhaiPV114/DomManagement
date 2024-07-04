@@ -52,7 +52,6 @@
         </form>
         <div>
             <h3 style="color: var(--blue-color);" class="text-bold"> Summary: Dom A at term Summer-2024</h3>
-            <h4 class="SAB-msg">Gender: Male only</h4>
             <div class="container-block">
                 <table class="table table-striped table-bordered table-advance table-hover">
                     <thead>
@@ -64,50 +63,25 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${bedTotalDto}" var="bed">
+                        <tr>
+                            <td>${bed.floor}</td>
+                            <td>${bed.free}</td>
+                            <td>${bed.used}</td>
+                            <td>${bed.sum}</td>
+                        </tr>
+                    </c:forEach>
                     <tr>
-                        <td>1</td>
-                        <td>77</td>
-                        <td>25</td>
-                        <td>102</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>77</td>
-                        <td>55</td>
-                        <td>132</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>78</td>
-                        <td>66</td>
-                        <td>144</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>98</td>
-                        <td>46</td>
-                        <td>144</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>51</td>
-                        <td>33</td>
-                        <td>84</td>
-                    </tr>
-                    <tr>
-                        <td>All</td>
-                        <td>381</td>
-                        <td>225</td>
-                        <td>606</td>
+                        <th>All</th>
+                        <th>${totalFree}</th>
+                        <th>${totalUsed}</th>
+                        <th>${totalUsed + totalFree}</th>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
         <div>
-            <h4 class="SAB-msg">Detail in term Summer-2024 with gender Male only.
-                <i class="SAB-msg"> Query time: 02/07/2024 14:09:04</i>
-            </h4>
             <div class="container-block">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-advance table-hover">
@@ -122,31 +96,26 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>A101</td>
-                            <td>12</td>
-                            <td>5 (Bed No:4,5,6,9,12)</td>
-                            <td>7 (Bed No:1,2,3,7,8,10,11)</td>
-                            <td>0</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>A102</td>
-                            <td>6</td>
-                            <td>6 (Bed No:1,2,3,4,5,6)</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td></td>
-                        </tr>
+                        <c:forEach items="${bedDetailDto}" var="bed">
+                            <tr>
+                                <td>${bed.roomName}</td>
+                                <td>${bed.totalBed}</td>
+                                <td>${bed.freeBed}</td>
+                                <td>${bed.usedBed}</td>
+                                <td>${bed.bookingBed}</td>
+                                <td>${bed.pricePerMonth}</td>
+                            </tr>
+                        </c:forEach>
+
 
                         </tbody>
                         <thead>
                         <tr>
                             <th>All</th>
-                            <th>606</th>
-                            <th>381</th>
-                            <th>225</th>
-                            <th>0</th>
+                            <th>${usedBedDetail + freeBedDetail + bookingBedDetail}</th>
+                            <th>${freeBedDetail}</th>
+                            <th>${usedBedDetail}</th>
+                            <th>${bookingBedDetail}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -154,7 +123,7 @@
                     </table>
                 </div>
             </div>
-            <button onclick="location.href='/Student/ViewBed?Term=2%7C2024';return false;" class="SAB-back"
+            <button onclick="location.href='<%=request.getContextPath()%>/student/dom';return false;" class="SAB-back"
                     style="margin-top: 24px;">Back to list</button>
         </div>
     </div>

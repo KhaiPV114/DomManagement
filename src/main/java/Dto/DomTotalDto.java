@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class DomTotalDto {
     private String domName;
-    private String domID;
+    private String domId;
     private int totalBed;
     private int usedBed;
     private int freeBed;

@@ -2,5 +2,5 @@
 package Enum;
 
 public enum BedStatus {
-    NOTAVAILABLE, AVAILABLE
+    NOTAVAILABLE, AVAILABLE, BOOKING
 }
