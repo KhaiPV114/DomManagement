@@ -6,7 +6,7 @@ import Entity.Room;
 import java.util.List;
 
 public interface RoomDao extends GenericDao<Room> {
-    Room findById(String roomName);
+    Room findByRoomNameAndFloor(String roomName, Integer floor);
 
     void update(Room Room);
 

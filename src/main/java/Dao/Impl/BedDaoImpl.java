@@ -11,15 +11,15 @@ public class BedDaoImpl extends GenericDaoImpl<Bed> implements BedDao {
 
 
     @Override
-    public Bed findById(Integer id) {
-        String sql = "SELECT * FROM Bed WHERE bedId = ?";
-        return query(sql, new BedMap(), id).stream().findFirst().orElse(null);
+    public Bed findByBedIdRoomName(Integer bedId, String roomName){
+        String sql = "SELECT * FROM Bed WHERE bedId = ? AND roomName";
+        return query(sql, new BedMap(), bedId, roomName).stream().findFirst().orElse(null);
     }
 
     @Override
     public void update(Bed bed) {
-        String sql = "UPDATE Bed SET roomName = ? , floor = ? , bedStatus = ? WHERE bedId = ?";
-        update(sql, bed.getRoomName(), bed.getFloor(), bed.getBedStatus().toString() , bed.getBedId());
+        String sql = "UPDATE Bed SET floor = ? , bedStatus = ? WHERE bedId = ? AND roomName = ?";
+        update(sql, bed.getFloor(), bed.getBedStatus().toString() , bed.getBedId(), bed.getRoomName());
     }
 
     @Override

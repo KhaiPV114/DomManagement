@@ -6,7 +6,7 @@ import Entity.Bed;
 import java.util.List;
 
 public interface BedDao extends GenericDao<Bed> {
-    Bed findById(Integer id);
+    Bed findByBedIdRoomName(Integer bedId, String roomName);
 
     void update(Bed bed);
 
