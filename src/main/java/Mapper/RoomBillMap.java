@@ -11,7 +11,13 @@ public class RoomBillMap implements RowMapper<RoomBill>{
         RoomBill.RoomBillBuilder roomBill = RoomBill.builder();
         try {
             roomBill.billId(rs.getInt("billId"))
-                    .roomName(rs.getString("roomName"));
+                    .roomName(rs.getString("roomName"))
+                    .waterMoney(rs.getLong("waterMoney"))
+                    .electricMoney(rs.getLong("electricMoney"))
+                    .billStatus(rs.getString("billStatus"))
+                    .totalAmount(rs.getLong("totalAmount"))
+                    .description(rs.getString("description"))
+                    .dayCreate(rs.getTimestamp("dayCreated"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

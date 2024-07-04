@@ -16,7 +16,10 @@ public class DormResidentMap implements RowMapper<DormResident> {
                     .balance(rs.getLong("balance"))
                     .checkInDate(rs.getTimestamp("checkInDate"))
                     .checkOutDate(rs.getTimestamp("checkInDate"))
-                    .termId(rs.getInt("termId"));
+                    .termId(rs.getInt("termId"))
+                    .roomName(rs.getString("roomName"))
+                    .rollId(rs.getString("rollId"))
+                    .floor(rs.getInt("floor"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
