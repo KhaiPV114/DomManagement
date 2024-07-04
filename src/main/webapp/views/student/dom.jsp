@@ -8,7 +8,7 @@
     <div class="container-fluid my-container">
         <div>
             <h1 class="big-title">Available beds</h1>
-            <div>
+            <div style="margin-bottom: 15px">
                 <form action="/Student/ViewBed" method="get">
                     <div class="flex" style="gap: 24px;">
                         <div class="my-select flex" style="min-width: 200px; flex-direction: column;">

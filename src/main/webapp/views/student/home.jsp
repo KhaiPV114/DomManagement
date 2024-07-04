@@ -83,14 +83,14 @@
                             <div class="Shome-info-avatar">
                                 <div
                                         style="width: 120px; height: 120px; background-color: var(--orange-color); border-radius: 100%;">
-                                    <img src="<%=googleUser.getPicture()%>"
-                                         height="312" width="235" class="img-thumbnail">
+<%--                                    <img src="<%=googleUser.getPicture()%>"--%>
+<%--                                         height="312" width="235" class="img-thumbnail">--%>
                                 </div>
                             </div>
                             <div class="Shone-info">
                                 <p
                                         style="font-weight: bold; font-size: 18px; line-height: 150%; color: var(--blue-color)">
-                                    <%= googleUser.getName()%>
+<%--                                    <%= googleUser.getName()%>--%>
                                 </p>
                                 <p>
                                     <span class="text-gray"> 11/04/2003 - </span>

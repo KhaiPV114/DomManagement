@@ -9,15 +9,15 @@ import java.util.List;
 
 public class RoomDaoImpl extends GenericDaoImpl<Room> implements RoomDao {
     @Override
-    public Room findById(String roomName) {
-        String sql = "SELECT * FROM Room WHERE roomName = ?";
-        return query(sql, new RoomMap(), roomName).stream().findFirst().orElse(null);
+    public Room findByRoomNameAndFloor(String roomName, Integer floor) {
+        String sql = "SELECT * FROM Room WHERE roomName = ? AND floor = ?";
+        return query(sql, new RoomMap(), roomName, floor).stream().findFirst().orElse(null);
     }
 
     @Override
     public void update(Room room) {
-        String sql = "UPDATE Room SET roomType = ?, roomStatus = ?, floor = ?, domId = ?, price = ? WHERE roomName = ?";
-        update(sql, room.getRoomType(), room.getRoomStatus(), room.getFloor(), room.getDomId(), room.getPrice(), room.getRoomName());
+        String sql = "UPDATE Room SET roomType = ?, roomStatus = ?, domId = ?, price = ? WHERE roomName = ? AND floor = ?";
+        update(sql, room.getRoomType(), room.getRoomStatus(), room.getDomId(), room.getPrice(), room.getRoomName(), room.getFloor());
     }
 
     @Override

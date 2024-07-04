@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/student/dorm")
+@WebServlet("/student/dom")
 public class DomView extends HttpServlet {
     private final DomService dormService = new DomServiceImpl();
     @Override

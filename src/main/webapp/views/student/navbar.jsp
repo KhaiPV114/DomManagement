@@ -33,15 +33,15 @@
             </div>
             <div class="">
                 <p class="sidebar-name" style="margin-bottom: 8px;">
-                    <%
-                        HttpSession sessions = request.getSession();
-                        GoogleUser googleUser = (GoogleUser) sessions.getAttribute("user");
-                    %>
-                    <%= googleUser.getRollName() %>
+<%--                    <%--%>
+<%--                        HttpSession sessions = request.getSession();--%>
+<%--                        GoogleUser googleUser = (GoogleUser) sessions.getAttribute("user");--%>
+<%--                    %>--%>
+<%--                    <%= googleUser.getRollName() %>--%>
                 </p>
                 <p class="sidebar-prestigeScore"><span class="sidebar-prestigeScore bold">Balance:</span> 0 VND</p>
                 <p class="sidebar-prestigeScore"><span
-                        class="sidebar-prestigeScore bold">RollName:</span> <%= googleUser.getRollName().toUpperCase().replaceAll("^.*HE", "HE") %>
+<%--                        class="sidebar-prestigeScore bold">RollName:</span> <%= googleUser.getRollName().toUpperCase().replaceAll("^.*HE", "HE") %>--%>
                 </p>
             </div>
         </div>
