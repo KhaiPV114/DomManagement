@@ -1,14 +1,14 @@
 package Mapper;
 
-import Entity.Dorm;
+import Entity.Dom;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DormMap implements RowMapper<Dorm> {
+public class DomMap implements RowMapper<Dom> {
     @Override
-    public Dorm mapRow(ResultSet rs) {
-        Dorm.DormBuilder dorm = Dorm.builder();
+    public Dom mapRow(ResultSet rs) {
+        Dom.DomBuilder dorm = Dom.builder();
         try {
             dorm.domId(rs.getInt("domId"))
                     .domName(rs.getString("domName"))

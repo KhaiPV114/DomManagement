@@ -8,7 +8,7 @@ import lombok.ToString;
 @Builder
 @Getter
 @ToString
-public class Dorm {
+public class Dom {
     private Integer domId;
     private String domName;
     private Integer numberOfFloor;

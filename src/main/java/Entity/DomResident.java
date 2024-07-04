@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Getter
 @Builder
 @ToString
-public class DormResident {
+public class DomResident {
     private Integer residentId;
     private Timestamp checkInDate;
     private Timestamp checkOutDate;

@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/student/dorm-detail")
-public class DormDetailView extends HttpServlet {
+@WebServlet("/student/dom-detail")
+public class DomDetailView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect(req.getContextPath()+ "/views/student/dorm-detail.jsp");
+        resp.sendRedirect(req.getContextPath()+ "/views/student/dom-detail.jsp");
     }
 }

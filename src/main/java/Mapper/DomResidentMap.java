@@ -1,14 +1,14 @@
 package Mapper;
 
-import Entity.DormResident;
+import Entity.DomResident;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DormResidentMap implements RowMapper<DormResident> {
+public class DomResidentMap implements RowMapper<DomResident> {
     @Override
-    public DormResident mapRow(ResultSet rs) {
-        DormResident.DormResidentBuilder dom = DormResident.builder();
+    public DomResident mapRow(ResultSet rs) {
+        DomResident.DomResidentBuilder dom = DomResident.builder();
         try {
             dom.residentId(rs.getInt("residentId"))
                     .bedId(rs.getInt("bedId"))
