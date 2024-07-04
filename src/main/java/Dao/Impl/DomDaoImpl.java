@@ -26,8 +26,8 @@ public class DomDaoImpl extends GenericDaoImpl<Dom> implements DomDao {
 
     @Override
     public void update(Dom dorm) {
-        String sql = "UPDATE Dom SET domId= ?, domName = ?, numberOfFloor = ? ";
-        update(sql, dorm.getDomId(), dorm.getDomName(), dorm.getNumberOfFloor());
+        String sql = "UPDATE Dom SET domName = ?, numberOfFloor = ? WHERE domId = ?";
+        update(sql, dorm.getDomName(), dorm.getNumberOfFloor(), dorm.getDomId());
     }
 
     @Override

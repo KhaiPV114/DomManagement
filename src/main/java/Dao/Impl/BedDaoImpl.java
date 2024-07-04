@@ -18,8 +18,8 @@ public class BedDaoImpl extends GenericDaoImpl<Bed> implements BedDao {
 
     @Override
     public void update(Bed bed) {
-        String sql = "UPDATE Bed SET bedId = ? , roomName = ? , floor = ? , bedStatus = ?";
-        update(sql, bed.getBedId(), bed.getRoomName(), bed.getFloor(), bed.getBedStatus().toString());
+        String sql = "UPDATE Bed SET roomName = ? , floor = ? , bedStatus = ? WHERE bedId = ?";
+        update(sql, bed.getRoomName(), bed.getFloor(), bed.getBedStatus().toString() , bed.getBedId());
     }
 
     @Override
