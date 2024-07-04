@@ -1,4 +1,4 @@
-package Service.StudentService.StudentServiceImpl;
+package Service.StudentService.Impl;
 
 import Dao.Impl.ResidentRequestDaoImpl;
 import Dao.ResidentRequestDao;

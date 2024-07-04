@@ -14,7 +14,7 @@ public class RoomMap implements RowMapper<Room> {
         try {
             room.roomName(rs.getString("roomName"))
                     .price(rs.getLong("price"))
-                    .roomType(RoomType.valueOf(rs.getString("roomType")))
+                    .roomType(rs.getString("roomType"))
                     .roomStatus(RoomStatus.valueOf(rs.getString("roomStatus")))
                     .floor(rs.getInt("floor"))
                     .domId(rs.getInt("domId"));
