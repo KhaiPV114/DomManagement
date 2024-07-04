@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Getter
@@ -13,7 +14,7 @@ public class News {
     private Integer newsId;
     private String newsTitle;
     private String newsDetail;
-    private LocalDate createdTime;
+    private Timestamp createdTime;
     private String picture;
     private Integer author;
 }

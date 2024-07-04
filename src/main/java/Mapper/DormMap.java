@@ -10,9 +10,9 @@ public class DormMap implements RowMapper<Dorm> {
     public Dorm mapRow(ResultSet rs) {
         Dorm.DormBuilder dorm = Dorm.builder();
         try {
-            dorm.domId(rs.getInt("domId"));
-            dorm.domName(rs.getString("domName"));
-            dorm.numberOfFloor(rs.getInt("numberOfFloor"));
+            dorm.domId(rs.getInt("domId"))
+                    .domName(rs.getString("domName"))
+                    .numberOfFloor(rs.getInt("numberOfFloor"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

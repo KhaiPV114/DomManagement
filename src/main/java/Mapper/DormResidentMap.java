@@ -5,18 +5,18 @@ import Entity.DormResident;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DormResidentMap implements RowMapper<DormResident>{
+public class DormResidentMap implements RowMapper<DormResident> {
     @Override
     public DormResident mapRow(ResultSet rs) {
         DormResident.DormResidentBuilder dom = DormResident.builder();
         try {
-            dom.residentId(rs.getInt("residentId"));
-            dom.bedId(rs.getInt("bedId"));
-            dom.userId(rs.getInt("userId"));
-            dom.balance(rs.getLong("balance"));
-            dom.checkInDate(rs.getTimestamp("checkInDate"));
-            dom.checkOutDate(rs.getTimestamp("checkInDate"));
-            dom.termId(rs.getInt("termId"));
+            dom.residentId(rs.getInt("residentId"))
+                    .bedId(rs.getInt("bedId"))
+                    .userId(rs.getInt("userId"))
+                    .balance(rs.getLong("balance"))
+                    .checkInDate(rs.getTimestamp("checkInDate"))
+                    .checkOutDate(rs.getTimestamp("checkInDate"))
+                    .termId(rs.getInt("termId"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
