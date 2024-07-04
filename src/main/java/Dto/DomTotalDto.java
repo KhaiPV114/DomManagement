@@ -1,10 +1,10 @@
 package Dto;
 
 import lombok.Builder;
-import lombok.Setter;
+import lombok.Getter;
 import lombok.ToString;
 
-@Setter
+@Getter
 @Builder
 @ToString
 public class DomTotalDto {

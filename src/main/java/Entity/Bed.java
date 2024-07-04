@@ -13,4 +13,9 @@ public class Bed {
     private BedStatus bedStatus;
     private String  roomName;
     private Integer floor;
+
+    public String getKey(){
+        // Neu roomName = A101 => return A
+        return roomName.substring(0, 1);
+    }
 }
