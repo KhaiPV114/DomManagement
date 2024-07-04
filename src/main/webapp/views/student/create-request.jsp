@@ -45,9 +45,9 @@
 </div>
 <script>
     function showDateCheckOut(){
-        const RoomTypeId = document.getElementById("RoomTypeId");
+        const RequestType = document.getElementById("RequestType");
         const dateCheckOut =  document.getElementById("date-check-out");
-        if(RoomTypeId.value === '1'){
+        if(RequestType.value === '1'){
             dateCheckOut.classList.remove("hidden");
         } else if (!dateCheckOut.classList.contains("hidden")){
             dateCheckOut.classList.add("hidden")

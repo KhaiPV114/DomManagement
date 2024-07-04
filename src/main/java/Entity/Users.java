@@ -12,4 +12,6 @@ public class Users {
     private Integer roleId;
     private String password;
     private String gmail;
+    private String gender;
+    private String fullname;
 }

@@ -14,5 +14,8 @@ public class RoomBill {
     private long electricMoney;
     private long waterMoney;
     private LocalDate dayCreate;
-    private int roomId;
+    private String roomName;
+    private String billStatus;
+    private Long totalAmount;
+    private String description;
 }
