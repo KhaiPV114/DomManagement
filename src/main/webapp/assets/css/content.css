@@ -7190,7 +7190,7 @@ td.visible-print {
     --white-color: #ffffff;
     --blue-color: #034ea2;
     --blue-2: #acd3ff;
-    --orange-color: #f36f21;
+    --orange-color: #0803a2;
     --green-color: #258F29;
 }
 
@@ -7361,7 +7361,7 @@ a:focus {
 .orange-btn:hover {
     text-decoration: none;
     background: #ffece1;
-    border: 2px solid #f36f21;
+    border: 2px solid #0803a2;
 
     color: var(--orange-color) !important;
 }
@@ -7369,7 +7369,7 @@ a:focus {
 .orange-btn:focus {
     color: white !important;
     text-decoration: none;
-    background: #f36f21;
+    background: #0803a2;
     border-radius: 12px;
 }
 
@@ -8171,7 +8171,7 @@ table td {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f36f21;
+    background-color: #0803a2;
     cursor: pointer;
     margin-right: 44px;
     padding: 13px;
@@ -8318,7 +8318,7 @@ table td {
 }
 
 .sidebar-linkItem-active {
-    background: #f36f21;
+    background: #0803a2;
     border-radius: 12px;
     color: white !important;
 }
@@ -8376,7 +8376,7 @@ table td {
 .btn-logout {
     outline: none;
     border: none;
-    background: #f36f21;
+    background: #0803a2;
     border-radius: 10px;
     width: 280px;
     height: 42px;
@@ -8518,11 +8518,11 @@ table td {
 }
 
 #SEW-tab-personal:focus {
-    background-color: #f36f21;
+    background-color: #0803a2;
 }
 
 #SEW-tab-common:focus {
-    background-color: #f36f21;
+    background-color: #0803a2;
 }
 
 .SEW-tab-item:hover {
@@ -9073,7 +9073,7 @@ table td {
 .SBB-available-btn {
     width: calc(50% - 12px);
     background: #ffffff;
-    border: 1px solid #f36f21;
+    border: 1px solid #0803a2;
     border-radius: 12px;
 
     display: flex;
@@ -9087,7 +9087,7 @@ table td {
     line-height: 150%;
     text-align: center;
     letter-spacing: -0.011em;
-    color: #f36f21 !important;
+    color: #0803a2 !important;
     text-decoration: none;
     width: 100%;
 }
@@ -9152,17 +9152,17 @@ table td {
     line-height: 150%;
     text-align: center;
     letter-spacing: -0.011em;
-    color: #f36f21;
+    color: #0803a2;
     background-color: #ffffff;
 
-    border: 1px solid #f36f21;
+    border: 1px solid #0803a2;
     border-radius: 12px;
     cursor: pointer;
     min-width: 150px;
 }
 
 .SCS-tab-item a {
-    color: #f36f21;
+    color: #0803a2;
     text-decoration: none;
     padding: 10px 23px;
     display: block;
@@ -9173,7 +9173,7 @@ table td {
 }
 
 .SCS-tab-active {
-    background-color: #f36f21;
+    background-color: #0803a2;
 }
 
 .SCS-tab-active a {
@@ -9354,7 +9354,7 @@ table td {
     font-weight: bold;
     font-size: 36px;
     line-height: 41px;
-    color: #f36f21;
+    color: #0803a2;
 }
 
 .SND-date {

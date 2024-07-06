@@ -6,10 +6,10 @@ import Entity.Bed;
 import Entity.Student;
 import Enum.BedStatus;
 import Enum.RoomType;
-import Service.StudentService.BedService;
-import Service.StudentService.Impl.BedServiceImpl;
-import Service.StudentService.Impl.StudentServiceImpl;
-import Service.StudentService.StudentService;
+import Service.BedService;
+import Service.Impl.BedServiceImpl;
+import Service.Impl.StudentServiceImpl;
+import Service.StudentService;
 import com.google.api.client.util.Strings;
 
 import javax.servlet.RequestDispatcher;

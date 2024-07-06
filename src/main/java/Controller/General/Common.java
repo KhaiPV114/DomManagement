@@ -1,17 +1,24 @@
 package Controller.General;
 
-import Dto.BedTotalDto;
 import Dto.DomTotalDto;
+import Dto.UsersDto;
 import Entity.Bed;
 import Entity.Dom;
+import Entity.Users;
 import Entity.Student;
+import Enum.Semester;
 import Enum.BedStatus;
-import Service.StudentService.BedService;
-import Service.StudentService.DomService;
-import Service.StudentService.Impl.BedServiceImpl;
-import Service.StudentService.Impl.DomServiceImpl;
+import Service.BedService;
+import Service.DomService;
+import Service.Impl.BedServiceImpl;
+import Service.Impl.DomServiceImpl;
+import Service.Impl.RoleServiceImpl;
+import Service.Impl.UserServiceImpl;
+import Service.RoleService;
+import Service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +27,9 @@ import java.util.stream.Collectors;
 public class Common {
     private final DomService dormService = new DomServiceImpl();
     private final BedService bedService = new BedServiceImpl();
+    private final UserService userService = new UserServiceImpl();
+    private final RoleService roleService = new RoleServiceImpl();
+
     public List<DomTotalDto> getListDomDto(){
         List<DomTotalDto> domTotalDtoList = new ArrayList<>();
         List<String> domNames = dormService.getAll().stream().map(Dom::getDomName).toList();
@@ -50,6 +60,27 @@ public class Common {
         return domTotalDtoList;
     }
 
+    public List<UsersDto> getListUsersDto(){
+        List<UsersDto> usersDtoList = new ArrayList<>();
+        List<Users> usersList = userService.getALl().stream().toList();
+
+        for(Users user : usersList){
+            if (user != null){
+                if (user.getRoleId() == 1 ){
+                    UsersDto usersDto = UsersDto.builder()
+                            .gmail(user.getGmail())
+                            .userId(user.getUserId())
+                            .role("Admin")
+                            .gender(user.getGender())
+                            .status(user.getStatus())
+                            .fullName(user.getFullname()).build();
+                    usersDtoList.add(usersDto);
+                }
+            }
+        }
+        return usersDtoList;
+    }
+
     public String convertAmount(long amount){
         StringBuilder sb = new StringBuilder(String.valueOf(amount));
         int length = sb.length();
@@ -64,4 +95,15 @@ public class Common {
         return  (Student) req.getSession().getAttribute("student");
     }
 
+    public String getSemester(){
+        LocalDate localDate = LocalDate.now();
+        int month = localDate.getMonth().getValue();
+        if (month < 5){
+            return Semester.XUAN.name();
+        } else if (month < 9){
+            return Semester.HA.name();
+        } else {
+            return Semester.DONG.name();
+        }
+    }
 }

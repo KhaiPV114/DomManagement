@@ -1,4 +1,4 @@
-package Service.StudentService;
+package Service;
 
 import Entity.Room;
 

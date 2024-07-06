@@ -4,11 +4,9 @@ import Dto.FloorAndFreeBed;
 import Entity.Bed;
 import Enum.RoomType;
 import Enum.BedStatus;
-import Service.StudentService.BedService;
-import Service.StudentService.Impl.BedServiceImpl;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import Service.BedService;
+import Service.Impl.BedServiceImpl;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.Serial;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 
@@ -40,20 +36,22 @@ public class GetDetailBookRoom extends HttpServlet {
 
         long freeBed = beds.stream()
                 .peek(x -> {
-                    String key = x.getRoomName().substring(0,1);
-                    if(key.equals(dom)){
+                    String key = x.getRoomName().substring(0, 1);
+                    if (key.equals(dom)) {
                         floors.add(x.getFloor());
                     }
                 })
-                .filter(x -> BedStatus.NOTAVAILABLE.equals(x.getBedStatus()) && x.getFloor().equals(floor))
+                .filter(x -> BedStatus.NOTAVAILABLE.equals(x.getBedStatus())
+                        && x.getFloor().equals(floors.size() < floor ? 1 : floor))
                 .count();
 
         FloorAndFreeBed floorAndFreeBed = FloorAndFreeBed.builder()
                 .freeBed(freeBed)
                 .floors(floors)
                 .build();
-
-        resp.getWriter().write(String.valueOf(floorAndFreeBed));
+        Gson gson = new Gson();
+        String jsonResponse = gson.toJson(floorAndFreeBed);
+        resp.getWriter().write(jsonResponse);
 
     }
 }

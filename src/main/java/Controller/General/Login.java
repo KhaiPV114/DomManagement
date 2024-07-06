@@ -1,8 +1,8 @@
 package Controller.General;
 
 import Entity.Student;
-import Service.StudentService.Impl.StudentServiceImpl;
-import Service.StudentService.StudentService;
+import Service.Impl.StudentServiceImpl;
+import Service.StudentService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

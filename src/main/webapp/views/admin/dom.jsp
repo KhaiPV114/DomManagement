@@ -42,119 +42,30 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Dom A</td>
-                            <td>A</td>
-                            <td>606</td>
-                            <td>225</td>
-                            <td>381</td>
-                            <td>
-                                <div class="flex justify-center">
-                                    <div class="btn-action" style="width: fit-content;">
-                                        <a
-                                                href="/Student/ViewBed/ViewByDom?domID=A&amp;Term=2&amp;Year=2024">Detail</a>
+                        <c:forEach items="${domTotalDtoList}" var="dom">
+                            <tr>
+                                <td>${dom.domName}</td>
+                                <td>${dom.domId}</td>
+                                <td>${dom.totalBed}</td>
+                                <td>${dom.usedBed}</td>
+                                <td>${dom.freeBed}</td>
+                                <td>
+                                    <div class="flex justify-center">
+                                        <div class="btn-action" style="width: fit-content;">
+                                            <a href="/Student/ViewBed/ViewByDom?domID=${dom.domId}&amp;Term=2&amp;Year=2024">Detail</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dom B</td>
-                            <td>B</td>
-                            <td>108</td>
-                            <td>3</td>
-                            <td>105</td>
-                            <td>
-                                <div class="flex justify-center">
-                                    <div class="btn-action" style="width: fit-content;">
-                                        <a
-                                                href="/Student/ViewBed/ViewByDom?domID=B&amp;Term=2&amp;Year=2024">Detail</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dom C</td>
-                            <td>C</td>
-                            <td>313</td>
-                            <td>217</td>
-                            <td>96</td>
-                            <td>
-                                <div class="flex justify-center">
-                                    <div class="btn-action" style="width: fit-content;">
-                                        <a
-                                                href="/Student/ViewBed/ViewByDom?domID=C&amp;Term=2&amp;Year=2024">Detail</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dom D</td>
-                            <td>D</td>
-                            <td>455</td>
-                            <td>326</td>
-                            <td>129</td>
-                            <td>
-                                <div class="flex justify-center">
-                                    <div class="btn-action" style="width: fit-content;">
-                                        <a
-                                                href="/Student/ViewBed/ViewByDom?domID=D&amp;Term=2&amp;Year=2024">Detail</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dom E</td>
-                            <td>E</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>
-                                <div class="flex justify-center">
-                                    <div class="btn-action" style="width: fit-content;">
-                                        <a
-                                                href="/Student/ViewBed/ViewByDom?domID=E&amp;Term=2&amp;Year=2024">Detail</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dom F</td>
-                            <td>F</td>
-                            <td>424</td>
-                            <td>279</td>
-                            <td>145</td>
-                            <td>
-                                <div class="flex justify-center">
-                                    <div class="btn-action" style="width: fit-content;">
-                                        <a
-                                                href="/Student/ViewBed/ViewByDom?domID=F&amp;Term=2&amp;Year=2024">Detail</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Dom H</td>
-                            <td>H</td>
-                            <td>416</td>
-                            <td>306</td>
-                            <td>110</td>
-                            <td>
-                                <div class="flex justify-center">
-                                    <div class="btn-action" style="width: fit-content;">
-                                        <a
-                                                href="/Student/ViewBed/ViewByDom?domID=H&amp;Term=2&amp;Year=2024">Detail</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                         <thead>
                         <tr>
                             <th>Total</th>
                             <th></th>
-                            <th>2322</th>
-                            <th>1356</th>
-                            <th>966</th>
+                            <th>${totalBedInDom}</th>
+                            <th>${totalUsedBed}</th>
+                            <th>${totalFreeBed}</th>
                             <th>
                             </th>
                         </tr>

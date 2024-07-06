@@ -1,11 +1,12 @@
 package Controller.Student;
 
+import Controller.General.Common;
 import Dto.BedDetailDto;
 import Dto.BedTotalDto;
 import Entity.Bed;
 import Enum.BedStatus;
-import Service.StudentService.BedService;
-import Service.StudentService.Impl.BedServiceImpl;
+import Service.BedService;
+import Service.Impl.BedServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,18 +15,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.function.ToLongFunction;
 import java.util.stream.Collectors;
 
 @WebServlet("/student/dom-detail")
 public class DomDetailView extends HttpServlet {
 
     private final BedService bedService = new BedServiceImpl();
+    private final Common common = new Common();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -124,6 +126,8 @@ public class DomDetailView extends HttpServlet {
         req.setAttribute("usedBedDetail", usedBedDetail);
         req.setAttribute("freeBedDetail", freeBedDetail);
         req.setAttribute("bookingBedDetail", bookingBedDetail);
+        req.setAttribute("domName",domId);
+        req.setAttribute("semester", common.getSemester() + " - " +LocalDate.now().getYear());
 
         RequestDispatcher rd = req.getRequestDispatcher("/views/student/dom-detail.jsp");
         rd.forward(req, resp);

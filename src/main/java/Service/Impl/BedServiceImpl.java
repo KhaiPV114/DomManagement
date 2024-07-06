@@ -1,9 +1,9 @@
-package Service.StudentService.Impl;
+package Service.Impl;
 
 import Dao.BedDao;
 import Dao.Impl.BedDaoImpl;
 import Entity.Bed;
-import Service.StudentService.BedService;
+import Service.BedService;
 
 import java.util.List;
 

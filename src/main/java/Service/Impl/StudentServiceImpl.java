@@ -1,9 +1,9 @@
-package Service.StudentService.Impl;
+package Service.Impl;
 
 import Dao.Impl.StudentDaoImpl;
 import Dao.StudentDao;
 import Entity.Student;
-import Service.StudentService.StudentService;
+import Service.StudentService;
 
 public class StudentServiceImpl implements StudentService {
     private final StudentDao studentDao = new StudentDaoImpl();

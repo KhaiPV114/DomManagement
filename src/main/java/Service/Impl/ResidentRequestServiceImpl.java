@@ -1,9 +1,9 @@
-package Service.StudentService.Impl;
+package Service.Impl;
 
 import Dao.Impl.ResidentRequestDaoImpl;
 import Dao.ResidentRequestDao;
 import Entity.Request;
-import Service.StudentService.ResidentRequestService;
+import Service.ResidentRequestService;
 
 import java.util.List;
 

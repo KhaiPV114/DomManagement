@@ -1,9 +1,9 @@
-package Service.StudentService.Impl;
+package Service.Impl;
 
 import Dao.DomDao;
 import Dao.Impl.DomDaoImpl;
 import Entity.Dom;
-import Service.StudentService.DomService;
+import Service.DomService;
 
 import java.util.List;
 

@@ -6,52 +6,52 @@
 <%@ include file="navbar.jsp" %>
 <div id="content-body" class="content-body pl-328">
     <div class="container-fluid my-container">
-        <h1 class="big-title">View by Dom A</h1>
-        <form action="/Student/ViewBed/ViewByDom" method="get">
-            <div>
-                <input id="domId" name="domId" type="hidden" value="A">
-                <div class="flex flex-wrap" style="gap: 24px;">
-                    <div class="">
-                        <div class="my-select">
-                            <label class="SAB-label">
-                                Term
-                            </label>
-                            <select class="form-control" id="Term" name="Term"
-                                    style="max-width: 100%;  min-height: 44px;">
-                                <option value="1">1</option>
-                                <option selected="selected" value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="my-select">
-                            <label  class="SAB-label">
-                                Year
-                            </label>
-                            <select class="form-control" id="Year" name="Year"
-                                    style="max-width: 100%;  min-height: 44px;">
-                                <option value="0">All</option>
-                                <option value="2025">2025</option>
-                                <option selected="selected" value="2024">2024</option>
-                                <option value="2023">2023</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="flex items-end">
-                        <button type="submit" style="" class="orange-btn">
-                            Search
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
+        <h1 class="big-title">View by Dom ${domName}</h1>
+    <%--        <form action="/Student/ViewBed/ViewByDom" method="get">--%>
+    <%--            <div>--%>
+    <%--                <input id="domId" name="domId" type="hidden" value="A">--%>
+    <%--                <div class="flex flex-wrap" style="gap: 24px;">--%>
+    <%--                    <div class="">--%>
+    <%--                        <div class="my-select">--%>
+    <%--                            <label class="SAB-label">--%>
+    <%--                                Term--%>
+    <%--                            </label>--%>
+    <%--                            <select class="form-control" id="Term" name="Term"--%>
+    <%--                                    style="max-width: 100%;  min-height: 44px;">--%>
+    <%--                                <option value="1">1</option>--%>
+    <%--                                <option selected="selected" value="2">2</option>--%>
+    <%--                                <option value="3">3</option>--%>
+    <%--                            </select>--%>
+    <%--                        </div>--%>
+    <%--                    </div>--%>
+    <%--                    <div class="">--%>
+    <%--                        <div class="my-select">--%>
+    <%--                            <label  class="SAB-label">--%>
+    <%--                                Year--%>
+    <%--                            </label>--%>
+    <%--                            <select class="form-control" id="Year" name="Year"--%>
+    <%--                                    style="max-width: 100%;  min-height: 44px;">--%>
+    <%--                                <option value="0">All</option>--%>
+    <%--                                <option value="2025">2025</option>--%>
+    <%--                                <option selected="selected" value="2024">2024</option>--%>
+    <%--                                <option value="2023">2023</option>--%>
+    <%--                                <option value="2022">2022</option>--%>
+    <%--                                <option value="2021">2021</option>--%>
+    <%--                                <option value="2020">2020</option>--%>
+    <%--                                <option value="2019">2019</option>--%>
+    <%--                            </select>--%>
+    <%--                        </div>--%>
+    <%--                    </div>--%>
+    <%--                    <div class="flex items-end">--%>
+    <%--                        <button type="submit" style="" class="orange-btn">--%>
+    <%--                            Search--%>
+    <%--                        </button>--%>
+    <%--                    </div>--%>
+    <%--                </div>--%>
+    <%--            </div>--%>
+    <%--        </form>--%>
         <div>
-            <h3 style="color: var(--blue-color);" class="text-bold"> Summary: Dom A at term Summer-2024</h3>
+            <h3 style="color: var(--blue-color);" class="text-bold"> Summary: Dom ${domName}</h3>
             <div class="container-block">
                 <table class="table table-striped table-bordered table-advance table-hover">
                     <thead>
@@ -81,7 +81,7 @@
                 </table>
             </div>
         </div>
-        <div>
+        <div style="margin-top: 15px">
             <div class="container-block">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-advance table-hover">

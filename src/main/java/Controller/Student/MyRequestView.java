@@ -1,4 +1,4 @@
-package Controller.Admin;
+package Controller.Student;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,14 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/student")
-public class StudentView extends HttpServlet {
-    private static final String VIEW_PATH = "views/admin/student.jsp";
-    private static final String HOME_PATH = "views/admin/home.jsp";
-
+@WebServlet("/student/request")
+public class MyRequestView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        resp.sendRedirect(req.getContextPath() + "/views/admin/student.jsp");
+        resp.sendRedirect(req.getContextPath() +"/views/student/my-request.jsp");
     }
 }

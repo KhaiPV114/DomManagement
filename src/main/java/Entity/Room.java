@@ -1,7 +1,7 @@
 package Entity;
 
 import Enum.RoomStatus;
-import Enum.RoomType;
+import Enum.Gender;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -16,4 +16,5 @@ public class Room {
     private Integer domId;
     private RoomStatus roomStatus;
     private Integer floor;
+    private Gender genderRoom;
 }
