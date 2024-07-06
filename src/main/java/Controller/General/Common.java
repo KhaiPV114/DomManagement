@@ -48,4 +48,14 @@ public class Common {
         return domTotalDtoList;
     }
 
+    public String convertAmount(long amount){
+        StringBuilder sb = new StringBuilder(String.valueOf(amount));
+        int length = sb.length();
+        for (int i = length - 3; i > 0; i -= 3) {
+            sb.insert(i, '.');
+
+        }
+        return sb.toString();
+    }
+
 }

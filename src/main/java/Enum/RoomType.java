@@ -3,6 +3,9 @@ package Enum;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public enum RoomType {
 
@@ -17,9 +20,11 @@ public enum RoomType {
     @Getter
     private long amount;
 
+
     RoomType(int type, long amount) {
         this.type = type;
         this.amount = amount;
     }
+
 
 }

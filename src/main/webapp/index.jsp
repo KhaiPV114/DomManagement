@@ -373,7 +373,7 @@
             </section>
         </div>
     </div>
-    <form id="loginForm" action="/Home/Login" method="post">
+    <form id="loginForm" action="<%=request.getContextPath()%>/account-login" method="post">
         <input name="__RequestVerificationToken" type="hidden"
                value="Cr3KxSpRboTN3unAri1EbqpASHOymew6AkAqwOJbz8DvYwXVU8APScWzksQxSPH-J0hXxezW_9PptFCpbsqPs-u22JAgTeBhiLyjOuTtTXU1">
         <div id="loginModal" class="login-modal-container hidden">

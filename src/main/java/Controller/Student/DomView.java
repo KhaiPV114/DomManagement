@@ -2,9 +2,6 @@ package Controller.Student;
 
 import Controller.General.Common;
 import Dto.DomTotalDto;
-import Entity.Bed;
-import Entity.Dom;
-import Enum.BedStatus;
 import Service.StudentService.BedService;
 import Service.StudentService.DomService;
 import Service.StudentService.Impl.BedServiceImpl;
@@ -19,10 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @WebServlet("/student/dom")
 public class DomView extends HttpServlet {
