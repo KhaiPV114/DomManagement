@@ -11,4 +11,6 @@ public interface StudentDao extends GenericDao<Student> {
     void update(Student Student);
 
     List<Student> findAll();
+
+    Student findByGmail(String gmail);
 }
