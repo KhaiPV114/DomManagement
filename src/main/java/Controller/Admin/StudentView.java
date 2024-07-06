@@ -9,8 +9,12 @@ import java.io.IOException;
 
 @WebServlet("/admin/student")
 public class StudentView extends HttpServlet {
+    private static final String VIEW_PATH = "views/admin/student.jsp";
+    private static final String HOME_PATH = "views/admin/home.jsp";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         resp.sendRedirect(req.getContextPath() + "/views/admin/student.jsp");
     }
 }
