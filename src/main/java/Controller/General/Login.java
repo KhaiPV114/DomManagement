@@ -1,8 +1,8 @@
 package Controller.General;
 
 import Entity.Student;
-import Service.StudentService.Impl.StudentServiceImpl;
-import Service.StudentService.StudentService;
+import Service.Impl.StudentServiceImpl;
+import Service.StudentService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,14 +18,14 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student student = studentService.getByRollId("HE171008");
-        req.getSession().setAttribute("user", student);
-        resp.sendRedirect(req.getContextPath() + "/views/login.jsp");
+        req.getSession().setAttribute("student", student);
+        resp.sendRedirect(req.getContextPath() + "/views/student/home.jsp");
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Student student = studentService.getByRollId("HE171008");
-        req.getSession().setAttribute("user", student);
+        req.getSession().setAttribute("student", student);
         resp.sendRedirect(req.getContextPath() + "/views/student/home.jsp");
     }
 }

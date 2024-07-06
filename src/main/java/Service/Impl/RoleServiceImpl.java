@@ -1,9 +1,9 @@
-package Service.StudentService.Impl;
+package Service.Impl;
 
 import Dao.Impl.RoleDaoImpl;
 import Dao.RoleDao;
 import Entity.Role;
-import Service.StudentService.RoleService;
+import Service.RoleService;
 
 import java.util.List;
 

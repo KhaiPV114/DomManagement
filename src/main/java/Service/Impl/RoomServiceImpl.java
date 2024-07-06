@@ -1,9 +1,9 @@
-package Service.StudentService.Impl;
+package Service.Impl;
 
 import Dao.Impl.RoomDaoImpl;
 import Dao.RoomDao;
 import Entity.Room;
-import Service.StudentService.RoomService;
+import Service.RoomService;
 
 import java.util.List;
 

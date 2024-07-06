@@ -4,18 +4,21 @@ import Dto.DomTotalDto;
 import Dto.UsersDto;
 import Entity.Bed;
 import Entity.Dom;
-import Entity.Role;
 import Entity.Users;
+import Entity.Student;
+import Enum.Semester;
 import Enum.BedStatus;
-import Service.StudentService.BedService;
-import Service.StudentService.DomService;
-import Service.StudentService.Impl.BedServiceImpl;
-import Service.StudentService.Impl.DomServiceImpl;
-import Service.StudentService.Impl.RoleServiceImpl;
-import Service.StudentService.Impl.UserServiceImpl;
-import Service.StudentService.RoleService;
-import Service.StudentService.UserService;
+import Service.BedService;
+import Service.DomService;
+import Service.Impl.BedServiceImpl;
+import Service.Impl.DomServiceImpl;
+import Service.Impl.RoleServiceImpl;
+import Service.Impl.UserServiceImpl;
+import Service.RoleService;
+import Service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -88,4 +91,19 @@ public class Common {
         return sb.toString();
     }
 
+    public Student getStudentSession(HttpServletRequest req){
+        return  (Student) req.getSession().getAttribute("student");
+    }
+
+    public String getSemester(){
+        LocalDate localDate = LocalDate.now();
+        int month = localDate.getMonth().getValue();
+        if (month < 5){
+            return Semester.XUAN.name();
+        } else if (month < 9){
+            return Semester.HA.name();
+        } else {
+            return Semester.DONG.name();
+        }
+    }
 }

@@ -12,9 +12,9 @@
                 <div class="flex-1">
                     <label class="SBB-input-label no-margin" for="RoomTypeId">Room type</label>
                     <div class="my-select-style">
-                        <select class="SBB-input" id="RoomTypeId" name="roomTypeId" onchange="getAmount()">
+                        <select class="SBB-input" id="roomTypeName" name="roomTypeName" onchange="getAmount()">
                             <c:forEach items="${roomTypes}" var="room">
-                                <option value="${room.bed}">${room.bed} beds</option>
+                                <option value="${room.key}">${room.bed} beds</option>
                             </c:forEach>
                         </select>
                     </div>
@@ -38,7 +38,7 @@
 <%@ include file="../footer.jsp" %>
 <script>
     function getAmount() {
-        $.get("<%=request.getContextPath()%>" + "/student/get-amount?roomType=" + $("#RoomTypeId").val(),
+        $.get("<%=request.getContextPath()%>" + "/student/get-amount?roomType=" + $("#roomTypeName").val(),
             data => {
                 $("#BedPrice").text(data);
                 $("#roomAmount").val(data);

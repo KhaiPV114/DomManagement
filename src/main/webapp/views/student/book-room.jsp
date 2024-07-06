@@ -64,15 +64,15 @@
                             <div class="" style="width: 100%;">
                                 <input class="SBB-input" readonly="" type="text"
                                        value="${bookRoomDto.roomType} beds - ${bookRoomDto.roomAmount} VND">
-                                <input id="roomType" name="roomType" type="hidden" value="${bookRoomDto.roomType}">
+                                <input id="roomType" name="roomType" type="hidden" value="${bookRoomDto.key}">
                             </div>
                         </div>
                     </div>
                     <div class="flex" style="gap: 24px;  margin-bottom: 24px;">
                         <div class="SBB-layout-1">
-                            <label class="SBB-input-label no-margin" for="roomType">Dom</label>
+                            <label class="SBB-input-label no-margin" for="domId">Dom</label>
                             <div class="my-select-style">
-                                <select class="SBB-input" id="DomId" name="domId" onchange="getFreeBedByDom()">
+                                <select class="SBB-input" id="domId" name="domId" onchange="getFreeBedByDom()">
                                     <c:forEach items="${bookRoomDto.doms}" var="dom">
                                         <option value="${dom}">DOM ${dom}</option>
                                     </c:forEach>
@@ -105,56 +105,60 @@
                             </div>
                         </div>
                     </div>
-                    <div style="margin-top: 24px;" class="flex justify-center">
-                        <div class="">
-                            <input type="button" data-toggle="modal" data-target="#exampleModalLong" value="Book"
-                                   class="orange-btn">
+                    <c:if test="${!bookRoomDto.yourBalanceAfterBooking.contains('-')}">
+                        <div style="margin-top: 24px;" class="flex justify-center">
+                            <div class="">
+                                <input type="button" data-toggle="modal" data-target="#exampleModalLong" value="Book"
+                                       class="orange-btn">
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
+                    <c:if test="${bookRoomDto.yourBalanceAfterBooking.contains('-')}">
+                        <div class="text-danger">
+                            Sorry, your balance is not enough to book.
+                        </div>
+                    </c:if>
                 </div>
             </div>
             <button onclick="location.href='<%=request.getContextPath()%>/student/choose-room';return false;"
                     class="SAB-back"
                     style="margin-top: 24px;">Back to choose room type
             </button>
-
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Chấp nhận quy định về ký túc xá</h5>
-                            <button style="padding: 10px;" type="button" class="close" data-dismiss="modal"
-                                    aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="the-canvas">
-                                Ghi noi dung quy dinh vao day
+            <c:if test="${!bookRoomDto.yourBalanceAfterBooking.contains('-')}">
+                <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Chấp nhận quy định về ký túc xá</h5>
+                                <button style="padding: 10px;" type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
                             </div>
-                            <div class="form-check" id="formCheck" style="display: block;">
-                                <input class="form-check-input" onchange="checkConfirm()" type="checkbox" id="flexCheckChecked">
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    Đồng ý với quy định về ký túc xá
-                                </label>
+                            <div class="modal-body">
+                                <div id="the-canvas">
+                                    Ghi noi dung quy dinh vao day
+                                </div>
+                                <div class="form-check" id="formCheck" style="display: block;">
+                                    <input class="form-check-input" onchange="checkConfirm()" type="checkbox"
+                                           id="flexCheckChecked">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        Đồng ý với quy định về ký túc xá
+                                    </label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="confirm" disabled="" type="submit"
-                                    class="btn btn-primary">Confirm
-                            </button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button id="confirm" disabled="" type="submit"
+                                        class="btn btn-primary">Confirm
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="dvProgress" class="my-loader" hidden="hidden">
-                <div class="my-loader-container">
-                    <span class="loader"></span>
-                </div>
-            </div>
-            <canvas id="canvas"></canvas>
+            </c:if>
+
         </form>
     </div>
 
@@ -162,12 +166,27 @@
 <%@ include file="../footer.jsp" %>
 <script>
     function getFreeBedByDom() {
-        var param = "roomType=" + $("#roomType").val() + "dom=" + $("#domId").val() + "floor=" + $("#floor").val()
+        console.log($("#domId").val())
+        var floor = $("#floor").val();
+        var param = "roomType=" + $("#roomType").val() + "&dom=" + $("#domId").val() + "&floor=" + floor;
         $.get("<%=request.getContextPath()%>" + "/student/detail-book-room?" + param,
             data => {
-                console.log(data)
+                json = JSON.parse(data)
+                updateSelectOptions(json, floor)
+
             }
         )
+    }
+
+    function updateSelectOptions(json, floor) {
+        var select = $("#floor")
+        select.empty();
+
+        $.each(json.floors, function (index, floor) {
+            select.append($('<option></option>').attr('value', floor).text(floor));
+        });
+        select.val(floor > json.floors.length ? json.floors[0] : json.floors[floor - 1]);
+        $("#slot").text(json.freeBed)
     }
 
     function checkConfirm() {

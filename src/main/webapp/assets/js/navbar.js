@@ -19,6 +19,7 @@ const handleToggleSidebar = () => {
         isSidebarFull = true;
         contentBodyTag.classList.add("pl-328");
     }
+    removeActiveHome()
 };
 
 const sidebarLinkFull = document.getElementById("sidebarLinkFull");
@@ -30,10 +31,10 @@ const removeActiveHome = () => {
     sidebarLinkFull.children[0].classList.remove("sidebar-linkItem-active");
     sidebarLinkFull.children[0].classList.remove("sidebar-icon-active");
 };
+if (url.split("/")[2] === "student") {
 
-if (url.split("/")[3] === "Student") {
     try {
-        const page = url.split("/")[4];
+        const page = url.split("/")[3];
         if (page.includes("News")) {
             removeActiveHome();
 
@@ -46,7 +47,7 @@ if (url.split("/")[3] === "Student") {
             sidebarLinkFull.children[2].classList.add("sidebar-linkItem-active");
             sidebarLinkFull.children[2].classList.add("sidebar-icon-active");
         }
-        if (page.includes("ViewBed")) {
+        if (page.includes("choose-room")) {
             removeActiveHome();
             sidebarLinkFull.children[3].classList.add("sidebar-linkItem-active");
             sidebarLinkFull.children[3].classList.add("sidebar-icon-active");

@@ -2,8 +2,8 @@ package Controller.Admin;
 
 import Controller.General.Common;
 import Dto.UsersDto;
-import Service.StudentService.Impl.UserServiceImpl;
-import Service.StudentService.UserService;
+import Service.Impl.UserServiceImpl;
+import Service.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +16,8 @@ import java.util.List;
 
 @WebServlet("/admin/user")
 public class UserView extends HttpServlet {
-    private static final String VIEW_PATH =  "views/admin/user.jsp";
-    private static final String HOME_PATH = "views/admin/home.jsp";
+    private static final String VIEW_PATH =  "/views/admin/user.jsp";
+    private static final String HOME_PATH = "/views/admin/home.jsp";
 
     private static UserService userService = new UserServiceImpl();
 
