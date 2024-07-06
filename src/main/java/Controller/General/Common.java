@@ -4,12 +4,14 @@ import Dto.BedTotalDto;
 import Dto.DomTotalDto;
 import Entity.Bed;
 import Entity.Dom;
+import Entity.Student;
 import Enum.BedStatus;
 import Service.StudentService.BedService;
 import Service.StudentService.DomService;
 import Service.StudentService.Impl.BedServiceImpl;
 import Service.StudentService.Impl.DomServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +58,10 @@ public class Common {
 
         }
         return sb.toString();
+    }
+
+    public Student getStudentSession(HttpServletRequest req){
+        return  (Student) req.getSession().getAttribute("student");
     }
 
 }

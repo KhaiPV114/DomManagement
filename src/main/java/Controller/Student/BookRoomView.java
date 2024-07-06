@@ -5,6 +5,7 @@ import Dto.BookRoomDto;
 import Entity.Bed;
 import Entity.Student;
 import Enum.BedStatus;
+import Enum.RoomType;
 import Service.StudentService.BedService;
 import Service.StudentService.Impl.BedServiceImpl;
 import Service.StudentService.Impl.StudentServiceImpl;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @WebServlet("/student/book-room")
@@ -27,18 +29,26 @@ public class BookRoomView extends HttpServlet {
     private final BedService bedService = new BedServiceImpl();
     private final StudentService studentService = new StudentServiceImpl();
 
+    private final Common common = new Common();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String roomType = Strings.isNullOrEmpty(req.getParameter("roomTypeId")) ? "BIG" : req.getParameter("roomTypeId");
-        long roomAmount = Strings.isNullOrEmpty(req.getParameter("roomAmount")) ? 500000 : Long.parseLong(req.getParameter("roomAmount"));
+        String roomTypeName = Strings.isNullOrEmpty(req.getParameter("roomTypeName")) ? "BIG" : req.getParameter("roomTypeName");
+        long roomAmount = Strings.isNullOrEmpty(req.getParameter("roomAmount")) ? 500000 : Long.parseLong(req.getParameter("roomAmount").replaceAll("\\.",""));
 
         Set<String> doms = new HashSet<>();
         Set<Integer> floors = new HashSet<>();
 
-        Student userNow = (Student) req.getSession().getAttribute("user");
-        Student student = studentService.getByRollId(userNow.getRollId());
+        Student studentLogin =  common.getStudentSession(req);
+        if(Objects.isNull(studentLogin)){
+            resp.sendRedirect(req.getContextPath() + "/views/error.jsp");
+            return;
+        }
+        Student student = studentService.getByRollId(studentLogin.getRollId());
 
-        List<Bed> beds = bedService.getByRoomType(roomType);
+        RoomType room = RoomType.valueOf(roomTypeName);
+
+        List<Bed> beds = bedService.getByRoomType(String.valueOf(room.getType()));
 
         long freeBed = beds.stream()
                 .peek(x -> {
@@ -48,18 +58,19 @@ public class BookRoomView extends HttpServlet {
                         floors.add(x.getFloor());
                     }
                 })
-                .filter(x -> BedStatus.NOTAVAILABLE.equals(x.getBedStatus()))
+                .filter(x -> BedStatus.NOTAVAILABLE.equals(x.getBedStatus()) && x.getFloor().equals(1))
                 .count();
 
-        Common common = new Common();
+
         long amountSe = roomAmount * 3;
         long studentBalance = student.getBalance();
         BookRoomDto bookRoomDto = BookRoomDto.builder()
                 .doms(doms)
                 .floors(floors)
+                .key(roomTypeName)
                 .minimumBalance(common.convertAmount(amountSe))
                 .yourAccountBalance(common.convertAmount(studentBalance))
-                .roomType(roomType)
+                .roomType(String.valueOf(room.getType()))
                 .roomAmount(common.convertAmount(roomAmount))
                 .numberSlotsRemaining(freeBed)
                 .yourBalanceAfterBooking(common.convertAmount(studentBalance - amountSe))

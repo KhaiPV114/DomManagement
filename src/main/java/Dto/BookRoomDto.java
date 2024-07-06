@@ -10,6 +10,7 @@ import java.util.Set;
 @Builder
 @ToString
 public class BookRoomDto {
+    private String key;
     private String roomType;
     private String roomAmount;
     private Set<String> doms;

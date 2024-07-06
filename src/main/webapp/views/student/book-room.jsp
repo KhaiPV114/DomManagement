@@ -64,15 +64,15 @@
                             <div class="" style="width: 100%;">
                                 <input class="SBB-input" readonly="" type="text"
                                        value="${bookRoomDto.roomType} beds - ${bookRoomDto.roomAmount} VND">
-                                <input id="roomType" name="roomType" type="hidden" value="${bookRoomDto.roomType}">
+                                <input id="roomType" name="roomType" type="hidden" value="${bookRoomDto.key}">
                             </div>
                         </div>
                     </div>
                     <div class="flex" style="gap: 24px;  margin-bottom: 24px;">
                         <div class="SBB-layout-1">
-                            <label class="SBB-input-label no-margin" for="roomType">Dom</label>
+                            <label class="SBB-input-label no-margin" for="domId">Dom</label>
                             <div class="my-select-style">
-                                <select class="SBB-input" id="DomId" name="domId" onchange="getFreeBedByDom()">
+                                <select class="SBB-input" id="domId" name="domId" onchange="getFreeBedByDom()">
                                     <c:forEach items="${bookRoomDto.doms}" var="dom">
                                         <option value="${dom}">DOM ${dom}</option>
                                     </c:forEach>
@@ -162,7 +162,8 @@
 <%@ include file="../footer.jsp" %>
 <script>
     function getFreeBedByDom() {
-        var param = "roomType=" + $("#roomType").val() + "dom=" + $("#domId").val() + "floor=" + $("#floor").val()
+        console.log($("#domId").val())
+        var param = "roomType=" + $("#roomType").val() + "&dom=" + $("#domId").val() + "&floor=" + $("#floor").val()
         $.get("<%=request.getContextPath()%>" + "/student/detail-book-room?" + param,
             data => {
                 console.log(data)
