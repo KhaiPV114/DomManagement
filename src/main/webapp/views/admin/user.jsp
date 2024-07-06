@@ -21,12 +21,14 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${usersDtoList}" var="user">
                     <tr>
-                        <td>Khai</td>
-                        <td>khai@fpt.edu.vn</td>
-                        <td>Name</td>
-                        <td>Admin</td>
-                        <td>Active</td>
+                        <td>${user.fullName}</td>
+                        <td>${user.gmail}</td>
+                        <td>${user.gender}</td>
+                        <td>${user.role}</td>
+                        <td>${user.status}</td>
+                        <td><button>Detail</button></td>
                         <td>
                             <div class="flex justify-center">
                                 <div class="btn-action" style="width: fit-content;">
@@ -36,6 +38,7 @@
                             </div>
                     </tr>
                     </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

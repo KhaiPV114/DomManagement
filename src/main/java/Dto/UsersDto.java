@@ -1,4 +1,5 @@
-package Entity;
+package Dto;
+
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,12 +8,11 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-public class Users {
+public class UsersDto {
     private Integer userId;
-    private Integer roleId;
-    private String password;
+    private String fullName;
     private String gmail;
     private String gender;
-    private String fullname;
+    private String role;
     private String status;
 }
