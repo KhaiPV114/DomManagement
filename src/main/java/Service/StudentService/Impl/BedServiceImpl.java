@@ -19,4 +19,9 @@ public class BedServiceImpl implements BedService {
     public List<Bed> getByDomId(String domId) {
         return bedDao.getByDomId(domId);
     }
+
+    @Override
+    public List<Bed> getByRoomType(String type) {
+        return bedDao.getByRoomType(type);
+    }
 }

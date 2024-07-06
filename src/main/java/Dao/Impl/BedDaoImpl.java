@@ -34,4 +34,10 @@ public class BedDaoImpl extends GenericDaoImpl<Bed> implements BedDao {
         String sql = "SELECT * FROM Bed";
         return query(sql, new BedMap());
     }
+
+    @Override
+    public List<Bed> getByRoomType(String type) {
+        String sql = "SELECT * FROM Bed b JOIN Room r ON b.roomName = r.roomName WHERE r.roomType = ?";
+        return query(sql, new BedMap(), type);
+    }
 }

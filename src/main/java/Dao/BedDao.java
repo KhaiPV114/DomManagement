@@ -13,4 +13,6 @@ public interface BedDao extends GenericDao<Bed> {
     void update(Bed bed);
 
     List<Bed> findAll();
+
+    List<Bed> getByRoomType(String type);
 }

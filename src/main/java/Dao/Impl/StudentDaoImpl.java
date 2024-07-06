@@ -26,4 +26,10 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements StudentDa
         String sql = "SELECT * FROM Student";
         return query(sql, new StudentMap());
     }
+
+    @Override
+    public Student findByGmail(String gmail) {
+        String sql = "SELECT * FROM Student WHERE gmail = ?";
+        return query(sql, new StudentMap(), gmail).stream().findFirst().orElse(null);
+    }
 }
