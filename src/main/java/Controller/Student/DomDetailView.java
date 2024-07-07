@@ -129,7 +129,6 @@ public class DomDetailView extends HttpServlet {
         req.setAttribute("domName",domId);
         req.setAttribute("semester", common.getSemester() + " - " +LocalDate.now().getYear());
 
-        RequestDispatcher rd = req.getRequestDispatcher("/views/student/dom-detail.jsp");
-        rd.forward(req, resp);
+        req.getRequestDispatcher("/views/student/dom-detail.jsp").forward(req, resp);
     }
 }

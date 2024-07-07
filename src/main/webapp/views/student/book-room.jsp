@@ -34,7 +34,7 @@
             }
         </style>
         <h1 class="big-title">Booking bed</h1>
-        <form action="/Student/Bookings/Create" id="create" method="post">
+        <form action="<%=request.getContextPath()%>/student/book-room-request" id="create" method="post">
             <div class="SBB-create-container">
                 <div class="col-xs-12 col-md-5 no-padding no-margin">
                     <p class="SBB-l-title"> Your Account Balance of FAP</p>
@@ -49,15 +49,7 @@
                     </label>
                 </div>
                 <div class="col-xs-12 col-md-7 no-padding no-margin">
-                    <div class="form-group" hidden="">
-                        <label class="control-label col-md-2" for="StudentId">RollNumber</label>
-                        <div class="col-md-10">
-                            <input class="form-control text-box single-line" id="StudentId" name="StudentId"
-                                   readonly="" type="text" value="HE171008">
-                            <span class="field-validation-valid text-danger" data-valmsg-for="StudentId"
-                                  data-valmsg-replace="true"></span>
-                        </div>
-                    </div>
+
                     <div class="flex" style="gap: 24px;  margin-bottom: 24px;">
                         <div class="flex-1">
                             <label class="SBB-input-label no-margin" for="roomType">Room Type</label>
@@ -65,6 +57,7 @@
                                 <input class="SBB-input" readonly="" type="text"
                                        value="${bookRoomDto.roomType} beds - ${bookRoomDto.roomAmount} VND">
                                 <input id="roomType" name="roomType" type="hidden" value="${bookRoomDto.key}">
+                                <input id="requestType" name="requestType" type="hidden" value="CHECKIN">
                             </div>
                         </div>
                     </div>

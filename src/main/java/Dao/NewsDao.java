@@ -12,4 +12,5 @@ public interface NewsDao extends GenericDao<News> {
     void update(News news);
 
     List<News> findAll();
+    List<News> findAll(Integer offset, Integer limit);
 }

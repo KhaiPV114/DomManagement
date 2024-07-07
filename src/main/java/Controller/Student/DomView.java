@@ -22,7 +22,6 @@ public class DomView extends HttpServlet {
         List<DomTotalDto> domTotalDtoList = common.getListDomDto();
         req.setAttribute("domTotalDto", domTotalDtoList);
         req.setAttribute("semester", common.getSemester() + " - " + LocalDate.now().getYear());
-        RequestDispatcher rd = req.getRequestDispatcher("/views/student/dom.jsp");
-        rd.forward(req, resp);
+        req.getRequestDispatcher("/views/student/dom.jsp").forward(req,resp);
     }
 }

@@ -1,8 +1,12 @@
 package Controller.General;
 
-import Entity.GoogleUser;
+import Entity.News;
+import Entity.Student;
+import Service.Impl.NewsServiceImpl;
+import Service.Impl.StudentServiceImpl;
+import Service.NewsService;
+import Service.StudentService;
 import Utils.AppConfig;
-import com.google.api.client.util.Strings;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -16,38 +20,35 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 @WebServlet("/google-callback")
 public class GoogleCallback extends HttpServlet {
+    private final StudentService studentService = new StudentServiceImpl();
+    private final NewsService newsService = new NewsServiceImpl();
     private final static String END_POINT = "fpt.edu.vn";
-    private final static String ACCESS_DENIED ="access_denied";
+    private final static String ACCESS_DENIED = "access_denied";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String code = request.getParameter("code");
-        if(ACCESS_DENIED.equals(request.getParameter("error"))){
+        if (ACCESS_DENIED.equals(request.getParameter("error"))) {
             response.sendRedirect(request.getContextPath() + "/views/error.jsp");
             return;
         }
         String accessToken = getToken(code);
         JSONObject user = getUserInformation(accessToken);
         String email = user.getString("email");
-        if(!Strings.isNullOrEmpty(email) && !email.endsWith(END_POINT)){
-            response.sendRedirect(request.getContextPath() + "/views/error.jsp");
-        }else {
-            String name = user.getString("given_name").replaceAll("\\d","");
-            String rollName= email.substring(0,email.indexOf("@"));
-            GoogleUser googleUser = GoogleUser.builder()
-                    .email(email)
-                    .picture(user.getString("picture"))
-                    .name(name)
-                    .rollName(rollName)
-                    .build();
-            HttpSession session = request.getSession();
-            session.setAttribute("user", googleUser);
-            response.sendRedirect(request.getContextPath() + "/views/student/home.jsp");
-        }
-
-
+//        if(!Strings.isNullOrEmpty(email) && !email.endsWith(END_POINT)){
+//            response.sendRedirect(request.getContextPath() + "/views/error.jsp");
+//        }else {
+        Student student = studentService.getByGmail("khaipvhe171008@fpt.edu.vn");
+        HttpSession session = request.getSession();
+        session.setAttribute("student", student);
+        List<News> newsList = newsService.getAll(0, 10);
+        request.setAttribute("news", newsList);
+        request.getRequestDispatcher("/views/student/home.jsp").forward(request, response);
+//        }
     }
 
 
@@ -69,11 +70,11 @@ public class GoogleCallback extends HttpServlet {
 
         String params = "code=" + code +
                 "&client_id=" + AppConfig.getProperty("gg.id") +
-                "&client_secret=" +  AppConfig.getProperty("gg.secret") +
-                "&redirect_uri=" +  AppConfig.getProperty("gg.uri") +
+                "&client_secret=" + AppConfig.getProperty("gg.secret") +
+                "&redirect_uri=" + AppConfig.getProperty("gg.uri") +
                 "&grant_type=authorization_code";
 
-        URL url = new URL( AppConfig.getProperty("gg.token"));
+        URL url = new URL(AppConfig.getProperty("gg.token"));
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
@@ -95,7 +96,7 @@ public class GoogleCallback extends HttpServlet {
 
     private static JSONObject getUserInformation(String accessToken) throws IOException {
 
-        URL urlUserInfo = new URL( AppConfig.getProperty("gg.user"));
+        URL urlUserInfo = new URL(AppConfig.getProperty("gg.user"));
         HttpURLConnection connUserInfo = (HttpURLConnection) urlUserInfo.openConnection();
         connUserInfo.setRequestProperty("Authorization", "Bearer " + accessToken);
         connUserInfo.connect();

@@ -12,4 +12,6 @@ public interface DomResidentDao extends GenericDao<DomResident> {
     void update(DomResident domResident);
 
     List<DomResident> findAll();
+
+    List<DomResident> getByRollId(String rollId);
 }

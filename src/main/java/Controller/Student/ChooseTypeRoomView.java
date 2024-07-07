@@ -29,7 +29,6 @@ public class ChooseTypeRoomView extends HttpServlet {
                 }
         ).toList();
         req.setAttribute("roomTypes", roomTypeDtoList);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/student/choose-type-room.jsp");
-        rd.forward(req, resp);
+        req.getRequestDispatcher("/views/student/choose-type-room.jsp").forward(req, resp);
     }
 }

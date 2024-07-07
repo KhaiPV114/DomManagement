@@ -16,7 +16,7 @@
                 </svg>
             </div>
             <a href="/Student" class="logo">
-                <img src="https://ocd.fpt.edu.vn/Content/images/landing/logo.png" alt="logo">
+                <img src="../../assets/images/logo.png" alt="logo">
             </a>
         </div>
         <div class="campus">

@@ -13,10 +13,9 @@ import java.util.List;
 
 
 /**
- *
  * @author ADMIN
  */
-public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements ResidentRequestDao   {
+public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements ResidentRequestDao {
 
 
     @Override
@@ -27,24 +26,40 @@ public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements R
 
     @Override
     public void update(Request request) {
-        String sql = "UPDATE Request SET requestStatus= ?, requestDetail = ?, residentId = ?, rollId = ?, requestType = ?, domId = ?, floor = ?, roomName = ?, termId = ?";
-        update(sql, request.getRequestStatus(), request.getRequestDetail(), request.getResidentId(), request.getRollId(), request.getRequestType(), request.getDomId(), request.getFloor(),
-                request.getRoomName(), request.getTermId());
+        String sql = "UPDATE Request SET requestStatus= ?, requestDetail = ?, rollId = ?, requestType = ?, domId = ?, floor = ?, roomName = ?, termId = ?";
+        update(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(), request.getDomName(), request.getFloor(),
+                request.getRoomName(), request.getTerm());
     }
 
     @Override
     public List<Request> findAll() {
         String sql = "SELECT * FROM Request";
-        return query(sql, new RequestMap()).stream().toList();
+        return query(sql, new RequestMap());
+    }
+
+    @Override
+    public List<Request> getByRollId(String rollId) {
+        String sql = "SELECT * FROM Request WHERE rollId = ?";
+        return query(sql, new RequestMap(), rollId);
+    }
+
+    @Override
+    public long createRequestBookRoom(Request request) {
+        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, roomType) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
+                request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getRoomType());
+
+        return 0;
     }
 
     @Override
     public long createNewRequest(Request request) {
-     StringBuilder sql = new StringBuilder("INSERT INTO Request (requestStatus, requestDetail, residentId, rollId, requestType, domId, floor, roomName, termId) ");
+        StringBuilder sql = new StringBuilder("INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domId, floor, roomName, termId) ");
         sql.append(" VALUES(?,?,?,?,?,?) ");
-
-        return insert(sql.toString(), request.getRequestStatus(), request.getRequestDetail(), request.getResidentId(), request.getRollId(), request.getRequestType(), request.getDomId(), request.getFloor(), request.getRoomName(), request.getTermId());
-     }
+        insert(sql.toString(), request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(), request.getDomName(), request.getFloor(),
+                request.getRoomName(), request.getTerm());
+        return 0;
+    }
 
 
 }

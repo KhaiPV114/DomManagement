@@ -1,7 +1,6 @@
 package Dao;
 
 import Dao.GenericDao.GenericDao;
-import Entity.PaymentHistory;
 import Entity.Term;
 
 import java.util.List;

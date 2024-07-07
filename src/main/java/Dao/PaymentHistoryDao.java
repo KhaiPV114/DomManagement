@@ -1,15 +1,16 @@
 package Dao;
 
 import Dao.GenericDao.GenericDao;
-import Entity.News;
-import Entity.PaymentHistory;
+import Entity.Payment;
 
 import java.util.List;
 
-public interface PaymentHistoryDao extends GenericDao<PaymentHistory> {
-    PaymentHistory findById(Integer id);
+public interface PaymentHistoryDao extends GenericDao<Payment> {
+    Payment findById(Integer id);
 
-    void update(PaymentHistory paymentHistory);
+    void update(Payment payment);
 
-    List<PaymentHistory> findAll();
+    List<Payment> findAll();
+
+    List<Payment> getByRollId(String rollId);
 }
