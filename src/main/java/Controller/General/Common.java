@@ -18,6 +18,7 @@ import Service.RoleService;
 import Service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -115,5 +116,10 @@ public class Common {
 
         return sdf.format(timestamp);
 
+    }
+
+    public void setTitle(HttpServletRequest req, String title){
+        HttpSession session = req.getSession();
+        session.setAttribute("title", title);
     }
 }

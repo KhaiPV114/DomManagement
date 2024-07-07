@@ -77,6 +77,7 @@ public class BookRoomView extends HttpServlet {
                 .build();
 
         req.setAttribute("bookRoomDto", bookRoomDto);
+        common.setTitle(req, "BookRoom");
         req.getRequestDispatcher("/views/student/book-room.jsp").forward(req, resp);
     }
 }

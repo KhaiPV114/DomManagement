@@ -48,16 +48,6 @@ public class ChooseTypeRoomView extends HttpServlet {
 
         List<Money> monies = moneyService.getByMoneyType("ROOM");
 
-//        List<RoomTypeDto> roomTypeDtoList = roomTypes.stream().map(x -> {
-//                    String amount = new Common().convertAmount(x.getAmount());
-//                    return RoomTypeDto.builder()
-//                            .bed(x.getType())
-//                            .key(x.name())
-//                            .amount(amount)
-//                            .build();
-//                }
-//        ).toList();
-
         List<RoomTypeDto> roomTypeDtoList = monies.stream().map(x -> {
                     String amount = new Common().convertAmount(x.getAmount());
                     return RoomTypeDto.builder()
@@ -71,6 +61,7 @@ public class ChooseTypeRoomView extends HttpServlet {
         String message = Strings.isNullOrEmpty(req.getParameter("message")) ? null : req.getParameter("message");
         req.setAttribute("roomTypes", roomTypeDtoList);
         req.setAttribute("message", message);
+        common.setTitle(req, "BookRoom");
         req.getRequestDispatcher("/views/student/choose-type-room.jsp").forward(req, resp);
     }
 }

@@ -31,6 +31,7 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
             }
             return results;
         } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         } finally {
             try {

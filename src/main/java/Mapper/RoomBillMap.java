@@ -17,7 +17,12 @@ public class RoomBillMap implements RowMapper<RoomBill>{
                     .billStatus(rs.getString("billStatus"))
                     .totalAmount(rs.getLong("totalAmount"))
                     .description(rs.getString("description"))
-                    .dayCreate(rs.getTimestamp("dayCreated"));
+                    .dayCreate(rs.getTimestamp("dayCreated"))
+                    .electricNumber(rs.getLong("electricNumber"))
+                    .waterNumber(rs.getLong("waterNumber"))
+                    .year(rs.getInt("year"))
+                    .term(rs.getString("term"))
+                    .rollName(rs.getString("rollName"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

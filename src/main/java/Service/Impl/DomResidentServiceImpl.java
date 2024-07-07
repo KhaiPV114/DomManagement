@@ -9,6 +9,7 @@ import java.util.List;
 
 public class DomResidentServiceImpl implements DomResidentService {
     private final DomResidentDao domResidentDao = new DomResidentDaoImpl();
+
     @Override
     public DomResident getById(Integer id) {
         return domResidentDao.findById(id);
@@ -22,5 +23,10 @@ public class DomResidentServiceImpl implements DomResidentService {
     @Override
     public DomResident getByRollIdAndSemester(String rollId, String semester) {
         return domResidentDao.findByRollIdAndSemester(rollId, semester);
+    }
+
+    @Override
+    public int countUserInRoomAndTermAndYear(String room, String term, int year) {
+        return domResidentDao.countUserInRoomAndTermAndYear(room, term, year);
     }
 }

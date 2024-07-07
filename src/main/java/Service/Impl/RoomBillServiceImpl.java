@@ -11,4 +11,9 @@ public class RoomBillServiceImpl implements RoomBillService {
     public RoomBill getById(Integer id) {
         return roomBillDao.findById(id);
     }
+
+    @Override
+    public RoomBill getByRollNameAndTermAndYear(String rollName, String term, int year) {
+        return roomBillDao.getByRollNameAndTermAndYear(rollName, term, year);
+    }
 }

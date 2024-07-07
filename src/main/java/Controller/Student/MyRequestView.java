@@ -31,6 +31,7 @@ public class MyRequestView extends HttpServlet {
 
         List<Request> requestList = residentRequestService.getByRollId(student.getRollId());
         req.setAttribute("requests", requestList);
+        common.setTitle(req, "request");
         req.getRequestDispatcher("/views/student/my-request.jsp").forward(req, resp);
     }
 }

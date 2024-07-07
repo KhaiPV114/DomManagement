@@ -43,6 +43,7 @@ public class PaymentHistoryView extends HttpServlet {
                     .build()
         ).toList();
         req.setAttribute("payments", paymentDtoList);
+        common.setTitle(req, "PaymentHistory");
         req.getRequestDispatcher("/views/student/payment-history.jsp").forward(req, resp);
     }
 }

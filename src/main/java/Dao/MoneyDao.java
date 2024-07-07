@@ -14,6 +14,7 @@ public interface MoneyDao extends GenericDao<Money> {
     List<Money> findAll();
 
     List<Money> getByType(String type);
+    List<Money> getByListType(List<String> type);
 
     Money getByMoneyTypeAndRoomType(String moneyType, String roomType);
 }
