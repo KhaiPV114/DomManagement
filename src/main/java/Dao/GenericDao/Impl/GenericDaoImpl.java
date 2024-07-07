@@ -103,7 +103,7 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
     }
 
     @Override
-    public Long insert(String sql, Object... parameters) {
+    public void insert(String sql, Object... parameters) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -117,9 +117,10 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
             resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
                 id = resultSet.getLong(1);
+                System.out.println(id);
             }
+
             connection.commit();
-            return id;
         } catch (SQLException e) {
             if (connection != null) {
                 try {
@@ -128,6 +129,7 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
                     e1.printStackTrace();
                 }
             }
+            e.printStackTrace();
         } finally {
             try {
                 if (connection != null) {
@@ -143,7 +145,6 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
                 e2.printStackTrace();
             }
         }
-        return null;
     }
 
     @Override

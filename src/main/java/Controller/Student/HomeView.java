@@ -11,6 +11,12 @@ import java.io.IOException;
 public class HomeView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("home");
+        resp.sendRedirect(req.getContextPath() + "/views/student/home.jsp");
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("home post");
         resp.sendRedirect(req.getContextPath() + "/views/student/home.jsp");
     }
 }

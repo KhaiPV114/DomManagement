@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/student/create-request")
-public class CreateRequestView extends HttpServlet {
+public class RequestView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         resp.sendRedirect(req.getContextPath()+ "/views/student/create-request.jsp");
     }
 }

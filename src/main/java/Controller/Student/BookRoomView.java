@@ -62,7 +62,7 @@ public class BookRoomView extends HttpServlet {
                 .count();
 
 
-        long amountSe = roomAmount * 3;
+        long amountSe = roomAmount * 4;
         long studentBalance = student.getBalance();
         BookRoomDto bookRoomDto = BookRoomDto.builder()
                 .doms(doms)
@@ -77,7 +77,6 @@ public class BookRoomView extends HttpServlet {
                 .build();
 
         req.setAttribute("bookRoomDto", bookRoomDto);
-        RequestDispatcher rd = req.getRequestDispatcher("/views/student/book-room.jsp");
-        rd.forward(req, resp);
+        req.getRequestDispatcher("/views/student/book-room.jsp").forward(req, resp);
     }
 }

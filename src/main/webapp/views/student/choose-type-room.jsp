@@ -10,7 +10,7 @@
         <form action="<%=request.getContextPath()%>/student/book-room" method="get">
             <div class="">
                 <div class="flex-1">
-                    <label class="SBB-input-label no-margin" for="RoomTypeId">Room type</label>
+                    <label class="SBB-input-label no-margin" for="roomTypeName">Room type</label>
                     <div class="my-select-style">
                         <select class="SBB-input" id="roomTypeName" name="roomTypeName" onchange="getAmount()">
                             <c:forEach items="${roomTypes}" var="room">
@@ -23,7 +23,7 @@
                     <label class="SBB-input-label no-margin">Price/Bed/Semester</label>
                     <div class="SBB-input">
                         <span id="BedPrice">${roomTypes.get(0).amount}</span> VND
-                        <input name="roomAmount" id="roomAmount" type="hidden" value="${roomTypes.get(0).amount.replace('.','')}"/>
+                        <input name="roomAmount" id="roomAmount" type="hidden" value="${roomTypes.get(0).amount.replaceAll(',','')}"/>
                     </div>
                 </div>
                 <div style="margin-top: 24px;">
@@ -41,7 +41,7 @@
         $.get("<%=request.getContextPath()%>" + "/student/get-amount?roomType=" + $("#roomTypeName").val(),
             data => {
                 $("#BedPrice").text(data);
-                $("#roomAmount").val(data);
+                $("#roomAmount").val(data.replaceAll(',',''));
             }
         )
     }

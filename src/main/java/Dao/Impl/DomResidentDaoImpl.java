@@ -26,4 +26,10 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
         String sql = "SELECT * FROM DomResident";
         return query(sql, new DomResidentMap());
     }
+
+    @Override
+    public List<DomResident> getByRollId(String rollId) {
+        String sql = "SELECT * FROM DomResident WHERE rollId = ?";
+        return query(sql, new DomResidentMap(), rollId);
+    }
 }

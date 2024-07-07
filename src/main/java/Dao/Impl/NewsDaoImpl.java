@@ -24,6 +24,13 @@ public class NewsDaoImpl extends GenericDaoImpl<News> implements NewsDao {
     @Override
     public List<News> findAll() {
         String sql = "SELECT * FROM News";
-        return query(sql,new NewsMap());
+        return query(sql, new NewsMap());
+    }
+
+    @Override
+    public List<News> findAll(Integer offset, Integer limit) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM News ORDER BY newsId Desc");
+        sql.append(" OFFSET ").append(offset).append(" ROWS FETCH NEXT ").append(limit).append(" ROWS ONLY");
+        return query(sql.toString(), new NewsMap());
     }
 }

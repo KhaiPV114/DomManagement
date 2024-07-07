@@ -1,4 +1,4 @@
-package Entity;
+package Dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -9,14 +9,15 @@ import java.sql.Timestamp;
 @Getter
 @Builder
 @ToString
-public class PaymentHistory {
+public class PaymentDto {
     private Integer paymentId;
     private String roomName;
-    private Timestamp createDate;
+    private String createDate;
     private String description;
     private String status;
-    private Long totalAmount;
-    private Long totalAmountPaid;
-    private Long totalAmountRemain;
+    private String totalAmount;
+    private String totalAmountPaid;
+    private String totalAmountRemain;
+    private String rollId;
 
 }
