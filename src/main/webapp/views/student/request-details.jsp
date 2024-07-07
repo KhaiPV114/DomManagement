@@ -48,7 +48,7 @@
                 </dl>
             </div>
         </div>
-        <button onclick="location.href='<%=request.getContextPath()%>/student/my-request';return false;" class="SAB-back"
+        <button onclick="location.href='<%=request.getContextPath()%>/student/request';return false;" class="SAB-back"
                 style="margin-top: 24px;">Back to list
         </button>
     </div>

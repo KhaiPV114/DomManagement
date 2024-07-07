@@ -33,12 +33,12 @@ public class Common {
 
     public List<DomTotalDto> getListDomDto() {
         List<DomTotalDto> domTotalDtoList = new ArrayList<>();
-        List<String> domNames = dormService.getAll().stream().map(Dom::getDomName).toList();
+        Map<String, String> domNames = dormService.getAll().stream().collect(Collectors.toMap(Dom::getDomName, Dom::getDomGender));
 
         Map<String, List<Bed>> bedMap = bedService.getAll().stream().collect(Collectors.groupingBy(Bed::getKey));
 
-        for (String domName : domNames) {
-            String domId = domName.substring(domName.length() - 1);
+        for (Map.Entry<String, String> entry : domNames.entrySet()) {
+            String domId = entry.getKey().substring(entry.getKey().length() - 1);
             int usedBed = 0;
             int freeBed = 0;
             List<Bed> beds = bedMap.get(domId);
@@ -50,11 +50,12 @@ public class Common {
                 }
             }
             DomTotalDto dto = DomTotalDto.builder()
-                    .domName(domName)
+                    .domName(entry.getKey())
                     .domId(domId)
                     .freeBed(freeBed)
                     .usedBed(usedBed)
                     .totalBed(freeBed + usedBed)
+                    .domGender(entry.getValue())
                     .build();
             domTotalDtoList.add(dto);
         }

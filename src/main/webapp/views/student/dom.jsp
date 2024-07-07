@@ -8,25 +8,6 @@
     <div class="container-fluid my-container">
         <div>
             <h1 class="big-title">Available beds</h1>
-<%--            <div style="margin-bottom: 15px">--%>
-<%--                <form action="/Student/ViewBed" method="get">--%>
-<%--                    <div class="flex" style="gap: 24px;">--%>
-<%--                        <div class="my-select flex" style="min-width: 200px; flex-direction: column;">--%>
-<%--                            <label for="term" class="SAB-label">Term</label>--%>
-<%--                            <select class="form-control" id="Term" name="Term"--%>
-<%--                                    style="max-width: 100%; min-height: 44px;">--%>
-<%--                                <option selected="selected" value="2|2024">Summer - 2024</option>--%>
-<%--                                <option value="3|2024">Fall - 2024</option>--%>
-<%--                            </select>--%>
-<%--                        </div>--%>
-<%--                        <div class="flex items-end">--%>
-<%--                            <button type="submit" class="orange-btn">--%>
-<%--                                Search--%>
-<%--                            </button>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </form>--%>
-<%--            </div>--%>
             <div class="container-block" >
                 <h3 style="color: var(--blue-color);" class="text-bold"> Summary: Dom in ${semester}</h3>
                 <div class="table-responsive">
@@ -38,6 +19,7 @@
                             <th>TotalBed</th>
                             <th>UsedBed</th>
                             <th>FreeBed</th>
+                            <th>Gender</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -49,6 +31,7 @@
                                 <td>${dom.totalBed}</td>
                                 <td>${dom.usedBed}</td>
                                 <td>${dom.freeBed}</td>
+                                <td>${dom.domGender}</td>
                                 <td>
                                     <div class="flex justify-center">
                                         <div class="btn-action" style="width: fit-content;">
