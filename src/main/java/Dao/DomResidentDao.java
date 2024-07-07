@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface DomResidentDao extends GenericDao<DomResident> {
     DomResident findById(Integer id);
+    DomResident findByRollIdAndSemester(String rollId, String semester);
 
     void update(DomResident domResident);
 

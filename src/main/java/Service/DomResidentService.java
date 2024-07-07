@@ -8,4 +8,6 @@ public interface DomResidentService {
 
     DomResident getById(Integer id);
     List<DomResident> getByRollId(String rollId);
+
+    DomResident getByRollIdAndSemester(String rollId, String semester);
 }

@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <c:if test="${!bookRoomDto.yourBalanceAfterBooking.contains('-')}">
-                        <div style="margin-top: 24px;" class="flex justify-center">
+                        <div style="margin-top: 24px;" class="justify-center" id="btn-book">
                             <div class="">
                                 <input type="button" data-toggle="modal" data-target="#exampleModalLong" value="Book"
                                        class="orange-btn">
@@ -111,6 +111,9 @@
                             Sorry, your balance is not enough to book.
                         </div>
                     </c:if>
+                    <div class="text-danger hidden" id="no-slot">
+                        NO-SLOT
+                    </div>
                 </div>
             </div>
             <button onclick="location.href='<%=request.getContextPath()%>/student/choose-room';return false;"

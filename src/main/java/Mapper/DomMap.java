@@ -12,7 +12,8 @@ public class DomMap implements RowMapper<Dom> {
         try {
             dorm.domId(rs.getInt("domId"))
                     .domName(rs.getString("domName"))
-                    .numberOfFloor(rs.getInt("numberOfFloor"));
+                    .numberOfFloor(rs.getInt("numberOfFloor"))
+                    .genderDom(rs.getString("genderDom"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

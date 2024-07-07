@@ -9,7 +9,7 @@
         <h1 class="big-title">My request</h1>
         <div class="">
             <a class="orange-btn" href="<%=request.getContextPath() %>/student/create-request">Create request</a>
-            <span style="margin-top: 10px">Your processing CIM request: ${requests.size()}</span>
+            <h4 style="margin: 10px 0">Your processing CIM request: ${requests.size()}</h4>
             <c:if test="${requests.size() > 0}">
                 <div class="container-block">
                     <div class="table-responsive">
@@ -20,15 +20,24 @@
                                 <th>Create date</th>
                                 <th>Description</th>
                                 <th>Status</th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${requests}" var="payment" >
+                            <c:forEach items="${requests}" var="request">
                                 <tr>
-                                    <td>${requests.requestType}</td>
-                                    <td>${requests.createDate}</td>
-                                    <td>${payment.requestDetail}</td>
-                                    <td>${payment.status.name}</td>
+                                    <td>${request.requestType}</td>
+                                    <td>${request.createDate.toString().substring(0, 19)}</td>
+                                    <td>${request.requestDetail}</td>
+                                    <td>${request.requestStatus}</td>
+                                    <td>
+                                        <div class="flex justify-center">
+                                            <div class="btn-action" style="width: fit-content;">
+                                                <a
+                                                        href="<%=request.getContextPath()%>/student/request-detail?requestId=${request.requestId}">Detail</a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -41,6 +50,8 @@
             </c:if>
         </div>
     </div>
+
+
 </div>
 <script>
     function showDateCheckOut() {

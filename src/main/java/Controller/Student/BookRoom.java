@@ -23,6 +23,7 @@ public class BookRoom extends HttpServlet {
 
     private final Common common = new Common();
     private final ResidentRequestService requestService = new ResidentRequestServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String note = req.getParameter("Note");
@@ -37,7 +38,7 @@ public class BookRoom extends HttpServlet {
         }
 
         Request request = Request.builder()
-                .domName("Dom "+ dom)
+                .domName("Dom " + dom)
                 .requestType(RequestType.CHECKIN.name())
                 .floor(Integer.valueOf(floor))
                 .createDate(new Timestamp(System.currentTimeMillis()))
@@ -50,6 +51,6 @@ public class BookRoom extends HttpServlet {
                 .build();
 
         requestService.createRequestBookRoom(request);
-        resp.sendRedirect(req.getContextPath() + "/views/student/book-room.jsp");
+        resp.sendRedirect(req.getContextPath() + "/student/choose-room?message=Book bed success!");
     }
 }

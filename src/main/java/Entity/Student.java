@@ -14,6 +14,5 @@ public class Student {
     private Long balance;
     private String gmail;
     private String avatar;
-
     private StudentStatus studentStatus;
 }

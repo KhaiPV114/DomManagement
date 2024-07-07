@@ -13,6 +13,6 @@ public class DomResidentDto {
     private String checkInDate;
     private String checkOutDate;
     private Long price;
-    private Integer semester;
+    private String semester;
     private Integer year;
 }

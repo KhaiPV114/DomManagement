@@ -22,4 +22,5 @@ public class Payment {
     private Integer type;
     private Integer billId;
     private Integer bed;
+    private String term;
 }

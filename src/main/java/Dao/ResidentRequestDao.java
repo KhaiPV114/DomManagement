@@ -23,5 +23,8 @@ public interface ResidentRequestDao  extends GenericDao<Request>{
 
     List<Request> getByRollId(String rollId);
 
-    long createRequestBookRoom(Request request);
+    void createRequestBookRoom(Request request);
+    void createRequestOther(Request request);
+
+    void createRequestCheckOut(Request request);
 }

@@ -21,4 +21,6 @@ public class Request {
     private String term;
     private Timestamp createDate;
     private String roomType;
+    private Integer bed;
+    private Timestamp checkOutDate;
 }
