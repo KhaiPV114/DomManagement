@@ -12,8 +12,6 @@ public class DomDetailView extends HttpServlet {
     private static final String VIEW_PATH = "/views/admin/dorm-details.jsp";
     private static final String HOME_PATH = "/views/admin/home.jsp";
 
-    private static static
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

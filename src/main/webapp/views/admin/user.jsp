@@ -9,6 +9,7 @@
         <h1 class="big-title">User manage</h1>
         <div class="container-block">
             <div class="table-responsive">
+                <button ><a href="<%=request.getContextPath()%>/admin/user/new">+ New</a></button>
                 <table class="table table-striped table-bordered table-advance table-hover">
                     <thead>
                     <tr>
@@ -28,7 +29,6 @@
                         <td>${user.gender}</td>
                         <td>${user.role}</td>
                         <td>${user.status}</td>
-                        <td><button>Detail</button></td>
                         <td>
                             <div class="flex justify-center">
                                 <div class="btn-action" style="width: fit-content;">

@@ -15,7 +15,7 @@
                         <th>Student ID</th>
                         <th>Request type</th>
                         <th>Dorm</th>
-                        <th>Floot</th>
+                        <th>Floor</th>
                         <th>Term</th>
                         <th>Content</th>
                         <th>Status</th>
@@ -24,15 +24,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>HE-178580</td>
-                        <td>Check-in</td>
-                        <td>A</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>Đăng ký phòng mới</td>
-                        <td>WAITING</td>
-                        <td>1/5/2024</td>
+                    <c:forEach items="${requestList}" var="request">
+                        <tr>
+                        <td>${request.rollId}</td>
+                        <td>${request.requestType}</td>
+                        <td>${request.domName}</td>
+                        <td>${request.floor}</td>
+                        <td>${request.term}</td>
+                        <td>${request.requestDetail}</td>
+                        <td>${request.requestStatus}</td>
+                        <td>${request.createDate}</td>
                         <td>
                             <div class="flex justify-center">
                                 <div class="btn-action" style="width: fit-content;">
@@ -41,6 +42,7 @@
                             </div>
                         </td>
                     </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

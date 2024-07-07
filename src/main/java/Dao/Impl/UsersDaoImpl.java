@@ -27,6 +27,14 @@ public class UsersDaoImpl extends GenericDaoImpl<Users> implements UsersDao {
         return query(sql, new UsersMap());
     }
 
+    @Override
+    public void insert(Users user) {
+        String sql = "INSERT INTO Users(fullName, password, gender, gmail, roleId) VALUES(?,?,?,?,?)";
+        insert(sql, user.getFullName(), user.getPassword(), user.getGender(), user.getGmail(), user.getRoleId());
+    }
+
+    // thứ tự các trường insert đang sai, chưa có status, chuwa co truong password. them cao
+
 //    public static void main(String[] args) {
 //        UsersDaoImpl dao = new UsersDaoImpl();
 //        System.out.println(dao.findAll());
