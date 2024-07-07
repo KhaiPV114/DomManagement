@@ -15,4 +15,5 @@ public class UserServiceImpl implements UserService {
         List<Users> userList = usersDao.findAll();
         return userList;
     }
+
 }

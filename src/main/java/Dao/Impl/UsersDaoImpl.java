@@ -26,4 +26,9 @@ public class UsersDaoImpl extends GenericDaoImpl<Users> implements UsersDao {
         String sql = "SELECT * FROM Users";
         return query(sql, new UsersMap());
     }
+
+//    public static void main(String[] args) {
+//        UsersDaoImpl dao = new UsersDaoImpl();
+//        System.out.println(dao.findAll());
+//    }
 }

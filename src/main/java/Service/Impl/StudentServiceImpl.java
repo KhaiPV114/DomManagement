@@ -5,6 +5,8 @@ import Dao.StudentDao;
 import Entity.Student;
 import Service.StudentService;
 
+import java.util.List;
+
 public class StudentServiceImpl implements StudentService {
     private final StudentDao studentDao = new StudentDaoImpl();
     @Override
@@ -15,5 +17,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Student getByGmail(String gmail) {
         return studentDao.findByGmail(gmail);
+    }
+
+    @Override
+    public List<Student> getAll() {
+        return studentDao.findAll();
     }
 }

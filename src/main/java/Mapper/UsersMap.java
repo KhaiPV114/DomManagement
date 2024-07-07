@@ -19,6 +19,6 @@ public class UsersMap implements RowMapper<Users>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return user.build();
     }
 }
