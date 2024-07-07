@@ -18,4 +18,9 @@ public class RoomBill {
     private Long totalAmount;
     private String description;
     private Timestamp dayCreate;
+    private long electricNumber;
+    private long waterNumber;
+    private String rollName;
+    private String term;
+    private int year;
 }

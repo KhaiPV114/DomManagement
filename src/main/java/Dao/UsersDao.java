@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface UsersDao extends GenericDao<Users> {
     Users findById(Integer id);
+    Users getByGmail(String gmail);
 
     void update (Users Users);
 

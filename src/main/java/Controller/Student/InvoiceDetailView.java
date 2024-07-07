@@ -59,6 +59,7 @@ public class InvoiceDetailView extends HttpServlet {
                 .build();
 
         req.setAttribute("payment", dto);
+        common.setTitle(req, "PaymentHistory");
         req.getRequestDispatcher("/views/student/invoice-detail.jsp").forward(req, resp);
     }
 }

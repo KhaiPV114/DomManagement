@@ -64,6 +64,7 @@ public class RequestView extends HttpServlet {
         }
         residentRequestService.createRequestOther(request.build());
         req.setAttribute("message", "Create request success!");
+        common.setTitle(req, "request");
         req.getRequestDispatcher("/views/student/create-request.jsp").forward(req, resp);
     }
 }

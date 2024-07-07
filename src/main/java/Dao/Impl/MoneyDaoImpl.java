@@ -33,6 +33,20 @@ public class MoneyDaoImpl extends GenericDaoImpl<Money> implements MoneyDao {
     }
 
     @Override
+    public List<Money> getByListType(List<String> type) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM Money WHERE moneyType IN (");
+        for (int i = 0; i < type.size(); i++) {
+            sql.append("'").append(type.get(i)).append("'");
+            if (i != type.size() - 1) {
+                sql.append(",");
+            }
+        }
+        sql.append(")");
+        System.out.println(sql.toString());
+        return query(sql.toString(), new MoneyMap());
+    }
+
+    @Override
     public Money getByMoneyTypeAndRoomType(String moneyType, String roomType) {
         String sql = "SELECT * FROM Money WHERE moneyType = ? AND roomType = ? ";
         return query(sql, new MoneyMap(), moneyType, roomType).stream().findFirst().orElse(null);

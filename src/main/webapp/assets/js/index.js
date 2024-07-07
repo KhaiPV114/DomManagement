@@ -5,33 +5,19 @@ $(document).ready(function () {
         handleShowModal();
     }
 
-    campusChange();
+    // campusChange();
 });
 
-function campusChange() {
-    var campus = document.getElementById("CampusCode").value;
-    var valueGoogle = document.getElementById("google_login").href;
-    var valueFEID = document.getElementById("feid_login").href;
-    var campusIndexGoogle = valueGoogle.lastIndexOf('=');
-    var campusIndexFEID = valueFEID.lastIndexOf('=');
-    document.getElementById("google_login").href = valueGoogle.substring(0, campusIndexGoogle + 1) + campus;
-    document.getElementById("feid_login").href = valueFEID.substring(0, campusIndexFEID + 1) + campus;
-}
-const loginModalTag = document.getElementById("loginModal");
-var button = document.getElementById("btnLogin");
+// function campusChange() {
+//     var campus = document.getElementById("CampusCode").value;
+//     var valueGoogle = document.getElementById("google_login").href;
+//     var valueFEID = document.getElementById("feid_login").href;
+//     var campusIndexGoogle = valueGoogle.lastIndexOf('=');
+//     var campusIndexFEID = valueFEID.lastIndexOf('=');
+//     document.getElementById("google_login").href = valueGoogle.substring(0, campusIndexGoogle + 1) + campus;
+//     document.getElementById("feid_login").href = valueFEID.substring(0, campusIndexFEID + 1) + campus;
+// }
 
-// Thêm sự kiện click
-button.addEventListener("click", function () {
-    handleShowModal();
-});
-
-const handleShowModal = () => {
-    loginModalTag.style.display = "flex";
-};
-
-const handleCloseModal = () => {
-    loginModalTag.style.display = "none";
-};
 
 if (window.location.href.includes("Home")) {
     loginModalTag.classList.remove("hidden");

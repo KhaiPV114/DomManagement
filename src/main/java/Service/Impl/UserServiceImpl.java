@@ -15,4 +15,9 @@ public class UserServiceImpl implements UserService {
         List<Users> userList = usersDao.findAll();
         return userList;
     }
+
+    @Override
+    public Users getByGmail(String gmail) {
+        return usersDao.getByGmail(gmail);
+    }
 }

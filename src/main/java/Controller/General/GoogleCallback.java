@@ -45,9 +45,7 @@ public class GoogleCallback extends HttpServlet {
         Student student = studentService.getByGmail("khaipvhe171008@fpt.edu.vn");
         HttpSession session = request.getSession();
         session.setAttribute("student", student);
-        List<News> newsList = newsService.getAll(0, 10);
-        request.setAttribute("news", newsList);
-        request.getRequestDispatcher("/views/student/home.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath()+"/student/home");
 //        }
     }
 

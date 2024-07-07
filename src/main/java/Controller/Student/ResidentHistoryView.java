@@ -43,6 +43,7 @@ public class ResidentHistoryView extends HttpServlet {
                         .build()
         ).toList();
         req.setAttribute("domResident", dtos);
+        common.setTitle(req, "resident");
         req.getRequestDispatcher("/views/student/resident-history.jsp").forward(req, resp);
     }
 }

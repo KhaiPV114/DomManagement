@@ -1,3 +1,4 @@
+<%@ page import="Entity.Users" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="my-navbar">
@@ -13,7 +14,7 @@
                     </line>
                 </svg>
             </div>
-            <a href="/Student" class="logo">
+            <a href="#" class="logo">
                 <img src="https://ocd.fpt.edu.vn/Content/images/landing/logo.png" alt="logo">
             </a>
         </div>
@@ -33,8 +34,12 @@
             <div class="sidebar-avatar">
                 <img src="https://ocd.fpt.edu.vn/Content/images/FrogSleep.png" alt="avatar-user">
             </div>
+            <%
+                HttpSession sessions = request.getSession();
+                Users users = (Users) sessions.getAttribute("admin");
+            %>
             <div class="">
-                <p class="sidebar-name" style="margin-bottom: 8px;">Admin</p>
+                <p class="sidebar-name" style="margin-bottom: 8px;"><%= users.getFullName()%></p>
             </div>
         </div>
         <div id="sidebarLinkFull" class="sidebar-link">
