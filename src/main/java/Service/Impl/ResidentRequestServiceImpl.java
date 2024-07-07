@@ -36,8 +36,19 @@ public class ResidentRequestServiceImpl implements ResidentRequestService {
     }
 
     @Override
-    public long createRequestBookRoom(Request request) {
-        return residentRequestDao.createRequestBookRoom(request);
+    public void createRequestBookRoom(Request request) {
+         residentRequestDao.createRequestBookRoom(request);
+    }
+
+    @Override
+    public void createRequestOther(Request request) {
+        if(request.getCheckOutDate() == null) {
+            System.out.println("other");
+            residentRequestDao.createRequestOther(request);
+        }else {
+            System.out.println("Checkout");
+            residentRequestDao.createRequestCheckOut(request);
+        }
     }
 
 

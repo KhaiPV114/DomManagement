@@ -16,7 +16,7 @@ public class DomResident {
     private Long balance;
     private Integer userId;
     private Integer bedId;
-    private Integer termId;
+    private String termId;
     private String roomName;
     private String rollId;
     private Integer floor;

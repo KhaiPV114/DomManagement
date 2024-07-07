@@ -18,4 +18,9 @@ public class DomResidentServiceImpl implements DomResidentService {
     public List<DomResident> getByRollId(String rollId) {
         return domResidentDao.getByRollId(rollId);
     }
+
+    @Override
+    public DomResident getByRollIdAndSemester(String rollId, String semester) {
+        return domResidentDao.findByRollIdAndSemester(rollId, semester);
+    }
 }

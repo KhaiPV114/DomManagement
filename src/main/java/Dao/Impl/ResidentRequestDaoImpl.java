@@ -44,12 +44,25 @@ public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements R
     }
 
     @Override
-    public long createRequestBookRoom(Request request) {
+    public void createRequestBookRoom(Request request) {
         String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, roomType) VALUES(?,?,?,?,?,?,?,?,?,?)";
-        insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
+         insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
                 request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getRoomType());
+    }
 
-        return 0;
+    @Override
+    public void createRequestOther(Request request) {
+        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, bedId) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
+                request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getBed());
+    }
+
+    @Override
+    public void createRequestCheckOut(Request request) {
+        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, bedId, checkOutDate) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
+                request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getBed(), request.getCheckOutDate());
+
     }
 
     @Override

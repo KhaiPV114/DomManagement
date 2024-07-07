@@ -26,7 +26,9 @@ public class RequestMap implements RowMapper<Request> {
                     .term(rs.getString("termId"))
                     .requestId(rs.getInt("requestId"))
                     .createDate(rs.getTimestamp("createDate"))
-                    .roomType(rs.getString("roomType"));
+                    .roomType(rs.getString("roomType"))
+                    .bed(rs.getInt("bedId"))
+                    .checkOutDate(rs.getTimestamp("checkOutDate"));
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException();

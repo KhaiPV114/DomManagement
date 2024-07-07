@@ -16,5 +16,4 @@ public class Room {
     private Integer domId;
     private RoomStatus roomStatus;
     private Integer floor;
-    private Gender genderRoom;
 }

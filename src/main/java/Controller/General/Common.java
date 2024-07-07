@@ -74,7 +74,7 @@ public class Common {
                             .role("Admin")
                             .gender(user.getGender())
                             .status(user.getStatus())
-                            .fullName(user.getFullname()).build();
+                            .fullName(user.getFullName()).build();
                     usersDtoList.add(usersDto);
                 }
             }

@@ -108,18 +108,12 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         try {
-            Long id = null;
             connection = ConnectionDB.getDataSource();
             connection.setAutoCommit(false);
             statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             setParameter(statement, parameters);
             statement.executeUpdate();
             resultSet = statement.getGeneratedKeys();
-            if (resultSet.next()) {
-                id = resultSet.getLong(1);
-                System.out.println(id);
-            }
-
             connection.commit();
         } catch (SQLException e) {
             if (connection != null) {
