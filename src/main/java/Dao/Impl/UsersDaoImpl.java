@@ -18,7 +18,7 @@ public class UsersDaoImpl extends GenericDaoImpl<Users> implements UsersDao {
     @Override
     public void update(Users users) {
         String sql = "UPDATE Users SET gmail = ?, password = ?, roleId = ?, gender = ?, fullName = ? WHERE userId = ?";
-        update(sql, users.getGmail(), users.getPassword(), users.getRoleId(), users.getGender(), users.getFullname(), users.getUserId());
+        update(sql, users.getGmail(), users.getPassword(), users.getRoleId(), users.getGender(), users.getFullName(), users.getUserId());
     }
 
     @Override

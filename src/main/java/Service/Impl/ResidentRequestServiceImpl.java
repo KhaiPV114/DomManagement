@@ -30,5 +30,26 @@ public class ResidentRequestServiceImpl implements ResidentRequestService {
         return residentRequestDao.findAll();
     }
 
+    @Override
+    public List<Request> getByRollId(String rollId) {
+        return residentRequestDao.getByRollId(rollId);
+    }
+
+    @Override
+    public void createRequestBookRoom(Request request) {
+         residentRequestDao.createRequestBookRoom(request);
+    }
+
+    @Override
+    public void createRequestOther(Request request) {
+        if(request.getCheckOutDate() == null) {
+            System.out.println("other");
+            residentRequestDao.createRequestOther(request);
+        }else {
+            System.out.println("Checkout");
+            residentRequestDao.createRequestCheckOut(request);
+        }
+    }
+
 
 }

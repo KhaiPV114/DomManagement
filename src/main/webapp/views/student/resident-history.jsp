@@ -8,36 +8,43 @@
     <div class="container-fluid my-container">
         <div>
             <h1 class="big-title">Resident history</h1>
-            <div class="container-block">
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered table-advance table-hover">
-                        <thead>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Bed information</th>
-                            <th>Check-in Date</th>
-                            <th>Check-out Date</th>
-                            <th>Price</th>
-                            <th>Semester</th>
-                            <th>Years</th>
-                            <th>Description</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>HE-178580</td>
-                            <td>A103-3</td>
-                            <td>01/05/2024</td>
-                            <td>30/05/2024</td>
-                            <td>850,000 VND</td>
-                            <td>1</td>
-                            <td>2024</td>
-                            <td>Keep current bed</td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <c:if test="${domResident.size() > 0}">
+                <div class="container-block">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-advance table-hover">
+                            <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Bed information</th>
+                                <th>Check-in Date</th>
+                                <th>Check-out Date</th>
+                                <th>Price</th>
+                                <th>Semester</th>
+                                <th>Years</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${domResident}" var="resident">
+                                <tr>
+                                    <td>${resident.studentId}</td>
+                                    <td>${resident.bedInformation}</td>
+                                    <td>${resident.checkInDate}</td>
+                                    <td>${resident.checkOutDate}</td>
+                                    <td>${resident.price}</td>
+                                    <td>${resident.semester}</td>
+                                    <td>${resident.year}</td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </c:if>
+
+            <c:if test="${domResident.size() == 0}">
+                <%@ include file="no-record.jsp" %>
+            </c:if>
         </div>
     </div>
 </div>

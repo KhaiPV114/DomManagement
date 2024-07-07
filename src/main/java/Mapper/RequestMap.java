@@ -19,13 +19,18 @@ public class RequestMap implements RowMapper<Request> {
             request.requestDetail(rs.getString("requestDetail"))
                     .requestStatus(rs.getString("requestStatus"))
                     .requestType(rs.getString("requestType"))
-                    .residentId(rs.getInt("residentId"))
                     .rollId(rs.getString("rollId"))
-                    .domId(rs.getInt("domId"))
+                    .domName(rs.getString("domName"))
                     .floor(rs.getInt("floor"))
                     .roomName(rs.getString("roomName"))
-                    .termId(rs.getInt("termId"));
+                    .term(rs.getString("termId"))
+                    .requestId(rs.getInt("requestId"))
+                    .createDate(rs.getTimestamp("createDate"))
+                    .roomType(rs.getString("roomType"))
+                    .bed(rs.getInt("bedId"))
+                    .checkOutDate(rs.getTimestamp("checkOutDate"));
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException();
         }
         return request.build();

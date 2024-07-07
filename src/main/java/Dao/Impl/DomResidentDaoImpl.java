@@ -15,6 +15,13 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
     }
 
     @Override
+    public DomResident findByRollIdAndSemester(String rollId, String semester) {
+        System.out.println(rollId + semester);
+        String sql = "SELECT * FROM DomResident WHERE rollId = ? AND termId = ?";
+        return query(sql, new DomResidentMap(), rollId, semester).stream().findFirst().orElse(null);
+    }
+
+    @Override
     public void update(DomResident domResident) {
         String sql = "UPDATE DomResident SET userId = ?, bedId = ?, termId = ?, roomName = ?, rollId = ?, floor = ?, balance = ?, checkInDate = ?, checkOutDate = ? WHERE residentId = ?";
        update(sql, domResident.getUserId(), domResident.getBedId(), domResident.getTermId(), domResident.getRoomName(), domResident.getRollId(),
@@ -25,5 +32,11 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
     public List<DomResident> findAll() {
         String sql = "SELECT * FROM DomResident";
         return query(sql, new DomResidentMap());
+    }
+
+    @Override
+    public List<DomResident> getByRollId(String rollId) {
+        String sql = "SELECT * FROM DomResident WHERE rollId = ?";
+        return query(sql, new DomResidentMap(), rollId);
     }
 }

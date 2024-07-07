@@ -12,31 +12,31 @@
             <div>
                 <dl class="dl-horizontal">
                     <dt class="dt">RollName</dt>
-                    <dd class="dd">HHHHH</dd>
+                    <dd class="dd">${payment.rollName}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Room</dt>
-                    <dd class="dd">A103</dd>
+                    <dd class="dd">${payment.room}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Bed number</dt>
-                    <dd class="dd">5</dd>
+                    <dd class="dd">${payment.bed}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Create date</dt>
-                    <dd class="dd">1/5/2024</dd>
+                    <dd class="dd">${payment.createDate}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Payment Date</dt>
-                    <dd class="dd">30/5/2024</dd>
+                    <dd class="dd">${payment.paymentDate}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Payment Status</dt>
-                    <dd class="dd">Paid in pull</dd>
+                    <dd class="dd">${payment.status}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Description</dt>
-                    <dd class="dd">Thanh toán tiền điện tháng 1</dd>
+                    <dd class="dd">${payment.description}</dd>
                 </dl>
             </div>
             <div class="container-block">
@@ -50,26 +50,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Electrictity</td>
-                            <td></td>
-                            <td>50,000 VND</td>
-                        </tr>
-                        <tr>
-                            <td>Water</td>
-                            <td></td>
-                            <td>50,000 VND</td>
-                        </tr>
+                        <c:forEach items="${payment.money}" var="item">
+                            <tr>
+                                <td>${item.key}</td>
+                                <td></td>
+                                <td>${item.value} VND</td>
+                            </tr>
+                        </c:forEach>
                         <tr>
                             <td class="text-blue font-weight-m" colspan="2">Total</td>
-                            <td class="text-blue font-weight-m">50,000 VND</td>
+                            <td class="text-blue font-weight-m">${payment.moneyTotal} VND</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <button onclick="location.href='#';return false;" class="SAB-back"
+        <button onclick="location.href='<%=request.getContextPath()%>/student/payment-history';return false;" class="SAB-back"
                 style="margin-top: 24px;">Back to list
         </button>
     </div>

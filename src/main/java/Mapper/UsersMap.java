@@ -15,7 +15,7 @@ public class UsersMap implements RowMapper<Users>{
                     .gmail(rs.getString("gmail"))
                     .password(rs.getString("password"))
                     .roleId(rs.getInt("roleId"))
-                    .fullname(rs.getString("fullName"));
+                    .fullName(rs.getString("fullName"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

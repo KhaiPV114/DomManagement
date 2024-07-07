@@ -1,22 +1,26 @@
 package Mapper;
 
-import Entity.PaymentHistory;
+import Entity.Payment;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PaymentMap implements RowMapper<PaymentHistory>{
+public class PaymentMap implements RowMapper<Payment>{
     @Override
-    public PaymentHistory mapRow(ResultSet rs) {
-        PaymentHistory.PaymentHistoryBuilder payment = PaymentHistory.builder();
+    public Payment mapRow(ResultSet rs) {
+        Payment.PaymentBuilder payment = Payment.builder();
         try{
             payment.paymentId(rs.getInt("paymentId"))
                     .createDate(rs.getTimestamp("createDate"))
                     .roomName(rs.getString("roomName"))
                     .status(rs.getString("status"))
                     .totalAmount(rs.getLong("totalAmount"))
-                    .totalAmountPaid(rs.getLong("totalAmountRaid"))
+                    .totalAmountPaid(rs.getLong("totalAmountPaid"))
                     .totalAmountRemain(rs.getLong("totalAmountRemain"))
+                    .rollId(rs.getString("rollId"))
+                    .billId(rs.getInt("billId"))
+                    .type(rs.getInt("type"))
+                    .bed(rs.getInt("bed"))
                     .description(rs.getString("description"));
         } catch (SQLException e) {
             throw new RuntimeException(e);

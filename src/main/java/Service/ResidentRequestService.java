@@ -21,4 +21,10 @@ public interface ResidentRequestService {
     void update(Request request);
 
     List<Request> findAll();
+
+    List<Request> getByRollId(String rollId);
+
+    void createRequestBookRoom(Request request);
+    void createRequestOther(Request request);
+
 }

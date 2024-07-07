@@ -16,7 +16,6 @@ public class RoomMap implements RowMapper<Room> {
                     .price(rs.getLong("price"))
                     .roomType(rs.getString("roomType"))
                     .roomStatus(RoomStatus.valueOf(rs.getString("roomStatus")))
-                    .genderRoom(Gender.valueOf(rs.getString("genderRoom")))
                     .floor(rs.getInt("floor"))
                     .domId(rs.getInt("domId"));
         } catch (SQLException e) {

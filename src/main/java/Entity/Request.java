@@ -13,12 +13,14 @@ public class Request {
     private Integer requestId;
     private String requestStatus;
     private String requestDetail;
-    private Integer residentId;
     private String rollId;
     private String requestType;
-    private Integer domId;
+    private String domName;
     private Integer floor;
     private String roomName;
-    private Integer termId;
+    private String term;
     private Timestamp createDate;
+    private String roomType;
+    private Integer bed;
+    private Timestamp checkOutDate;
 }

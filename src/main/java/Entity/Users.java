@@ -13,6 +13,6 @@ public class Users {
     private String password;
     private String gmail;
     private String gender;
-    private String fullname;
+    private String fullName;
     private String status;
 }

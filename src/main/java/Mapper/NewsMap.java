@@ -15,7 +15,7 @@ public class NewsMap implements RowMapper<News>{
                     .newsDetail(rs.getString("newsDetail"))
                     .picture(rs.getString("picture"))
                     .author(rs.getInt("authorId"))
-                    .createdTime(rs.getTimestamp("createTime"));
+                    .createdTime(rs.getTimestamp("createdTime"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
