@@ -3,10 +3,13 @@ package Controller.Student;
 import Controller.General.Common;
 import Dto.RoomTypeDto;
 import Entity.DomResident;
+import Entity.Money;
 import Entity.Student;
 import Enum.RoomType;
 import Service.DomResidentService;
 import Service.Impl.DomResidentServiceImpl;
+import Service.Impl.MoneyServiceImpl;
+import Service.MoneyService;
 import com.google.api.client.util.Strings;
 import org.checkerframework.checker.units.qual.C;
 
@@ -24,6 +27,7 @@ import java.util.Objects;
 @WebServlet("/student/choose-room")
 public class ChooseTypeRoomView extends HttpServlet {
     private final DomResidentService domResidentService = new DomResidentServiceImpl();
+    private final MoneyService moneyService = new MoneyServiceImpl();
     private final Common common = new Common();
 
     @Override
@@ -41,11 +45,24 @@ public class ChooseTypeRoomView extends HttpServlet {
 //            return;
 //        }
         List<RoomType> roomTypes = Arrays.stream(RoomType.values()).toList();
-        List<RoomTypeDto> roomTypeDtoList = roomTypes.stream().map(x -> {
+
+        List<Money> monies = moneyService.getByMoneyType("ROOM");
+
+//        List<RoomTypeDto> roomTypeDtoList = roomTypes.stream().map(x -> {
+//                    String amount = new Common().convertAmount(x.getAmount());
+//                    return RoomTypeDto.builder()
+//                            .bed(x.getType())
+//                            .key(x.name())
+//                            .amount(amount)
+//                            .build();
+//                }
+//        ).toList();
+
+        List<RoomTypeDto> roomTypeDtoList = monies.stream().map(x -> {
                     String amount = new Common().convertAmount(x.getAmount());
                     return RoomTypeDto.builder()
-                            .bed(x.getType())
-                            .key(x.name())
+                            .bed(x.getBedTotal())
+                            .key(x.getRoomType())
                             .amount(amount)
                             .build();
                 }

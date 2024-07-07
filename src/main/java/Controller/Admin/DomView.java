@@ -19,7 +19,6 @@ public class DomView extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Common common = new Common();
         List<DomTotalDto> domTotalDtoList = common.getListDomDto();
-//        System.out.println(" List: " + domTotalDtoList);
 
         int totalBedInDom = domTotalDtoList.stream().mapToInt(DomTotalDto::getTotalBed).sum();
         int totalUsedBed = domTotalDtoList.stream().mapToInt(DomTotalDto::getUsedBed).sum();

@@ -13,4 +13,5 @@ public class DomTotalDto {
     private int totalBed;
     private int usedBed;
     private int freeBed;
+    private String domGender;
 }

@@ -13,7 +13,7 @@ public class DomMap implements RowMapper<Dom> {
             dorm.domId(rs.getInt("domId"))
                     .domName(rs.getString("domName"))
                     .numberOfFloor(rs.getInt("numberOfFloor"))
-                    .genderDom(rs.getString("genderDom"));
+                    .domGender(rs.getString("domGender"));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

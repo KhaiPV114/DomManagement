@@ -12,5 +12,5 @@ public class Dom {
     private Integer domId;
     private String domName;
     private Integer numberOfFloor;
-    private String genderDom;
+    private String domGender;
 }
