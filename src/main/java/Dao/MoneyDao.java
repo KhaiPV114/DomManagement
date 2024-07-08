@@ -7,7 +7,7 @@ import Entity.Money;
 import java.util.List;
 
 public interface MoneyDao extends GenericDao<Money> {
-    Money getById(String moneyId);
+    Money getById(Integer moneyId);
 
     void update(Money money);
 

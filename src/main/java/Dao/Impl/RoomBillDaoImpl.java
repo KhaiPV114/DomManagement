@@ -29,10 +29,15 @@ public class RoomBillDaoImpl extends GenericDaoImpl<RoomBill> implements RoomBil
 
     @Override
     public RoomBill getByRollNameAndTermAndYear(String rollName, String term, int year) {
-        System.out.println(rollName);
-        System.out.println(term);
-        System.out.println(year);
         String sql = "SELECT * FROM RoomBill WHERE rollName = ? AND term = ? AND year = ?";
         return query(sql, new RoomBillMap(), rollName, term, year).stream().findFirst().orElse(null);
     }
+
+    @Override
+    public List<RoomBill> getByTermAndYear(String term, int year) {
+        String sql = "SELECT * FROM RoomBill WHERE term = ? AND year = ?";
+        return query(sql, new RoomBillMap(), term, year);
+    }
+
+
 }

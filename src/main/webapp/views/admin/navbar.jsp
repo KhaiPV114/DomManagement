@@ -49,6 +49,12 @@
             <a href="<%=request.getContextPath()%>/admin/dorm" class="sidebar-linkItem flex items-center">
                 <p>Dorm</p>
             </a>
+            <a href="<%=request.getContextPath()%>/admin/setting-money" class="sidebar-linkItem flex items-center">
+                <p>Money Setting</p>
+            </a>
+            <a href="<%=request.getContextPath()%>/admin/bill" class="sidebar-linkItem flex items-center">
+                <p>Bill electric and water</p>
+            </a>
             <a href="<%=request.getContextPath()%>/admin/user" class="sidebar-linkItem flex items-center">
                 <p>User</p>
             </a>

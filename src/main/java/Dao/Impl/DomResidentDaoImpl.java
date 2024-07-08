@@ -7,7 +7,7 @@ import Mapper.DomResidentMap;
 
 import java.util.List;
 
-public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements DomResidentDao  {
+public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements DomResidentDao {
     @Override
     public DomResident findById(Integer id) {
         String sql = "SELECT * FROM DomResident WHERE residentId = ?";
@@ -23,8 +23,8 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
     @Override
     public void update(DomResident domResident) {
         String sql = "UPDATE DomResident SET userId = ?, bedId = ?, termId = ?, roomName = ?, rollId = ?, floor = ?, balance = ?, checkInDate = ?, checkOutDate = ? WHERE residentId = ?";
-       update(sql, domResident.getUserId(), domResident.getBedId(), domResident.getTermId(), domResident.getRoomName(), domResident.getRollId(),
-               domResident.getFloor(), domResident.getBalance(), domResident.getCheckInDate(), domResident.getCheckOutDate(), domResident.getResidentId());
+        update(sql, domResident.getUserId(), domResident.getBedId(), domResident.getTermId(), domResident.getRoomName(), domResident.getRollId(),
+                domResident.getFloor(), domResident.getBalance(), domResident.getCheckInDate(), domResident.getCheckOutDate(), domResident.getResidentId());
     }
 
     @Override
@@ -41,8 +41,14 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
 
     @Override
     public int countUserInRoomAndTermAndYear(String room, String term, int year) {
-        String sql = "  Select count(*) from DomResident where roomName = ? AND termId = ? AND YEAR(checkInDate) = ?";
-        return count(sql,room, term, year);
+        String sql = "Select count(*) from DomResident where roomName = ? AND termId = ? AND YEAR(checkInDate) = ?";
+        return count(sql, room, term, year);
+    }
+
+    @Override
+    public List<DomResident> getByTermAndYear(String term, int year) {
+        String sql = "  Select * from DomResident where termId = ? AND YEAR(checkInDate) = ?";
+        return query(sql, new DomResidentMap(), term, year);
     }
 
     @Override
@@ -55,7 +61,12 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
             }
         }
         sql.append(") AND termId = ? AND year(checkInDate) = ?");
-        System.out.println(sql.toString());
-        return query(sql.toString(),new DomResidentMap(), term, year);
+        return query(sql.toString(), new DomResidentMap(), term, year);
+    }
+
+    @Override
+    public List<DomResident> getByPreMonthAndYear(int month, int year) {
+        String sql = "Select * from DomResident where MONTH(checkInDate) = ? AND YEAR(checkInDate) = ?";
+        return query(sql, new DomResidentMap(), month, year);
     }
 }
