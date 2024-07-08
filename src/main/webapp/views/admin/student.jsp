@@ -37,13 +37,14 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${studentList}" var="student">
                     <tr>
-                        <td>HE</td>
-                        <td>Phan Van Khai</td>
-                        <td>khaipvhe171008</td>
-                        <td>Nam</td>
-                        <td>50,000 VND</td>
-                        <td>ACCTIVE</td>
+                        <td>${student.rollId}</td>
+                        <td>${student.fullName}</td>
+                        <td>${student.gmail}</td>
+                        <td>${student.gender}</td>
+                        <td>${student.balance}</td>
+                        <td>${student.studentStatus}</td>
                         <td>
                             <div class="flex justify-center">
                                 <div class="btn-action" style="width: fit-content;">
@@ -51,6 +52,7 @@
                                 </div>
                             </div>
                     </tr>
+                    </c:forEach>
                     <tr>
                         <td>HE</td>
                         <td>Phan Van Khai</td>

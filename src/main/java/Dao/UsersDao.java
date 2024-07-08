@@ -13,4 +13,6 @@ public interface UsersDao extends GenericDao<Users> {
     void update (Users Users);
 
     List<Users> findAll();
+
+    void insert(Users Users);
 }
