@@ -3,6 +3,7 @@ package Controller.Admin;
 import Entity.Users;
 import Service.Impl.UserServiceImpl;
 import Service.UserService;
+import com.google.api.client.util.Strings;
 import com.google.api.services.drive.model.User;
 
 import javax.servlet.ServletException;
@@ -15,11 +16,16 @@ import java.io.IOException;
 @WebServlet("/admin/user/new")
 public class AdminCreateNewUser extends HttpServlet {
     private static final String VIEW_PATH = "/views/admin/create-user.jsp";
-    private static final String HOME_PATH = "/views/admin/user.jsp";
+    private static final String HOME_PATH = "/admin/user";
+
+    private static final String END_POINT = "@fpt.edu.vn";
 
     private static UserService userService = new UserServiceImpl();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String popup = Strings.isNullOrEmpty(req.getParameter("popup")) ? null : req.getParameter("popup");
+        req.setAttribute("popup", popup);
+
         req.getRequestDispatcher(VIEW_PATH).forward(req, resp);
     }
 
@@ -32,6 +38,13 @@ public class AdminCreateNewUser extends HttpServlet {
         String status = req.getParameter("status");
         String role = req.getParameter("role");
 
+        if(!gmail.endsWith(END_POINT)){
+            //check o fontend nwa ne
+            req.setAttribute("message", "Gmail k hop le");
+            req.getRequestDispatcher(VIEW_PATH).forward(req, resp);
+            return;
+        }
+
         Users newUser = Users.builder()
                 .fullName(fullName)
                 .roleId(1)
@@ -40,7 +53,6 @@ public class AdminCreateNewUser extends HttpServlet {
                 .gmail(gmail).build();
 
         userService.addUser(newUser);
-
-        req.getRequestDispatcher(HOME_PATH).forward(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/admin/user/new" + "?popup=Add use success!");
     }
 }

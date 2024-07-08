@@ -39,11 +39,11 @@ public class ChooseTypeRoomView extends HttpServlet {
             return;
         }
         DomResident domResident = domResidentService.getByRollIdAndSemester(student.getRollId(), common.getSemester());
-//        if (Objects.nonNull(domResident)) {
-//            req.setAttribute("roomTypes", null);
-//            req.getRequestDispatcher("/views/student/choose-type-room.jsp").forward(req, resp);
-//            return;
-//        }
+        if (Objects.nonNull(domResident)) {
+            req.setAttribute("roomTypes", null);
+            req.getRequestDispatcher("/views/student/choose-type-room.jsp").forward(req, resp);
+            return;
+        }
         List<RoomType> roomTypes = Arrays.stream(RoomType.values()).toList();
 
         List<Money> monies = moneyService.getByMoneyType("ROOM");

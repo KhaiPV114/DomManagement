@@ -9,7 +9,9 @@
         <h1 class="big-title">User manage</h1>
         <div class="container-block">
             <div class="table-responsive">
-                <button ><a href="<%=request.getContextPath()%>/admin/user/new">+ New</a></button>
+                <div class="flex justify-end" style="margin: 10px 0">
+                    <a class="orange-btn" href="<%=request.getContextPath()%>/admin/user/new">+ New</a>
+                </div>
                 <table class="table table-striped table-bordered table-advance table-hover">
                     <thead>
                     <tr>
@@ -23,21 +25,21 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${usersDtoList}" var="user">
-                    <tr>
-                        <td>${user.fullName}</td>
-                        <td>${user.gmail}</td>
-                        <td>${user.gender}</td>
-                        <td>${user.role}</td>
-                        <td>${user.status}</td>
-                        <td>
-                            <div class="flex justify-center">
-                                <div class="btn-action" style="width: fit-content;">
-                                    <a
-                                            href="#">Delete</a>
+                        <tr>
+                            <td>${user.fullName}</td>
+                            <td>${user.gmail}</td>
+                            <td>${user.gender}</td>
+                            <td>${user.role}</td>
+                            <td>${user.status}</td>
+                            <td>
+                                <div class="flex justify-center">
+                                    <div class="btn-action" style="width: fit-content;">
+                                        <a
+                                                href="#">Delete</a>
+                                    </div>
                                 </div>
-                            </div>
-                    </tr>
-                    </tr>
+                        </tr>
+                        </tr>
                     </c:forEach>
                     </tbody>
                 </table>

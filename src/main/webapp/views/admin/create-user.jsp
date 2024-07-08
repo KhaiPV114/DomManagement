@@ -8,35 +8,39 @@
     <div class="container-fluid my-container">
         <h1 class="big-title">Create request</h1>
         <form action="<%=request.getContextPath()%>/admin/user/new" method="post" style="width: 50%;">
+            <h5 class="text-danger">${message}</h5>
             <div class="">
                 <div class="flex-1" style="margin-bottom: 24px;">
                     <label class="SBB-input-label no-margin" for="fullName">Full Name:</label>
                     <div class="SR-form" style="width: 100%;">
-                    <input type="text" name="fullName" id="fullName">
+                        <input class="SBB-input text-box single-line" type="text" name="fullName" id="fullName">
                     </div>
                 </div>
                 <div class="flex-1" style="margin-bottom: 24px;">
                     <label class="SBB-input-label no-margin" for="gmail">Gmail:</label>
                     <div class="SR-form" style="width: 100%;">
-                    <input type="text" name="gmail" id="gmail">
+                        <input class="SBB-input text-box single-line" type="text" name="gmail" id="gmail">
                     </div>
                 </div>
                 <div class="flex-1" style="margin-bottom: 24px;">
                     <label class="SBB-input-label no-margin" for="password">Password:</label>
                     <div class="SR-form" style="width: 100%;">
-                    <input type="text" name="password" id="password">
+                        <input class="SBB-input text-box single-line" type="password" name="password" id="password">
                     </div>
                 </div>
                 <div class="flex-1" style="margin-bottom: 24px;">
-                    <label class="SBB-input-label no-margin" for="gender">Gender:</label>
-                    <div class="SR-form" style="width: 100%;">
-                    <input type="text" name="gender" id="gender">
-                    </div>
+                    <label class="SBB-input-label no-margin">Gender:</label>
+
+                    <select class="SBB-input" id="gender" name="gender" >
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+
                 </div>
                 <div class="flex-1 hidden" style="margin-bottom: 24px;">
                     <label class="SBB-input-label no-margin" for="role">Role:</label>
                     <div class="SR-form" style="width: 100%;">
-                        <input type="text" name="role" id="role" value="Admin">
+                        <input class="SBB-input text-box single-line" type="text" name="role" id="role" value="Admin">
                     </div>
                 </div>
                 <div class="flex-1 hidden" style="margin-bottom: 24px;">
@@ -47,12 +51,14 @@
                 </div>
                 <div style=" margin-top: 24px;">
                     <div class="flex justify-end">
-                        <input type="submit" value="Create request" class="orange-btn">
+                        <input type="submit" value="Create user" class="orange-btn">
                     </div>
                 </div>
             </div>
         </form>
     </div>
+    <button onclick="location.href='<%=request.getContextPath()%>/admin/user';return false;" class="SAB-back"
+            style="margin-top: 24px;">Back to list</button>
     <style>
         /* CSS để ẩn popup ban đầu */
         .popup {
@@ -62,7 +68,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5); /* Màu nền đục */
+            background-color: rgba(0, 0, 0, 0.5); /* Màu nền đục */
             z-index: 9999; /* Lớp z-index để nằm trên các phần tử khác */
             overflow: auto; /* Cho phép cuộn khi nội dung dài hơn */
         }
@@ -92,16 +98,22 @@
             cursor: pointer;
         }
     </style>
-    <c:if test="${message != null}">
+    <c:if test="${popup != null}">
         <div id="myPopup" class="popup" style="display: block">
             <div class="popup-content">
                 <span class="close" onclick="closePopup()">&times;</span>
-                <p>${message}</p>
+                <p>${popup}</p>
             </div>
         </div>
     </c:if>
 </div>
 <%@ include file="../footer.jsp" %>
+<script>
+    function closePopup() {
+        var popup = document.getElementById("myPopup");
+        popup.style.display = "none";
+    }
+</script>
 </body>
 </html>
 

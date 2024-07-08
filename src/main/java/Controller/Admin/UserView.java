@@ -4,6 +4,7 @@ import Controller.General.Common;
 import Dto.UsersDto;
 import Service.Impl.UserServiceImpl;
 import Service.UserService;
+import com.google.api.client.util.Strings;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,7 @@ public class UserView extends HttpServlet {
         Common common = new Common();
         List<UsersDto> usersDtoList = common.getListUsersDto();
 //        System.out.println("List of users: " + usersDtoList);
+
 
         req.setAttribute("usersDtoList", usersDtoList);
         req.getRequestDispatcher(VIEW_PATH).forward(req, resp);
