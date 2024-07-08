@@ -10,4 +10,6 @@ import java.util.List;
     void update (String sql, Object... parameters);
     void insert (String sql, Object... parameters);
     int count(String sql, Object... parameters);
+
+    void delete(String sql, Object... parameters);
 }

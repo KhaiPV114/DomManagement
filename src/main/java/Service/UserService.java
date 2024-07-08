@@ -11,4 +11,6 @@ public interface UserService {
 
     void addUser(Users user);
     Users getByGmail(String gmail);
+
+    void deleteById(int id);
 }

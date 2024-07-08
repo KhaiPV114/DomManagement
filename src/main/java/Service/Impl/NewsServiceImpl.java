@@ -18,4 +18,9 @@ public class NewsServiceImpl implements NewsService {
     public News getById(int id) {
         return newsDao.findById(id);
     }
+
+    @Override
+    public void insert(News news) {
+        newsDao.insert(news);
+    }
 }

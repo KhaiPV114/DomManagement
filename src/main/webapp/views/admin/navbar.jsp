@@ -58,10 +58,10 @@
             <a href="<%=request.getContextPath()%>/admin/request" class="sidebar-linkItem flex items-center">
                 <p>Request</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/dorm-details" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/dom-resident" class="sidebar-linkItem flex items-center">
                 <p>Dorm Risedent</p>
             </a>
-            <a href="#" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/news" class="sidebar-linkItem flex items-center">
                 <p>News</p>
             </a>
         </div>
