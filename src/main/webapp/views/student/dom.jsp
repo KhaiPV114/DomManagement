@@ -8,7 +8,7 @@
     <div class="container-fluid my-container">
         <div>
             <h1 class="big-title">Available beds</h1>
-            <div class="container-block" >
+            <div class="container-block">
                 <h3 style="color: var(--blue-color);" class="text-bold"> Summary: Dom in ${semester}</h3>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-advance table-hover">

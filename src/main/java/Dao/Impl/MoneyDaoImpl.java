@@ -42,7 +42,7 @@ public class MoneyDaoImpl extends GenericDaoImpl<Money> implements MoneyDao {
             }
         }
         sql.append(")");
-        System.out.println(sql.toString());
+
         return query(sql.toString(), new MoneyMap());
     }
 
@@ -51,4 +51,5 @@ public class MoneyDaoImpl extends GenericDaoImpl<Money> implements MoneyDao {
         String sql = "SELECT * FROM Money WHERE moneyType = ? AND roomType = ? ";
         return query(sql, new MoneyMap(), moneyType, roomType).stream().findFirst().orElse(null);
     }
+
 }

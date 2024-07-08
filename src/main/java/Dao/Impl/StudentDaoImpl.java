@@ -2,7 +2,9 @@ package Dao.Impl;
 
 import Dao.GenericDao.Impl.GenericDaoImpl;
 import Dao.StudentDao;
+import Dto.StudentBedDto;
 import Entity.Student;
+import Mapper.StudentBedDtoMap;
 import Mapper.StudentMap;
 
 import java.util.List;
@@ -31,5 +33,11 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements StudentDa
     public Student findByGmail(String gmail) {
         String sql = "SELECT * FROM Student WHERE gmail = ?";
         return query(sql, new StudentMap(), gmail).stream().findFirst().orElse(null);
+    }
+
+    @Override
+    public List<StudentBedDto> getByRoomNameAndSemesterAndYear(String roomName, String semester, int year) {
+        String sql = " SELECT s.rollId, s.fullName, s.gender, s.gmail, d.bedId FROM Student s JOIN DomResident d ON s.rollId = d.rollId WHERE d.roomName = ? AND d.termId = ? AND year(checkInDate) = ?";
+        return query(sql, new StudentBedDtoMap(), roomName, semester, year );
     }
 }

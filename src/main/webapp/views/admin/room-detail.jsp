@@ -7,50 +7,39 @@
 <div id="content-body" class="content-body pl-328">
     <div class="container-fluid my-container">
         <h1 class="big-title">Room details</h1>
+        <div class="flex justify-end" style="margin: 10px 0">
+            <a class="orange-btn" href="<%= request.getContextPath()%>/admin/room-detail/ew-usage">EW usage</a>
+        </div>
         <div class="container-block">
-            <div>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Dorm</dt>
-                    <dd class="dd">A</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Floor</dt>
-                    <dd class="dd">1</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Room</dt>
-                    <dd class="dd">1</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Total bed</dt>
-                    <dd class="dd">6</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Status</dt>
-                    <dd class="dd">NOT FULL</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Amount</dt>
-                    <dd class="dd">500,000 VND</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Electricity</dt>
-                    <dd class="dd">33</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Water</dt>
-                    <dd class="dd">1</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Bed used</dt>
-                    <dd class="dd">4(No: 1, 3, 4, 5)</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt class="dt">Bed free</dt>
-                    <dd class="dd">2(No: 2, 6)</dd>
-                </dl>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-advance table-hover">
+                    <thead>
+                    <tr>
+                        <th>Dorm</th>
+                        <th>Floor</th>
+                        <th>Room</th>
+                        <th>Amount</th>
+                        <th>Total bed</th>
+                        <th>Used bed</th>
+                        <th>Free bed</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>${roomAdmin.dom}</td>
+                        <td>${roomAdmin.floor}</td>
+                        <td>${roomAdmin.room}</td>
+                        <td>${roomAdmin.amount} VND</td>
+                        <td>${roomAdmin.totalBed}</td>
+                        <td>${roomAdmin.usedBed}</td>
+                        <td>${roomAdmin.freeBed}</td>
+                        <td>${roomAdmin.status}</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-            <p>Danh sach sinh vien</p>
+            <p style="margin: 15px 0;">Student: </p>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-advance table-hover">
                     <thead>
@@ -63,25 +52,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>HE</td>
-                        <td>Phan Van Khai</td>
-                        <td>khaipvhe171008</td>
-                        <td>Nam</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>HE</td>
-                        <td>Phan Van Khai</td>
-                        <td>khaipvhe171008</td>
-                        <td>Nam</td>
-                        <td>3</td>
-                    </tr>
+                    <c:forEach items="${roomAdmin.studentBedDtoList}" var="st">
+                        <tr>
+                            <td>${st.rollId}</td>
+                            <td>${st.fullName}</td>
+                            <td>${st.gmail}</td>
+                            <td>${st.gender}</td>
+                            <td>${st.bed}</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
         </div>
-        <button onclick="location.href='#';return false;" class="SAB-back"
+        <button onclick="history.back();return false;" class="SAB-back"
                 style="margin-top: 24px;">Back to list
         </button>
     </div>

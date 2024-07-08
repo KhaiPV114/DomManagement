@@ -11,7 +11,6 @@ import lombok.ToString;
 @ToString
 public class Room {
     private String roomName;
-    private long price;
     private String roomType;
     private Integer domId;
     private RoomStatus roomStatus;

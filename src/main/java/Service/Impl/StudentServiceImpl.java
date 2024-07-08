@@ -2,6 +2,7 @@ package Service.Impl;
 
 import Dao.Impl.StudentDaoImpl;
 import Dao.StudentDao;
+import Dto.StudentBedDto;
 import Entity.Student;
 import Service.StudentService;
 
@@ -22,5 +23,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getAll() {
         return studentDao.findAll();
+    }
+
+    @Override
+    public List<StudentBedDto> getByRoomNameAndSemesterAndYear(String roomName, String semester, int year) {
+        return studentDao.getByRoomNameAndSemesterAndYear(roomName, semester, year);
     }
 }

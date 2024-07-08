@@ -29,4 +29,5 @@ public class MoneyServiceImpl implements MoneyService {
     public Money getByMoneyTypeAndRoomType(String moneyType, String roomType) {
         return moneyDao.getByMoneyTypeAndRoomType(moneyType, roomType);
     }
+
 }

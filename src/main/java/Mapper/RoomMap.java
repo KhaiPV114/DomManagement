@@ -13,7 +13,6 @@ public class RoomMap implements RowMapper<Room> {
         Room.RoomBuilder room = Room.builder();
         try {
             room.roomName(rs.getString("roomName"))
-                    .price(rs.getLong("price"))
                     .roomType(rs.getString("roomType"))
                     .roomStatus(RoomStatus.valueOf(rs.getString("roomStatus")))
                     .floor(rs.getInt("floor"))

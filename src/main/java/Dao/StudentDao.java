@@ -1,7 +1,9 @@
 package Dao;
 
 import Dao.GenericDao.GenericDao;
+import Dto.StudentBedDto;
 import Entity.Student;
+import Mapper.StudentBedDtoMap;
 
 import java.util.List;
 
@@ -13,4 +15,6 @@ public interface StudentDao extends GenericDao<Student> {
     List<Student> findAll();
 
     Student findByGmail(String gmail);
+
+    List<StudentBedDto> getByRoomNameAndSemesterAndYear(String roomName, String semester, int year);
 }

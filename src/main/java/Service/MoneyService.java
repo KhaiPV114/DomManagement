@@ -9,4 +9,5 @@ public interface MoneyService {
     List<Money> getByMoneyType(String type);
     List<Money> getByListMoneyType(List<String> type);
     Money getByMoneyTypeAndRoomType(String moneyType, String roomType);
+
 }

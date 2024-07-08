@@ -45,7 +45,7 @@ public class RequestView extends HttpServlet {
             return;
         }
 
-        DomResident domResident = domResidentService.getByRollIdAndSemester(student.getRollId(), common.getSemester());
+        DomResident domResident = domResidentService.getByRollIdAndSemesterAndYear(student.getRollId(), common.getSemester(), LocalDate.now().getYear());
         Request.RequestBuilder request = Request.builder();
         request.requestDetail(requestDetail)
                 .requestType(requestType)

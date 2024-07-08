@@ -4,59 +4,11 @@ $(document).ready(function () {
     if ('@Request["isShowLogin"]' === 'true') {
         handleShowModal();
     }
-
-    // campusChange();
 });
-
-// function campusChange() {
-//     var campus = document.getElementById("CampusCode").value;
-//     var valueGoogle = document.getElementById("google_login").href;
-//     var valueFEID = document.getElementById("feid_login").href;
-//     var campusIndexGoogle = valueGoogle.lastIndexOf('=');
-//     var campusIndexFEID = valueFEID.lastIndexOf('=');
-//     document.getElementById("google_login").href = valueGoogle.substring(0, campusIndexGoogle + 1) + campus;
-//     document.getElementById("feid_login").href = valueFEID.substring(0, campusIndexFEID + 1) + campus;
-// }
-
 
 if (window.location.href.includes("Home")) {
     loginModalTag.classList.remove("hidden");
 }
-
-const loginTab1 = document.getElementById("loginTab1");
-const loginTab2 = document.getElementById("loginTab2");
-const loginTab3 = document.getElementById("loginTab3");
-
-const activeTab = (tab) => {
-    const username = document.getElementById("fieldUsername");
-    const password = document.getElementById("fieldPassword");
-
-    const account = document.getElementById("login-account");
-    const google = document.getElementById("login-google");
-    const feid = document.getElementById("login-feid");
-
-    //if (tab == 1) {
-    //    loginTab1.classList.add("role-text-active");
-    //    loginTab2.classList.remove("role-text-active");
-
-    //    username.classList.add("hidden");
-    //    password.classList.add("hidden");
-    //    account.classList.add("hidden");
-
-    //    google.classList.remove("hidden");
-    //    feid.classList.remove("hidden");
-    //} else if (tab == 2) {
-    //    loginTab1.classList.remove("role-text-active");
-    //    loginTab2.classList.add("role-text-active");
-
-    //    username.classList.remove("hidden");
-    //    password.classList.remove("hidden");
-    //    account.classList.remove("hidden");
-
-    //    google.classList.add("hidden");
-    //    feid.classList.add("hidden");
-    //}
-};
 
 // QA
 
@@ -128,4 +80,3 @@ function showSlides(n) {
     slides[slideIndex - 1].style.display = "block";
 }
 
-// setInterval(() => plusSlides(1), 10000);

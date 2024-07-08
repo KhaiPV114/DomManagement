@@ -16,13 +16,19 @@ public class RoomDaoImpl extends GenericDaoImpl<Room> implements RoomDao {
 
     @Override
     public void update(Room room) {
-        String sql = "UPDATE Room SET roomType = ?, roomStatus = ?, domId = ?, price = ? WHERE roomName = ? AND floor = ?";
-        update(sql, room.getRoomType(), room.getRoomStatus(), room.getDomId(), room.getPrice(), room.getRoomName(), room.getFloor());
+        String sql = "UPDATE Room SET roomType = ?, roomStatus = ?, domId = ? WHERE roomName = ? AND floor = ?";
+        update(sql, room.getRoomType(), room.getRoomStatus(), room.getDomId(), room.getRoomName(), room.getFloor());
     }
 
     @Override
     public List<Room> findAll() {
         String sql = "SELECT * FROM Room";
         return query(sql, new RoomMap());
+    }
+
+    @Override
+    public Room getByRoomName(String roomName) {
+        String sql = "SELECT * FROM Room WHERE roomName = ? ";
+        return query(sql, new RoomMap(), roomName).stream().findFirst().orElse(null);
     }
 }

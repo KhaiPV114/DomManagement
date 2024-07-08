@@ -20,7 +20,6 @@ public class NewsView extends HttpServlet {
     private final NewsService newsService = new NewsServiceImpl();
     private final Common common = new Common();
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int page = Strings.isNullOrEmpty(req.getParameter("page")) ? 0 : Integer.valueOf(req.getParameter("offset"));

@@ -15,10 +15,9 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
     }
 
     @Override
-    public DomResident findByRollIdAndSemester(String rollId, String semester) {
-        System.out.println(rollId + semester);
-        String sql = "SELECT * FROM DomResident WHERE rollId = ? AND termId = ?";
-        return query(sql, new DomResidentMap(), rollId, semester).stream().findFirst().orElse(null);
+    public DomResident findByRollIdAndSemesterAndYear(String rollId, String semester, int year) {
+        String sql = "SELECT * FROM DomResident WHERE rollId = ? AND termId = ? AND year = ?";
+        return query(sql, new DomResidentMap(), rollId, semester, year).stream().findFirst().orElse(null);
     }
 
     @Override
@@ -44,5 +43,19 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
     public int countUserInRoomAndTermAndYear(String room, String term, int year) {
         String sql = "  Select count(*) from DomResident where roomName = ? AND termId = ? AND YEAR(checkInDate) = ?";
         return count(sql,room, term, year);
+    }
+
+    @Override
+    public List<DomResident> getByListRollIdAndTermAndYear(List<String> rollIds, String term, int year) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM DomResident WHERE rollId IN (");
+        for (int i = 0; i < rollIds.size(); i++) {
+            sql.append("'").append(rollIds.get(i)).append("'");
+            if (i != rollIds.size() - 1) {
+                sql.append(",");
+            }
+        }
+        sql.append(") AND termId = ? AND year(checkInDate) = ?");
+        System.out.println(sql.toString());
+        return query(sql.toString(),new DomResidentMap(), term, year);
     }
 }

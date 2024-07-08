@@ -11,4 +11,6 @@ public interface RoomDao extends GenericDao<Room> {
     void update(Room Room);
 
     List<Room> findAll();
+
+    Room getByRoomName(String roomName);
 }

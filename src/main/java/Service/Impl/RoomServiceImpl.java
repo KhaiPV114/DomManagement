@@ -13,4 +13,9 @@ public class RoomServiceImpl implements RoomService {
     public List<Room> getAll() {
         return roomDao.findAll();
     }
+
+    @Override
+    public Room getByRoomName(String roomName) {
+        return roomDao.getByRoomName(roomName);
+    }
 }

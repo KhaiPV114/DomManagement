@@ -20,8 +20,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 @WebServlet("/student/choose-room")
@@ -38,13 +40,12 @@ public class ChooseTypeRoomView extends HttpServlet {
             resp.sendRedirect("/views/error.jsp");
             return;
         }
-        DomResident domResident = domResidentService.getByRollIdAndSemester(student.getRollId(), common.getSemester());
+        DomResident domResident = domResidentService.getByRollIdAndSemesterAndYear(student.getRollId(), common.getSemester(), LocalDate.now().getYear());
         if (Objects.nonNull(domResident)) {
             req.setAttribute("roomTypes", null);
             req.getRequestDispatcher("/views/student/choose-type-room.jsp").forward(req, resp);
             return;
         }
-        List<RoomType> roomTypes = Arrays.stream(RoomType.values()).toList();
 
         List<Money> monies = moneyService.getByMoneyType("ROOM");
 
