@@ -14,4 +14,15 @@ public class RequestServiceImpl implements RequestService {
     public List<Request> getAll() {
         return residentRequestDao.findAll();
     }
+
+    @Override
+    public Request getById(Integer id) {
+        return residentRequestDao.findById(id);
+    }
+
+    @Override
+    public void updateStatus(Request request) {
+        residentRequestDao.updateStatus(request);
+    }
+
 }

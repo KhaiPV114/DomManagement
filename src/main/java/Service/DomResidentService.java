@@ -18,4 +18,6 @@ public interface DomResidentService {
     List<DomResident> getByPrevMonthAndYear(int month, int year);
 
     List<DomResident> getAll();
+
+    void save(DomResident domResident);
  }

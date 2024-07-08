@@ -21,12 +21,22 @@ public class BedServiceImpl implements BedService {
     }
 
     @Override
-    public List<Bed> getByRoomType(String type) {
-        return bedDao.getByRoomType(type);
+    public List<Bed> getByRoomTypeAndGender(String type, String gender) {
+        return bedDao.getByRoomTypeAndGender(type, gender);
     }
 
     @Override
     public Bed getByBedAndRoomName(Integer bedId, String roomName) {
         return bedDao.findByBedIdRoomName(bedId, roomName);
+    }
+
+    @Override
+    public Bed randomBedByFloorAndDomName(int floor, String domName) {
+        return bedDao.getRandomByFloorAndDomName(floor, domName);
+    }
+
+    @Override
+    public void updateStatus(Bed bed) {
+        bedDao.update(bed);
     }
 }

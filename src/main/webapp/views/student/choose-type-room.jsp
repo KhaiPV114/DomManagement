@@ -14,7 +14,7 @@
             </div>
         </c:if>
 
-        <c:if test=" ${roomTypes != null}">
+        <c:if test="${roomTypes != null}">
             <form action="<%=request.getContextPath()%>/student/book-room" method="get">
                 <div class="">
                     <div class="flex-1">

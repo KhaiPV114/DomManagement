@@ -33,21 +33,21 @@ public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements R
 
     @Override
     public List<Request> findAll() {
-        String sql = "SELECT * FROM Request";
+        String sql = "SELECT * FROM Request ORDER BY requestId desc";
         return query(sql, new RequestMap());
     }
 
     @Override
     public List<Request> getByRollId(String rollId) {
-        String sql = "SELECT * FROM Request WHERE rollId = ?";
+        String sql = "SELECT * FROM Request WHERE rollId = ? ORDER BY requestId desc";
         return query(sql, new RequestMap(), rollId);
     }
 
     @Override
     public void createRequestBookRoom(Request request) {
-        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, roomType) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, termId, createDate, roomType) VALUES(?,?,?,?,?,?,?,?,?)";
          insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
-                request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getRoomType());
+                request.getDomName(), request.getFloor(), request.getTerm(), request.getCreateDate(), request.getRoomType());
     }
 
     @Override
@@ -63,6 +63,12 @@ public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements R
         insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
                 request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getBed(), request.getCheckOutDate());
 
+    }
+
+    @Override
+    public void updateStatus(Request request) {
+        String sql = "UPDATE Request SET requestStatus = ? WHERE requestId = ?";
+        update(sql, request.getRequestStatus(), request.getRequestId());
     }
 
     @Override

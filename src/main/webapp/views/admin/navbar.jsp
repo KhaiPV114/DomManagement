@@ -74,7 +74,7 @@
     </div>
     <div class="sidebar-bottom">
         <div class="flex justify-center">
-            <a class="btn-logout" href="/Home/Logout?type=Google">Logout</a>
+            <a class="btn-logout" href="<%=request.getContextPath()%>/home/google-logout">Logout</a>
         </div>
     </div>
 </div>

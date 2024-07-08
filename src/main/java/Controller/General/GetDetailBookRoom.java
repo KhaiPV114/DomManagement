@@ -2,11 +2,13 @@ package Controller.General;
 
 import Dto.FloorAndFreeBed;
 import Entity.Bed;
+import Entity.Student;
 import Enum.RoomType;
 import Enum.BedStatus;
 import Service.BedService;
 import Service.Impl.BedServiceImpl;
 import com.google.gson.Gson;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 
 @WebServlet("/student/detail-book-room")
 public class GetDetailBookRoom extends HttpServlet {
     private final BedService bedService = new BedServiceImpl();
+    private final Common common = new Common();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,10 +33,13 @@ public class GetDetailBookRoom extends HttpServlet {
         int floor = Integer.valueOf(req.getParameter("floor"));
         String roomTypeName = req.getParameter("roomType");
         Set<Integer> floors = new HashSet<>();
+        Student student = common.getStudentSession(req);
+        if (Objects.isNull(student)) {
+            resp.sendRedirect("/views/error.jsp");
+            return;
+        }
 
-        RoomType room = RoomType.valueOf(roomTypeName);
-
-        List<Bed> beds = bedService.getByRoomType(String.valueOf(room.getType()));
+        List<Bed> beds = bedService.getByRoomTypeAndGender(roomTypeName, student.getGender());
 
         long freeBed = beds.stream()
                 .peek(x -> {

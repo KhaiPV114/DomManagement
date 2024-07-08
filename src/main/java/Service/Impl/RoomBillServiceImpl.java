@@ -23,4 +23,14 @@ public class RoomBillServiceImpl implements RoomBillService {
     public List<RoomBill> getByTermAndYear(String term, int year) {
         return roomBillDao.getByTermAndYear(term, year);
     }
+
+    @Override
+    public void saveAll(List<RoomBill> roomBills) {
+        roomBillDao.saveAll(roomBills);
+    }
+
+    @Override
+    public List<RoomBill> getAll() {
+        return roomBillDao.findAll();
+    }
 }

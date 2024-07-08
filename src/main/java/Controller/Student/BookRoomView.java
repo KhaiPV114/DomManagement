@@ -12,7 +12,6 @@ import Service.Impl.StudentServiceImpl;
 import Service.StudentService;
 import com.google.api.client.util.Strings;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,27 +33,26 @@ public class BookRoomView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String roomTypeName = Strings.isNullOrEmpty(req.getParameter("roomTypeName")) ? "BIG" : req.getParameter("roomTypeName");
-        long roomAmount = Strings.isNullOrEmpty(req.getParameter("roomAmount")) ? 500000 : Long.parseLong(req.getParameter("roomAmount").replaceAll("\\.",""));
+        long roomAmount = Strings.isNullOrEmpty(req.getParameter("roomAmount")) ? 500000 : Long.parseLong(req.getParameter("roomAmount").replaceAll("\\.", ""));
 
         Set<String> doms = new HashSet<>();
         Set<Integer> floors = new HashSet<>();
 
-        Student studentLogin =  common.getStudentSession(req);
-        if(Objects.isNull(studentLogin)){
+        Student studentLogin = common.getStudentSession(req);
+        if (Objects.isNull(studentLogin)) {
             resp.sendRedirect(req.getContextPath() + "/views/error.jsp");
             return;
         }
         Student student = studentService.getByRollId(studentLogin.getRollId());
 
-        RoomType room = RoomType.valueOf(roomTypeName);
 
-        List<Bed> beds = bedService.getByRoomType(String.valueOf(room.getType()));
-
+        List<Bed> beds = bedService.getByRoomTypeAndGender(roomTypeName, student.getGender());
+        System.out.println(beds.toString());
         long freeBed = beds.stream()
                 .peek(x -> {
-                    String key = x.getRoomName().substring(0,1);
+                    String key = x.getRoomName().substring(0, 1);
                     doms.add(key);
-                    if("A".equals(key)){
+                    if ("A".equals(key)) {
                         floors.add(x.getFloor());
                     }
                 })
@@ -70,12 +68,13 @@ public class BookRoomView extends HttpServlet {
                 .key(roomTypeName)
                 .minimumBalance(common.convertAmount(amountSe))
                 .yourAccountBalance(common.convertAmount(studentBalance))
-                .roomType(String.valueOf(room.getType()))
+                .roomType(RoomType.valueOf(roomTypeName).getType() + "")
                 .roomAmount(common.convertAmount(roomAmount))
                 .numberSlotsRemaining(freeBed)
                 .yourBalanceAfterBooking(common.convertAmount(studentBalance - amountSe))
                 .build();
 
+        System.out.println(bookRoomDto.toString());
         req.setAttribute("bookRoomDto", bookRoomDto);
         common.setTitle(req, "BookRoom");
         req.getRequestDispatcher("/views/student/book-room.jsp").forward(req, resp);

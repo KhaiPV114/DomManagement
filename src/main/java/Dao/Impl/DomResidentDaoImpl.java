@@ -16,7 +16,7 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
 
     @Override
     public DomResident findByRollIdAndSemesterAndYear(String rollId, String semester, int year) {
-        String sql = "SELECT * FROM DomResident WHERE rollId = ? AND termId = ? AND year = ?";
+        String sql = "SELECT * FROM DomResident WHERE rollId = ? AND termId = ? AND year(checkInDate) = ?";
         return query(sql, new DomResidentMap(), rollId, semester, year).stream().findFirst().orElse(null);
     }
 
@@ -68,5 +68,12 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
     public List<DomResident> getByPreMonthAndYear(int month, int year) {
         String sql = "Select * from DomResident where MONTH(checkInDate) = ? AND YEAR(checkInDate) = ?";
         return query(sql, new DomResidentMap(), month, year);
+    }
+
+    @Override
+    public void save(DomResident domResident) {
+        String sql = "INSERT INTO DomResident(floor, rollId, roomName, termId, bedId, balance, checkInDate, checkOutDate) VALUES(?,?,?,?,?,?,?,?)";
+        insert(sql, domResident.getFloor(), domResident.getRollId(), domResident.getRoomName(), domResident.getTermId(),
+                domResident.getBedId(), domResident.getBalance(), domResident.getCheckInDate(), domResident.getCheckInDate());
     }
 }

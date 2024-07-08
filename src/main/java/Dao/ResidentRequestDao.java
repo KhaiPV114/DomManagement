@@ -27,4 +27,6 @@ public interface ResidentRequestDao  extends GenericDao<Request>{
     void createRequestOther(Request request);
 
     void createRequestCheckOut(Request request);
+
+    void updateStatus(Request request);
 }

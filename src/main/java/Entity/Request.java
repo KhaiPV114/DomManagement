@@ -2,12 +2,14 @@ package Entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Timestamp;
 
 @Getter
 @Builder
+@Setter
 @ToString
 public class Request {
     private Integer requestId;

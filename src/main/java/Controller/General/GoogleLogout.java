@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet("/home/account-logout")
-public class Logout extends HttpServlet {
+@WebServlet("/home/google-logout")
+public class GoogleLogout extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        session.removeAttribute("student");
+        session.removeAttribute("admin");
         resp.sendRedirect(req.getContextPath() + "/index.jsp");
     }
 }

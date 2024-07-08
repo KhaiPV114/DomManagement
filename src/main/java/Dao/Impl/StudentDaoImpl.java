@@ -37,7 +37,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements StudentDa
 
     @Override
     public List<StudentBedDto> getByRoomNameAndSemesterAndYear(String roomName, String semester, int year) {
-        String sql = " SELECT s.rollId, s.fullName, s.gender, s.gmail, d.bedId FROM Student s JOIN DomResident d ON s.rollId = d.rollId WHERE d.roomName = ? AND d.termId = ? AND year(checkInDate) = ?";
+        String sql = "SELECT s.rollId, s.fullName, s.gender, s.gmail, d.bedId FROM Student s JOIN DomResident d ON s.rollId = d.rollId WHERE d.roomName = ? AND d.termId = ? AND year(checkInDate) = ?";
         return query(sql, new StudentBedDtoMap(), roomName, semester, year );
     }
 
