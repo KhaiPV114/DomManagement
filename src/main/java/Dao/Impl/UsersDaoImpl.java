@@ -38,6 +38,10 @@ public class UsersDaoImpl extends GenericDaoImpl<Users> implements UsersDao {
         String sql = "INSERT INTO Users(fullName, password, gender, gmail, roleId) VALUES(?,?,?,?,?)";
         insert(sql, user.getFullName(), user.getPassword(), user.getGender(), user.getGmail(), user.getRoleId());
     }
+    public void delete(Integer id){
+        String sql = "DELETE FROM Users WHERE userId = ?";
+        delete(sql, id);
+    }
 
     // thứ tự các trường insert đang sai, chưa có status, chuwa co truong password. them cao
 

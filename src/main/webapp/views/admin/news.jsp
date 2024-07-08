@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <%@ include file="../header.jsp" %>
@@ -6,35 +6,38 @@
 <%@ include file="navbar.jsp" %>
 <div id="content-body" class="content-body pl-328">
     <div class="container-fluid my-container">
-        <h1 class="big-title">Dorm Risedent</h1>
+        <h1 class="big-title">News</h1>
         <div class="container-block">
             <div class="table-responsive">
+                <div class="flex justify-end" style="margin: 10px 0">
+                    <a class="orange-btn" href="<%=request.getContextPath()%>/admin/news/create">+ New</a>
+                </div>
                 <table class="table table-striped table-bordered table-advance table-hover">
                     <thead>
                     <tr>
-                        <th>Student ID</th>
-                        <th>Bed information</th>
-                        <th>Check-in Date</th>
-                        <th>Check-out Date</th>
-                        <th>Price</th>
-                        <th>Semester</th>
-                        <th>Years</th>
-                        <th>Description</th>
+                        <th>NewID</th>
+                        <th>New Title</th>
+                        <th>Created Time</th>
+                        <th>Author</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${domResidentList}" var="r">
-                        <tr>
-                            <td>${r.studentId}</td>
-                            <td>${r.bedInformation}</td>
-                            <td>${r.checkInDate}</td>
-                            <td>${r.checkOutDate}</td>
-                            <td>${r.price}</td>
-                            <td>${r.semester}</td>
-                            <td>${r.year}</td>
-                            <td>Keep current bed</td>
+                        <c:forEach items="${newsDtoList}" var="news">
+                            <tr>
+                                <td>${news.newsId}</td>
+                                <td>${news.newsTitle}</td>
+                                <td>${news.createdTime}</td>
+                                <td>${news.author}</td>
+                                <td>
+                        <div class="flex justify-center">
+                            <div class="btn-action" style="width: fit-content;">
+                                <a href="#">Detail</a>
+                            </div>
+                        </div>
+                        </td>
                         </tr>
-                    </c:forEach>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -54,6 +57,7 @@
         </div>
     </div>
 </div>
+
 <%@ include file="../footer.jsp" %>
 </body>
 </html>

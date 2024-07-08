@@ -33,4 +33,10 @@ public class NewsDaoImpl extends GenericDaoImpl<News> implements NewsDao {
         sql.append(" OFFSET ").append(offset).append(" ROWS FETCH NEXT ").append(limit).append(" ROWS ONLY");
         return query(sql.toString(), new NewsMap());
     }
+
+    @Override
+    public void insert(News news) {
+        String sql = "INSERT INTO News (newsTitle, newsDetail, createdTime, authorId) VALUES (?, ?, ?, ?)";
+        insert(sql, news.getNewsTitle(), news.getNewsDetail(), news.getCreatedTime(), news.getAuthor());
+    }
 }

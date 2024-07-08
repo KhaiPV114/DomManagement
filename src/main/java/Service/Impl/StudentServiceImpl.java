@@ -29,4 +29,13 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentBedDto> getByRoomNameAndSemesterAndYear(String roomName, String semester, int year) {
         return studentDao.getByRoomNameAndSemesterAndYear(roomName, semester, year);
     }
+    @Override
+    public void updateStatus(String rollId, String status) {
+        studentDao.updateStatus(rollId, status);
+    }
+
+    @Override
+    public void updateBalance(String rollId, Long balance) {
+        studentDao.updateBalance(rollId, balance);
+    }
 }

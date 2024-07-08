@@ -16,4 +16,6 @@ public interface DomResidentService {
     List<DomResident> getByListRollIdAndTermAndYear(List<String> rollIds, String term, int year);
 
     List<DomResident> getByPrevMonthAndYear(int month, int year);
+
+    List<DomResident> getAll();
  }

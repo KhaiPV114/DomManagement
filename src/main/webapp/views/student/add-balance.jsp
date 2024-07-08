@@ -7,51 +7,18 @@
 <div id="content-body" class="content-body pl-328">
     <div class="container-fluid my-container">
         <h1 class="big-title">Add Money</h1>
-        <form action="<%=request.getContextPath()%>/admin/user/new" method="post" style="width: 50%;">
+        <form action="<%=request.getContextPath()%>/student/add-balance" method="post" style="width: 50%;">
             <h5 class="text-danger">${message}</h5>
             <div class="">
                 <div class="flex-1" style="margin-bottom: 24px;">
-                    <label class="SBB-input-label no-margin" for="fullName">Full Name:</label>
+                    <label class="SBB-input-label no-margin" for="balance">Balance(VND):</label>
                     <div class="SR-form" style="width: 100%;">
-                        <input class="SBB-input text-box single-line" type="text" name="fullName" id="fullName">
-                    </div>
-                </div>
-                <div class="flex-1" style="margin-bottom: 24px;">
-                    <label class="SBB-input-label no-margin" for="gmail">Gmail:</label>
-                    <div class="SR-form" style="width: 100%;">
-                        <input class="SBB-input text-box single-line" type="text" name="gmail" id="gmail">
-                    </div>
-                </div>
-                <div class="flex-1" style="margin-bottom: 24px;">
-                    <label class="SBB-input-label no-margin" for="password">Password:</label>
-                    <div class="SR-form" style="width: 100%;">
-                        <input class="SBB-input text-box single-line" type="password" name="password" id="password">
-                    </div>
-                </div>
-                <div class="flex-1" style="margin-bottom: 24px;">
-                    <label class="SBB-input-label no-margin">Gender:</label>
-
-                    <select class="SBB-input" id="gender" name="gender" >
-                        <option value="MALE">Male</option>
-                        <option value="FEMALE">Female</option>
-                    </select>
-
-                </div>
-                <div class="flex-1 hidden" style="margin-bottom: 24px;">
-                    <label class="SBB-input-label no-margin" for="role">Role:</label>
-                    <div class="SR-form" style="width: 100%;">
-                        <input class="SBB-input text-box single-line" type="text" name="role" id="role" value="Admin">
-                    </div>
-                </div>
-                <div class="flex-1 hidden" style="margin-bottom: 24px;">
-                    <label class="SBB-input-label no-margin" for="status">Status:</label>
-                    <div class="SR-form" style="width: 100%;">
-                        <input type="text" name="status" id="status" value="ACTIVE">
+                        <input class="SBB-input text-box single-line" type="text" name="balance" id="balance">
                     </div>
                 </div>
                 <div style=" margin-top: 24px;">
                     <div class="flex justify-end">
-                        <input type="submit" value="Create user" class="orange-btn">
+                        <input type="submit" value="Add to balance" class="orange-btn">
                     </div>
                 </div>
             </div>

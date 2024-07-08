@@ -53,6 +53,6 @@ public class AdminCreateNewUser extends HttpServlet {
                 .gmail(gmail).build();
 
         userService.addUser(newUser);
-        resp.sendRedirect(req.getContextPath() + "/admin/user/new" + "?popup=Add use success!");
+        resp.sendRedirect(req.getContextPath() + "/admin/user/new" + "?popup=Add user success!");
     }
 }
