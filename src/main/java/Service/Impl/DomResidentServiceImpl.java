@@ -26,6 +26,11 @@ public class DomResidentServiceImpl implements DomResidentService {
     }
 
     @Override
+    public List<DomResident> getBySemesterAndYear(String semester, int year) {
+        return domResidentDao.getByTermAndYear(semester, year);
+    }
+
+    @Override
     public int countUserInRoomAndTermAndYear(String room, String term, int year) {
         return domResidentDao.countUserInRoomAndTermAndYear(room, term, year);
     }
@@ -33,5 +38,10 @@ public class DomResidentServiceImpl implements DomResidentService {
     @Override
     public List<DomResident> getByListRollIdAndTermAndYear(List<String> rollIds, String term, int year) {
         return domResidentDao.getByListRollIdAndTermAndYear(rollIds, term, year);
+    }
+
+    @Override
+    public List<DomResident> getByPrevMonthAndYear(int month, int year) {
+        return domResidentDao.getByPreMonthAndYear(month, year);
     }
 }

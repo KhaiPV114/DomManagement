@@ -30,4 +30,14 @@ public class MoneyServiceImpl implements MoneyService {
         return moneyDao.getByMoneyTypeAndRoomType(moneyType, roomType);
     }
 
+    @Override
+    public Money getById(Integer id) {
+        return moneyDao.getById(id);
+    }
+
+    @Override
+    public void update(Money money) {
+         moneyDao.update(money);
+    }
+
 }

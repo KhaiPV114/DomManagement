@@ -5,6 +5,8 @@ import Dao.RoomBillDao;
 import Entity.RoomBill;
 import Service.RoomBillService;
 
+import java.util.List;
+
 public class RoomBillServiceImpl implements RoomBillService {
     private final RoomBillDao roomBillDao = new RoomBillDaoImpl();
     @Override
@@ -15,5 +17,10 @@ public class RoomBillServiceImpl implements RoomBillService {
     @Override
     public RoomBill getByRollNameAndTermAndYear(String rollName, String term, int year) {
         return roomBillDao.getByRollNameAndTermAndYear(rollName, term, year);
+    }
+
+    @Override
+    public List<RoomBill> getByTermAndYear(String term, int year) {
+        return roomBillDao.getByTermAndYear(term, year);
     }
 }
