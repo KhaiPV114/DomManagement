@@ -11,4 +11,8 @@ public interface StudentService {
     List<Student> getAll();
     List<StudentBedDto> getByRoomNameAndSemesterAndYear(String roomName, String semester, int year);
 
+    void updateStatus(String rollId, String status);
+
+    void updateBalance(String rollId, Long balance);
+
 }

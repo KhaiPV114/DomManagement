@@ -37,37 +37,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${studentList}" var="student">
-                    <tr>
-                        <td>${student.rollId}</td>
-                        <td>${student.fullName}</td>
-                        <td>${student.gmail}</td>
-                        <td>${student.gender}</td>
-                        <td>${student.balance}</td>
-                        <td>${student.studentStatus}</td>
-                        <td>
-                            <div class="flex justify-center">
-                                <div class="btn-action" style="width: fit-content;">
-                                    <a href="#">Banned</a>
+                    <c:forEach items="${studentList}" var="student" varStatus="i">
+                        <tr>
+                            <td>${student.rollId}</td>
+                            <td>${student.fullName}</td>
+                            <td>${student.gmail}</td>
+                            <td>${student.gender}</td>
+                            <td>${student.balance}</td>
+                            <td>
+                                <div class="flex justify-center">
+                                    <div class="btn-action" style="width: fit-content;">
+                                        <form action="<%=request.getContextPath()%>/admin/student/status" method="post">
+                                            <input type="hidden" name="rollId" value="${student.rollId}"/>
+                                            <button type="submit" class="btn-primary rounded">${student.studentStatus}
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                    </tr>
+                        </tr>
                     </c:forEach>
-                    <tr>
-                        <td>HE</td>
-                        <td>Phan Van Khai</td>
-                        <td>khaipvhe171008</td>
-                        <td>Nam</td>
-                        <td>50,000 VND</td>
-                        <td>BANNED</td>
-                        <td>
-                            <div class="flex justify-center">
-                                <div class="btn-action" style="width: fit-content;">
-                                    <a href="#">Active</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -89,4 +77,5 @@
 </div>
 <%@ include file="../footer.jsp" %>
 </body>
+
 </html>

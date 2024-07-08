@@ -19,6 +19,9 @@
                 <img src="../../assets/images/logo.png" alt="logo">
             </a>
         </div>
+        <div class="flex justify-end" style="margin: 10px 0">
+            <a class="orange-btn" href="<%=request.getContextPath()%>/views/student/add-balance.jsp">Nạp tiền</a>
+        </div>
         <div class="campus">
             <p>
                 Hòa Lạc

@@ -23,16 +23,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>HE-178580</td>
-                        <td>A103-3</td>
-                        <td>01/05/2024</td>
-                        <td>30/05/2024</td>
-                        <td>850,000 VND</td>
-                        <td>1</td>
-                        <td>2024</td>
-                        <td>Keep current bed</td>
-                    </tr>
+                    <c:forEach items="${domResidentList}" var="r">
+                        <tr>
+                            <td>${r.studentId}</td>
+                            <td>${r.bedInformation}</td>
+                            <td>${r.checkInDate}</td>
+                            <td>${r.checkOutDate}</td>
+                            <td>${r.price}</td>
+                            <td>${r.semester}</td>
+                            <td>${r.year}</td>
+                            <td>Keep current bed</td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

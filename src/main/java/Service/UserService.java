@@ -13,4 +13,6 @@ public interface UserService {
     Users getByGmail(String gmail);
 
     void deleteById(int id);
+
+    Users findById(int id);
 }
