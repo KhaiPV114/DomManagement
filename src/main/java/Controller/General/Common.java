@@ -1,20 +1,26 @@
 package Controller.General;
 
+import Dto.DomResidentDto;
 import Dto.DomTotalDto;
+import Dto.NewsDto;
 import Dto.UsersDto;
 import Entity.Bed;
 import Entity.Dom;
+import Entity.DomResident;
+import Entity.News;
 import Entity.Users;
 import Entity.Student;
 import Enum.Semester;
 import Enum.BedStatus;
 import Service.BedService;
+import Service.DomResidentService;
 import Service.DomService;
 import Service.Impl.BedServiceImpl;
+import Service.Impl.DomResidentServiceImpl;
 import Service.Impl.DomServiceImpl;
-import Service.Impl.RoleServiceImpl;
+import Service.Impl.NewsServiceImpl;
 import Service.Impl.UserServiceImpl;
-import Service.RoleService;
+import Service.NewsService;
 import Service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +37,57 @@ public class Common {
     private final DomService dormService = new DomServiceImpl();
     private final BedService bedService = new BedServiceImpl();
     private final UserService userService = new UserServiceImpl();
+    private final NewsService newsService = new NewsServiceImpl();
+    private final DomResidentService domResidentService = new DomResidentServiceImpl();
 
+    public void setTitle(HttpServletRequest req, String title){
+        HttpSession session = req.getSession();
+        session.setAttribute("title", title);
+    }
+
+    public List<DomResidentDto> getDomResidentDto(){
+        List<DomResidentDto> domResidentDtoList = new ArrayList<>();
+        List<DomResident> domResidentList = domResidentService.getAll();
+        List<Bed> bedList = bedService.getAll();
+
+        for (Bed bed : bedList){
+            for (DomResident domResident : domResidentList){
+                if(domResident.getBedId() == bed.getBedId()){
+                    DomResidentDto residentDto = DomResidentDto.builder()
+                            .price(domResident.getBalance())
+                            .checkOutDate(String.valueOf(domResident.getCheckOutDate()))
+                            .year(domResident.getCheckInDate().getYear())
+                            .checkInDate(String.valueOf(domResident.getCheckInDate()))
+                            .studentId(domResident.getRollId())
+                            .bedInformation(String.valueOf(domResident.getBedId()))
+                            .semester(domResident.getTermId()).build();
+                    domResidentDtoList.add(residentDto);
+                }
+            }
+        }
+        return domResidentDtoList;
+    }
+    public List<NewsDto> getListNewsDto (){
+        List<NewsDto> newsDtoList = new ArrayList<>();
+        List<News> newsList = newsService.getAll(0, 15);
+        List<Users> usersList = userService.getALl();
+
+        for (Users user : usersList){
+            for (News news : newsList){
+                if(user.getUserId() == news.getAuthor()){
+                    NewsDto newsDto = NewsDto.builder()
+                            .newsId(news.getNewsId())
+                            .newsTitle(news.getNewsTitle())
+                            .newsDetail(news.getNewsDetail())
+                            .createdTime(news.getCreatedTime())
+                            .author(user.getFullName())
+                            .authorId(user.getUserId()).build();
+                    newsDtoList.add(newsDto);
+                }
+            }
+        }
+        return newsDtoList;
+    }
     public List<DomTotalDto> getListDomDto() {
         List<DomTotalDto> domTotalDtoList = new ArrayList<>();
         Map<String, String> domNames = dormService.getAll().stream().collect(Collectors.toMap(Dom::getDomName, Dom::getDomGender));
@@ -118,8 +174,5 @@ public class Common {
 
     }
 
-    public void setTitle(HttpServletRequest req, String title){
-        HttpSession session = req.getSession();
-        session.setAttribute("title", title);
-    }
+
 }

@@ -1,5 +1,6 @@
 package Controller.Admin;
 
+import Controller.General.Common;
 import Entity.Users;
 import Service.Impl.UserServiceImpl;
 import Service.UserService;
@@ -19,6 +20,7 @@ public class AdminCreateNewUser extends HttpServlet {
     private static final String HOME_PATH = "/admin/user";
 
     private static final String END_POINT = "@fpt.edu.vn";
+    private final Common common = new Common();
 
     private static UserService userService = new UserServiceImpl();
     @Override
@@ -53,6 +55,7 @@ public class AdminCreateNewUser extends HttpServlet {
                 .gmail(gmail).build();
 
         userService.addUser(newUser);
-        resp.sendRedirect(req.getContextPath() + "/admin/user/new" + "?popup=Add use success!");
+        common.setTitle(req, "user");
+        resp.sendRedirect(req.getContextPath() + "/admin/user/new" + "?popup=Add user success!");
     }
 }

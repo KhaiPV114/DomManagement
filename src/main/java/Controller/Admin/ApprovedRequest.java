@@ -21,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+
 import Enum.RequestStatus;
 import Service.StudentService;
 
@@ -37,6 +38,7 @@ public class ApprovedRequest extends HttpServlet {
     private final DomResidentService domResidentService = new DomResidentServiceImpl();
 
     private final StudentService studentService = new StudentServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.valueOf(req.getParameter("id"));
@@ -44,9 +46,9 @@ public class ApprovedRequest extends HttpServlet {
         request.setRequestStatus(RequestStatus.ACCEPTED.name());
         requestService.updateStatus(request);
 
-        if(request.getRequestType().equals(RequestType.CHECKIN.name())){
-            Money money = moneyService.getByMoneyTypeAndRoomType("ROOM",request.getRoomType());
-            Bed bed = bedService.getByBedAndRoomName(request.getFloor(), request.getDomName());
+        if (request.getRequestType().equals(RequestType.CHECKIN.name())) {
+            Money money = moneyService.getByMoneyTypeAndRoomType("ROOM", request.getRoomType());
+            Bed bed = bedService.randomBedByFloorAndDomName(request.getFloor(), request.getDomName());
 
             DomResident domResident = DomResident.builder()
                     .balance(money.getAmount())
@@ -57,17 +59,13 @@ public class ApprovedRequest extends HttpServlet {
                     .roomName(bed.getRoomName())
                     .termId(request.getTerm())
                     .build();
-
             domResidentService.save(domResident);
-
             bed.setBedStatus(BedStatus.valueOf(BedStatus.AVAILABLE.name()));
-
             bedService.updateStatus(bed);
-
             Student student = studentService.getByRollId(request.getRollId());
-            long balance = student.getBalance() - money.getAmount();
-            student.setBalance(balance);
-
+            long balance = student.getBalance() - money.getAmount() * 4;
+            studentService.updateBalance(student.getRollId(), balance);
+            resp.sendRedirect(req.getContextPath() + "/admin/request");
         }
 
     }

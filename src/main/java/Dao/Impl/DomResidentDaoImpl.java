@@ -72,8 +72,8 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
 
     @Override
     public void save(DomResident domResident) {
-        String sql = "INSERT INTO DomResident(floor, rollId, roomName, termId, bedId, balance, checkInDate) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO DomResident(floor, rollId, roomName, termId, bedId, balance, checkInDate, checkOutDate) VALUES(?,?,?,?,?,?,?,?)";
         insert(sql, domResident.getFloor(), domResident.getRollId(), domResident.getRoomName(), domResident.getTermId(),
-                domResident.getBedId(), domResident.getBalance(), domResident.getCheckInDate());
+                domResident.getBedId(), domResident.getBalance(), domResident.getCheckInDate(), domResident.getCheckInDate());
     }
 }

@@ -34,8 +34,7 @@
                             <td>
                                 <div class="flex justify-center">
                                     <div class="btn-action" style="width: fit-content;">
-                                        <a
-                                                href="#">Delete</a>
+                                        <button onclick="if(confirm('Are you sure you want to delete?')) submitDelete(${user.userId});" class="btn-danger">Delete</button>
                                     </div>
                                 </div>
                         </tr>
@@ -62,4 +61,18 @@
 </div>
 <%@ include file="../footer.jsp" %>
 </body>
+<script>
+    function submitDelete(id) {
+        $.ajax({
+            type: 'POST',
+            url: '<%=request.getContextPath()%>' + '/admin/user/delete',
+            data: {
+                id: id
+            },
+            success: function(response) {
+                window.location.href =  '<%=request.getContextPath()%>' + '/admin/user';
+            },
+        });
+    }
+</script>
 </html>

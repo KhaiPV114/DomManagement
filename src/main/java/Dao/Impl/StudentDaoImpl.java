@@ -40,4 +40,17 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements StudentDa
         String sql = "SELECT s.rollId, s.fullName, s.gender, s.gmail, d.bedId FROM Student s JOIN DomResident d ON s.rollId = d.rollId WHERE d.roomName = ? AND d.termId = ? AND year(checkInDate) = ?";
         return query(sql, new StudentBedDtoMap(), roomName, semester, year );
     }
+
+    @Override
+    public void updateStatus(String rollId, String status) {
+        String sql = "UPDATE Student SET  status = ? WHERE rollId = ?";
+        update(sql, status, rollId);
+    }
+
+    @Override
+    public void updateBalance(String rollId, Long balance) {
+        String sql = "UPDATE Student SET  balance = ? WHERE rollId = ?";
+        update(sql, balance, rollId);
+    }
+
 }
