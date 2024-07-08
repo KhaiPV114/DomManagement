@@ -7,9 +7,12 @@
 <div id="content-body" class="content-body pl-328">
     <div class="container-fluid my-container">
         <h1 class="big-title">Room details</h1>
-        <div class="flex justify-end" style="margin: 10px 0">
-            <a class="orange-btn" href="<%= request.getContextPath()%>/admin/room-detail/ew-usage">EW usage</a>
-        </div>
+        <c:if test="${roomAdmin.studentBedDtoList.size() > 0}">
+            <div class="flex justify-end" style="margin: 10px 0">
+                <a class="orange-btn" href="<%= request.getContextPath()%>/admin/room-detail/ew-usage?roomName=${roomAdmin.room}">EW usage</a>
+            </div>
+        </c:if>
+
         <div class="container-block">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-advance table-hover">
@@ -34,36 +37,38 @@
                         <td>${roomAdmin.totalBed}</td>
                         <td>${roomAdmin.usedBed}</td>
                         <td>${roomAdmin.freeBed}</td>
-                        <td>${roomAdmin.status}</td>
+                        <td>${roomAdmin.status == 'NOTFULL' ? "Not Full" : "Full"}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-            <p style="margin: 15px 0;">Student: </p>
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-advance table-hover">
-                    <thead>
-                    <tr>
-                        <th>RollNumber</th>
-                        <th>Full name</th>
-                        <th>Email</th>
-                        <th>Gender</th>
-                        <th>Bed</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${roomAdmin.studentBedDtoList}" var="st">
+            <p class="sidebar-name" style="margin: 15px 0;">Student: ${roomAdmin.studentBedDtoList.size()}</p>
+            <c:if test="${roomAdmin.studentBedDtoList.size() > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-advance table-hover">
+                        <thead>
                         <tr>
-                            <td>${st.rollId}</td>
-                            <td>${st.fullName}</td>
-                            <td>${st.gmail}</td>
-                            <td>${st.gender}</td>
-                            <td>${st.bed}</td>
+                            <th>RollNumber</th>
+                            <th>Full name</th>
+                            <th>Email</th>
+                            <th>Gender</th>
+                            <th>Bed</th>
                         </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${roomAdmin.studentBedDtoList}" var="st">
+                            <tr>
+                                <td>${st.rollId}</td>
+                                <td>${st.fullName}</td>
+                                <td>${st.gmail}</td>
+                                <td>${st.gender}</td>
+                                <td>${st.bed}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
         </div>
         <button onclick="history.back();return false;" class="SAB-back"
                 style="margin-top: 24px;">Back to list

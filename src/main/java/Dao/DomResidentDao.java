@@ -18,5 +18,7 @@ public interface DomResidentDao extends GenericDao<DomResident> {
 
     int countUserInRoomAndTermAndYear(String room, String term, int year);
 
+    List<DomResident> getByTermAndYear(String term, int year);
     List<DomResident> getByListRollIdAndTermAndYear(List<String> rollIds, String term, int year);
+    List<DomResident> getByPreMonthAndYear(int month, int year);
 }

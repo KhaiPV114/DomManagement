@@ -1,19 +1,16 @@
-package Entity;
+package Dto;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
 @Builder
 @ToString
-public class Money {
+public class MoneyDto {
     private Integer moneyId;
     private String moneyType;
-    private Long amount;
+    private String amount;
     private Integer bedTotal;
     private String roomType;
 }

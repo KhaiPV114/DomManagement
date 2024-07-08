@@ -10,4 +10,8 @@ public interface MoneyService {
     List<Money> getByListMoneyType(List<String> type);
     Money getByMoneyTypeAndRoomType(String moneyType, String roomType);
 
+    Money getById(Integer id);
+
+    void update(Money money);
+
 }

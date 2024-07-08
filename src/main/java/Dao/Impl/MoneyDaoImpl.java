@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MoneyDaoImpl extends GenericDaoImpl<Money> implements MoneyDao {
     @Override
-    public Money getById(String moneyId) {
+    public Money getById(Integer moneyId) {
         String sql = "SELECT * FROM Money WHERE moneyId = ? ";
         return query(sql, new MoneyMap(), moneyId).stream().findFirst().orElse(null);
     }
