@@ -10,4 +10,6 @@ public interface DomResidentService {
     List<DomResident> getByRollId(String rollId);
 
     DomResident getByRollIdAndSemester(String rollId, String semester);
+
+    int countUserInRoomAndTermAndYear(String room, String term, int year);
 }

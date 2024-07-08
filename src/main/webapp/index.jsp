@@ -374,8 +374,6 @@
         </div>
     </div>
     <form id="loginForm" action="<%=request.getContextPath()%>/account-login" method="post">
-        <input name="__RequestVerificationToken" type="hidden"
-               value="Cr3KxSpRboTN3unAri1EbqpASHOymew6AkAqwOJbz8DvYwXVU8APScWzksQxSPH-J0hXxezW_9PptFCpbsqPs-u22JAgTeBhiLyjOuTtTXU1">
         <div id="loginModal" class="login-modal-container hidden">
             <div class="modal-login relative">
                 <div class="close-Modal" onclick="handleCloseModal()">
@@ -434,7 +432,9 @@
                             <div class="login-error">
                                 <div class="validation-summary-valid text-danger" data-valmsg-summary="true">
                                     <ul>
-                                        <li style="display:none"></li>
+                                        <c:if test="${message != null}">
+                                            <li>${message}</li>
+                                        </c:if>
                                     </ul>
                                 </div>
                             </div>
@@ -519,6 +519,26 @@
 <script>
     <%@ include file="assets/js/jquery.js" %>
     <%@ include file="assets/js/index.js" %>
+    const loginModalTag = document.getElementById("loginModal");
+    var button = document.getElementById("btnLogin");
+
+
+    // Thêm sự kiện click
+    button.addEventListener("click", function () {
+        handleShowModal();
+    });
+
+    const handleShowModal = () => {
+        loginModalTag.style.display = "flex";
+    };
+
+    const handleCloseModal = () => {
+        loginModalTag.style.display = "none";
+    };
+
+    if(${message != null}){
+        handleShowModal();
+    }
 </script>
 
 </body>

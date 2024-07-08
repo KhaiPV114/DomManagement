@@ -26,4 +26,13 @@ public class RoomBillDaoImpl extends GenericDaoImpl<RoomBill> implements RoomBil
         String sql = "SELECT * FROM RoomBill";
         return query(sql, new RoomBillMap());
     }
+
+    @Override
+    public RoomBill getByRollNameAndTermAndYear(String rollName, String term, int year) {
+        System.out.println(rollName);
+        System.out.println(term);
+        System.out.println(year);
+        String sql = "SELECT * FROM RoomBill WHERE rollName = ? AND term = ? AND year = ?";
+        return query(sql, new RoomBillMap(), rollName, term, year).stream().findFirst().orElse(null);
+    }
 }

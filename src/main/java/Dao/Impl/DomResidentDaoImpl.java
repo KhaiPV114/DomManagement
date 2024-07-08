@@ -39,4 +39,10 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
         String sql = "SELECT * FROM DomResident WHERE rollId = ?";
         return query(sql, new DomResidentMap(), rollId);
     }
+
+    @Override
+    public int countUserInRoomAndTermAndYear(String room, String term, int year) {
+        String sql = "  Select count(*) from DomResident where roomName = ? AND termId = ? AND YEAR(checkInDate) = ?";
+        return count(sql,room, term, year);
+    }
 }

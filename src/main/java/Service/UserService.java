@@ -10,4 +10,5 @@ public interface UserService {
     List<Users> getALl();
 
     void addUser(Users user);
+    Users getByGmail(String gmail);
 }

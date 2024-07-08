@@ -18,7 +18,7 @@
                             <div class="Shome-list-news-inner">
                                 <c:forEach items="${news}" var="n">
                                     <div class="Shome-news-item flex-1">
-                                        <a href="<%=request.getContextPath()%>/student/news-detail?newsId=${n.newsId}"
+                                        <a href="<%=request.getContextPath()%>/student/news-detail?id=${n.newsId}"
                                            class="text-16">${n.newsTitle}</a>
                                         <p class="Shome-news-date">By ${n.author} ${n.createdTime}</p>
                                     </div>

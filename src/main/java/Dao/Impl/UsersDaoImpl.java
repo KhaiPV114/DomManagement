@@ -16,6 +16,12 @@ public class UsersDaoImpl extends GenericDaoImpl<Users> implements UsersDao {
     }
 
     @Override
+    public Users getByGmail(String gmail) {
+        String sql = "SELECT * FROM Users WHERE gmail = ?";
+        return query(sql, new UsersMap(), gmail).stream().findFirst().orElse(null);
+    }
+
+    @Override
     public void update(Users users) {
         String sql = "UPDATE Users SET gmail = ?, password = ?, roleId = ?, gender = ?, fullName = ? WHERE userId = ?";
         update(sql, users.getGmail(), users.getPassword(), users.getRoleId(), users.getGender(), users.getFullName(), users.getUserId());

@@ -21,6 +21,11 @@ public class MoneyServiceImpl implements MoneyService {
     }
 
     @Override
+    public List<Money> getByListMoneyType(List<String> type) {
+        return moneyDao.getByListType(type);
+    }
+
+    @Override
     public Money getByMoneyTypeAndRoomType(String moneyType, String roomType) {
         return moneyDao.getByMoneyTypeAndRoomType(moneyType, roomType);
     }

@@ -7,7 +7,7 @@
   <img class="error-img" src="<%=request.getContextPath()%>/assets/images/FrogFixBug.png" alt="FrogFixBug">
   <p class="error-text">Sorry, something went wrong!</p>
   <a onclick="history.back()">Back</a>
-  <a href="<%=request.getContextPath()%>/home/logout">Đăng xuất</a>
+  <a href="<%=request.getContextPath()%>/index.jsp">Home</a>
 </div>
 </body>
 </html>

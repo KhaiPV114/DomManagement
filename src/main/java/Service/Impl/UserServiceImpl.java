@@ -17,6 +17,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Users getByGmail(String gmail) {
+        return usersDao.getByGmail(gmail);
+    }
+
+    @Override
     public void addUser(Users user) {
         usersDao.insert(user);
     }
