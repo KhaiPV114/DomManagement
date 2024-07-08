@@ -39,5 +39,14 @@ public class RoomBillDaoImpl extends GenericDaoImpl<RoomBill> implements RoomBil
         return query(sql, new RoomBillMap(), term, year);
     }
 
+    @Override
+    public void saveAll(List<RoomBill> roomBills) {
+        for (RoomBill room : roomBills) {
+            String sql = "INSERT INTO RoomBill(roomName, rollName, electricMoney, waterMoney, dayCreated, billStatus, totalAmount, electricNumber, waterNumber, term, year, description) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+            insert(sql, room.getRoomName(), room.getRollName(), room.getElectricMoney(), room.getWaterMoney(), room.getDayCreate(), room.getBillStatus(),
+                    room.getTotalAmount(), room.getElectricNumber(), room.getWaterNumber(), room.getTerm(), room.getYear(), room.getDescription());
+        }
+    }
+
 
 }

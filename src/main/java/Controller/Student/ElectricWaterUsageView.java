@@ -57,7 +57,7 @@ public class ElectricWaterUsageView extends HttpServlet {
         }
 
         RoomBill roomBill = roomBillService.getByRollNameAndTermAndYear(student.getRollId(), term, year);
-
+        System.out.println(roomBill);
         if(Objects.isNull(roomBill)){
             req.setAttribute("roomBill", null);
             req.getRequestDispatcher("/views/student/ew-bed-usages.jsp").forward(req, resp);
@@ -74,8 +74,8 @@ public class ElectricWaterUsageView extends HttpServlet {
         Map<String, Long> mapMoney = monies.stream().collect(Collectors.toMap(Money::getMoneyType, Money::getAmount));
 
         List<EWUsageDto> ewUsageDtos = usages.stream().map(x -> {
-            long electricNumber = x.getElectricNumber() / 2;
-            long waterNumber = x.getWaterNumber() /2;
+            long electricNumber = x.getElectricNumber() / studentInRoom;
+            long waterNumber = x.getWaterNumber() /studentInRoom;
             long electricMoney = electricNumber * mapMoney.get("ELECTRIC");
             long waterMoney = waterNumber * mapMoney.get("WATER");
             return EWUsageDto.builder()
@@ -89,8 +89,6 @@ public class ElectricWaterUsageView extends HttpServlet {
                     .build();
         }).toList();
 
-
-
         RoomBillDto dto = RoomBillDto.builder()
                 .roomName(roomBill.getRoomName())
                 .rollName(roomBill.getRollName())
@@ -102,7 +100,6 @@ public class ElectricWaterUsageView extends HttpServlet {
                 .ewUsages(ewUsageDtos)
                 .build();
         common.setTitle(req, "EW");
-        System.out.println(dto.toString());
         req.setAttribute("roomBill", dto);
         req.getRequestDispatcher("/views/student/ew-bed-usages.jsp").forward(req, resp);
     }

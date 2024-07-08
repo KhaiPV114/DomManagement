@@ -44,4 +44,16 @@ public class DomResidentServiceImpl implements DomResidentService {
     public List<DomResident> getByPrevMonthAndYear(int month, int year) {
         return domResidentDao.getByPreMonthAndYear(month, year);
     }
+
+    @Override
+    public List<DomResident> getAll() {
+        return domResidentDao.findAll();
+    }
+
+    @Override
+    public void save(DomResident domResident) {
+        domResidentDao.save(domResident);
+    }
+
+
 }

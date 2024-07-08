@@ -43,10 +43,8 @@ public class ResidentRequestServiceImpl implements ResidentRequestService {
     @Override
     public void createRequestOther(Request request) {
         if(request.getCheckOutDate() == null) {
-            System.out.println("other");
             residentRequestDao.createRequestOther(request);
         }else {
-            System.out.println("Checkout");
             residentRequestDao.createRequestCheckOut(request);
         }
     }

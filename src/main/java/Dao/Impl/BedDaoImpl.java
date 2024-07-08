@@ -25,7 +25,7 @@ public class BedDaoImpl extends GenericDaoImpl<Bed> implements BedDao {
 
     @Override
     public void update(Bed bed) {
-        String sql = "UPDATE Bed SET floor = ? , bedStatus = ? WHERE bedId = ? AND roomName = ?";
+        String sql = "UPDATE Bed SET bedStatus = ? WHERE bedId = ? AND roomName = ?";
         update(sql, bed.getFloor(), bed.getBedStatus().toString(), bed.getBedId(), bed.getRoomName());
     }
 
@@ -36,8 +36,14 @@ public class BedDaoImpl extends GenericDaoImpl<Bed> implements BedDao {
     }
 
     @Override
-    public List<Bed> getByRoomType(String type) {
-        String sql = "SELECT * FROM Bed b JOIN Room r ON b.roomName = r.roomName WHERE r.roomType = ?";
-        return query(sql, new BedMap(), type);
+    public List<Bed> getByRoomTypeAndGender(String type, String gender) {
+        String sql = "SELECT * FROM Bed b JOIN Room r ON b.roomName = r.roomName JOIN Dom d ON r.domId = d.domId WHERE r.roomType = ? AND d.domGender = ?";
+        return query(sql, new BedMap(), type, gender);
+    }
+
+    @Override
+    public Bed getRandomByFloorAndDomName(int floor, String domName) {
+        String sql = "SELECT * FROM Bed b JOIN Room r ON r.roomName = b.roomName JOIN Dom d ON d.domId = r.domId WHERE floor = ? AND bedStatus = 'NOTAVAILABLE' AND domName = ?";
+        return query(sql, new BedMap(), floor, domName).stream().findFirst().orElse(null);
     }
 }

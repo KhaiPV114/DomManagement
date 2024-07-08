@@ -5,14 +5,13 @@ import Dto.RoomAdminDto;
 import Dto.StudentBedDto;
 import Entity.Money;
 import Entity.Room;
-import Service.DomResidentService;
-import Service.Impl.DomResidentServiceImpl;
 import Service.Impl.MoneyServiceImpl;
 import Service.Impl.RoomServiceImpl;
 import Service.Impl.StudentServiceImpl;
 import Service.MoneyService;
 import Service.RoomService;
 import Service.StudentService;
+import Utils.SendMail;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +22,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @WebServlet("/admin/room-detail")
 public class RoomDetailView extends HttpServlet {
@@ -37,7 +38,7 @@ public class RoomDetailView extends HttpServlet {
         Room room = roomService.getByRoomName(roomName);
         String term = common.getSemester();
         int year = LocalDate.now().getYear();
-        List<StudentBedDto> studentList = studentService.getByRoomNameAndSemesterAndYear(roomName, term, year);
+        Set<StudentBedDto> studentList = studentService.getByRoomNameAndSemesterAndYear(roomName, term, year).stream().collect(Collectors.toSet());
         List<Integer> usedBed = studentList.stream().map(StudentBedDto::getBed).toList();
         List<Integer> freeBed = new ArrayList<>();
         Money money = moneyService.getByMoneyTypeAndRoomType("ROOM", room.getRoomType());

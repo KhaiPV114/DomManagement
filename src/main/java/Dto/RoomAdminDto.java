@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Builder
@@ -18,5 +18,5 @@ public class RoomAdminDto {
     private String usedBed;
     private String freeBed;
     private String status;
-    private List<StudentBedDto> studentBedDtoList;
+    private Set<StudentBedDto> studentBedDtoList;
 }

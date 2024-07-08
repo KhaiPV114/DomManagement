@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.Objects;
 
 @WebServlet("/student/book-room-request")
@@ -43,9 +42,8 @@ public class BookRoom extends HttpServlet {
                 .floor(Integer.valueOf(floor))
                 .createDate(new Timestamp(System.currentTimeMillis()))
                 .rollId(student.getRollId())
-                .requestStatus(RequestStatus.WAITING.name())
+                .requestStatus(RequestStatus.WAITTING.name())
                 .roomType(roomType)
-                .roomName("A")
                 .term(common.getSemester())
                 .requestDetail(note)
                 .build();

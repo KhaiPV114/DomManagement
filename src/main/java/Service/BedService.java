@@ -9,7 +9,11 @@ public interface BedService {
 
     List<Bed> getByDomId(String domId);
 
-    List<Bed> getByRoomType(String type);
+    List<Bed> getByRoomTypeAndGender(String type, String gender);
 
     Bed getByBedAndRoomName(Integer bedId, String roomName);
+
+    Bed randomBedByFloorAndDomName(int floor, String domName);
+
+    void updateStatus(Bed bed);
 }

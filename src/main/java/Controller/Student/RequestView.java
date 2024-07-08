@@ -55,7 +55,7 @@ public class RequestView extends HttpServlet {
                 .floor(domResident.getFloor())
                 .rollId(domResident.getRollId())
                 .roomName(domResident.getRoomName())
-                .requestStatus(RequestStatus.WAITING.name())
+                .requestStatus(RequestStatus.WAITTING.name())
                 .domName("DOM " + domResident.getRoomName().substring(0,1));
         if ("CHECKOUT".equals(requestType)) {
             LocalDate localDate = LocalDate.parse(checkOutDate);

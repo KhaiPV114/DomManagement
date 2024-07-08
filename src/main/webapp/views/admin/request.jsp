@@ -26,22 +26,31 @@
                     <tbody>
                     <c:forEach items="${requestList}" var="request">
                         <tr>
-                        <td>${request.rollId}</td>
-                        <td>${request.requestType}</td>
-                        <td>${request.domName}</td>
-                        <td>${request.floor}</td>
-                        <td>${request.term}</td>
-                        <td>${request.requestDetail}</td>
-                        <td>${request.requestStatus}</td>
-                        <td>${request.createDate}</td>
-                        <td>
-                            <div class="flex justify-center">
-                                <div class="btn-action" style="width: fit-content;">
-                                    <a href="#">Detail</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                            <td>${request.rollId}</td>
+                            <td>${request.requestType}</td>
+                            <td>${request.domName}</td>
+                            <td>${request.floor}</td>
+                            <td>${request.term}</td>
+                            <td>${request.requestDetail}</td>
+                            <td>${request.requestStatus}</td>
+                            <td>${request.createDate}</td>
+                            <c:if test="${request.requestStatus != 'WAITTING'}">
+                                <td></td>
+                            </c:if>
+
+                            <c:if test="${request.requestStatus == 'WAITTING'}">
+                                <td>
+                                    <div class="flex justify-center">
+                                        <div class="btn-action" style="width: fit-content;">
+                                            <a href="<%=request.getContextPath()%>/admin/request/approved?id=${request.requestId}">Approved</a>
+                                        </div>
+                                        <div class="btn-action" style="width: fit-content; margin-left: 30px">
+                                            <a href="<%=request.getContextPath()%>/admin/request/reject?id=${request.requestId}">Reject</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </c:if>
+                        </tr>
                     </c:forEach>
                     </tbody>
                 </table>

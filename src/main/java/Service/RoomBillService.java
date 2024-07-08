@@ -12,4 +12,7 @@ public interface RoomBillService {
 
     List<RoomBill> getByTermAndYear(String term, int year);
 
+    void saveAll(List<RoomBill> roomBills);
+
+    List<RoomBill> getAll();
 }

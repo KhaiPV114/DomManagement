@@ -2,12 +2,14 @@ package Entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import Enum.BedStatus;
 @Builder
 @Getter
 @ToString
+@Setter
 public class Bed {
     private Integer bedId;
     private BedStatus bedStatus;
