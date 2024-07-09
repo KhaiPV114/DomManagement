@@ -1,11 +1,13 @@
 package Controller.Admin;
 
+import Controller.General.Common;
 import Entity.News;
 import Entity.Users;
 import Service.Impl.NewsServiceImpl;
 import Service.NewsService;
 import com.google.api.client.util.DateTime;
 import com.google.api.services.drive.model.User;
+import org.checkerframework.checker.units.qual.C;
 
 import javax.mail.Session;
 import javax.servlet.ServletException;
@@ -22,9 +24,11 @@ import java.time.LocalDateTime;
 public class NewsCreate extends HttpServlet {
     private static final String VIEW_PATH = "/views/admin/create-news.jsp";
     private static final NewsService newsService = new NewsServiceImpl();
+    private final Common common = new Common();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        common.setTitle(req, "new");
         req.getRequestDispatcher(VIEW_PATH).forward(req, resp);
     }
 

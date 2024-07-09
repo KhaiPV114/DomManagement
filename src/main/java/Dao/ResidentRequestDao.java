@@ -29,4 +29,6 @@ public interface ResidentRequestDao  extends GenericDao<Request>{
     void createRequestCheckOut(Request request);
 
     void updateStatus(Request request);
+
+    boolean checkByRollNameAndTermAndYearAndType(String rollName, String term, int year, String type);
 }

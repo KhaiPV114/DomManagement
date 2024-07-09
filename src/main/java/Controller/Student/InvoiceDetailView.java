@@ -49,7 +49,6 @@ public class InvoiceDetailView extends HttpServlet {
                 .rollName(payment.getRollId())
                 .room(payment.getRoomName())
                 .createDate(common.convertTimeToStringYYYYMMDD(createDate))
-                .paymentDate(common.convertTimeToStringYYYYMMDD(payment.getCreateDate()))
                 .description(payment.getDescription())
                 .paymentStatus(payment.getStatus())
                 .money(money)

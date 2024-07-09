@@ -10,4 +10,7 @@ public interface PaymentService {
     List<Payment> getByRollId(String rollId);
 
     Payment getById(Integer id);
+
+    void savePaymentRoom(Payment payment);
+    void savePaymentEW(Payment payment);
 }

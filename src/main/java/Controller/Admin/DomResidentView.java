@@ -13,14 +13,14 @@ import java.util.List;
 
 @WebServlet("/admin/dom-resident")
 public class DomResidentView extends HttpServlet {
+    private final Common common = new Common();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Common common = new Common();
         List<DomResidentDto> domResidentList = common.getDomResidentDto();
-        System.out.println("DomResidentView + " + domResidentList);
-
         req.setAttribute("domResidentList", domResidentList);
+        common.setTitle(req, "domResident");
         req.getRequestDispatcher("/views/admin/dom-resident.jsp").forward(req, resp);
     }
 }

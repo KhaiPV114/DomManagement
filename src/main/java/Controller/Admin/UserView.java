@@ -26,9 +26,7 @@ public class UserView extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Common common = new Common();
         List<UsersDto> usersDtoList = common.getListUsersDto();
-//        System.out.println("List of users: " + usersDtoList);
-
-
+        common.setTitle(req, "user");
         req.setAttribute("usersDtoList", usersDtoList);
         req.getRequestDispatcher(VIEW_PATH).forward(req, resp);
     }

@@ -61,6 +61,7 @@ public class RoomDetailView extends HttpServlet {
                 .usedBed(usedBedString)
                 .build();
         req.setAttribute("roomAdmin", roomAdminDto);
+        common.setTitle(req, "bed");
         req.getRequestDispatcher("/views/admin/room-detail.jsp").forward(req, resp);
     }
 

@@ -11,6 +11,9 @@
             <c:if test="${roomBill == null}">
                 <%@ include file="no-record.jsp" %>
             </c:if>
+            <c:if test="${message != null}">
+                <h3 class="text-danger"style="margin: 10px 0">${message}</h3>
+            </c:if>
             <c:if test="${roomBill != null}">
                 <div class="container-block" style="margin-top: 24px">
                     <table class="table table-bordered table-advance table-hover">
@@ -40,13 +43,13 @@
                         </c:forEach>
                         <tr>
                             <td colspan="3">Total Electric:</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td>${roomBill.electricNumber}</td>
+                            <td>${roomBill.electricMoney}</td>
                         </tr>
                         <tr>
                             <td colspan="3">Total Water:</td>
-                            <td>1</td>
-                            <td>1</td>
+                            <td>${roomBill.waterNumber}</td>
+                            <td>${roomBill.waterMoney}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -80,7 +83,8 @@
                                 <td>
                                     <div class="flex justify-center">
                                         <div class="btn-action" style="width: fit-content;">
-                                            <a href="#">Payment</a>
+                                            <a href="#"
+                                               onclick="if(confirm('Are you sure you want to payment?')) submitDelete(${roomBill.billId});">Payment</a>
                                         </div>
                                     </div>
                                 </td>
@@ -96,5 +100,20 @@
 </div>
 
 <%@ include file="../footer.jsp" %>
+<script>
+    function submitDelete(id) {
+        $.ajax({
+            type: 'POST',
+            url: '<%=request.getContextPath()%>' + '/student/payment-ew',
+            data: {
+                id: id
+            },
+            success: function (response) {
+                window.location.href = '<%=request.getContextPath()%>' + '/student/EWBedUsages?message=' + response;
+            },
+        });
+    }
+</script>
+
 </body>
 </html>

@@ -38,19 +38,19 @@
                     </tbody>
                 </table>
             </div>
-            <div class="flex justify-center">
-                <div class="pagination-container">
-                    <ul class="pagination">
-                        <li class="disabled PagedList-skipToFirst"><a>««</a></li>
-                        <li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li>
-                        <li class="active"><a>1</a></li>
-                        <li><a href="/Student/News?page=2">2</a></li>
-                        <li><a href="/Student/News?page=3">3</a></li>
-                        <li class="PagedList-skipToNext"><a href="/Student/News?page=2" rel="next">»</a></li>
-                        <li class="PagedList-skipToLast"><a href="/Student/News?page=3">»»</a></li>
-                    </ul>
-                </div>
-            </div>
+<%--            <div class="flex justify-center">--%>
+<%--                <div class="pagination-container">--%>
+<%--                    <ul class="pagination">--%>
+<%--                        <li class="disabled PagedList-skipToFirst"><a>««</a></li>--%>
+<%--                        <li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li>--%>
+<%--                        <li class="active"><a>1</a></li>--%>
+<%--                        <li><a href="/Student/News?page=2">2</a></li>--%>
+<%--                        <li><a href="/Student/News?page=3">3</a></li>--%>
+<%--                        <li class="PagedList-skipToNext"><a href="/Student/News?page=2" rel="next">»</a></li>--%>
+<%--                        <li class="PagedList-skipToLast"><a href="/Student/News?page=3">»»</a></li>--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
     </div>
 </div>

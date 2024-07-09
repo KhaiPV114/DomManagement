@@ -23,12 +23,8 @@
                     <dd class="dd">${payment.bed}</dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt class="dt">Create date</dt>
-                    <dd class="dd">${payment.createDate}</dd>
-                </dl>
-                <dl class="dl-horizontal">
                     <dt class="dt">Payment Date</dt>
-                    <dd class="dd">${payment.paymentDate}</dd>
+                    <dd class="dd">${payment.createDate}</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Payment Status</dt>
