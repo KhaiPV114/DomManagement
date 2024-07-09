@@ -72,6 +72,12 @@ public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements R
     }
 
     @Override
+    public boolean checkByRollNameAndTermAndYearAndType(String rollName, String term, int year, String type) {
+        String sql = "SELECT * FROM Request WHERE rollId = ? AND termId = ? AND year(createDate) = ? AND requestType = ?";
+        return query(sql, new RequestMap(), rollName, term, year, type).size() > 0;
+    }
+
+    @Override
     public long createNewRequest(Request request) {
         StringBuilder sql = new StringBuilder("INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domId, floor, roomName, termId) ");
         sql.append(" VALUES(?,?,?,?,?,?) ");

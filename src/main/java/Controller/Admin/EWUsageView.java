@@ -45,6 +45,7 @@ public class EWUsageView extends HttpServlet {
         req.setAttribute("usages", usages);
         req.setAttribute("message", message);
         req.setAttribute("roomName", roomName);
+        common.setTitle(req, "ew");
         req.getRequestDispatcher("/views/admin/ew-usage.jsp").forward(req, resp);
     }
 

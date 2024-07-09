@@ -27,4 +27,6 @@ public interface ResidentRequestService {
     void createRequestBookRoom(Request request);
     void createRequestOther(Request request);
 
+    boolean checkRequestByRollNameAndTermAndYearAndType(String roomName, String term, int year, String type);
+
 }

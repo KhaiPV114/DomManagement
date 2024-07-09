@@ -33,13 +33,8 @@ public class Login extends HttpServlet {
         }
 
         req.getSession().setAttribute("admin", users);
+        req.getSession().setAttribute("title", "Home");
         resp.sendRedirect(req.getContextPath() + "/views/admin/dashboard.jsp");
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Student student = studentService.getByRollId("HE171008");
-        req.getSession().setAttribute("student", student);
-        resp.sendRedirect(req.getContextPath() + "/views/student/home.jsp");
-    }
 }

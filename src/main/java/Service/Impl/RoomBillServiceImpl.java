@@ -33,4 +33,9 @@ public class RoomBillServiceImpl implements RoomBillService {
     public List<RoomBill> getAll() {
         return roomBillDao.findAll();
     }
+
+    @Override
+    public void updateStatus(Integer id, String status) {
+        roomBillDao.updateStatus(id, status);
+    }
 }

@@ -16,9 +16,10 @@ public class SendMail {
     public static void sendMail(Mail mail)  {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.host","smtp.gmail.com");
-        properties.put("mail.smtp.port","465");
         properties.put("mail.smtp.ssl.enable","true");
         properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -27,7 +28,7 @@ public class SendMail {
         });
         Message m = new MimeMessage(session);
         try {
-            m.setFrom(new InternetAddress(mail.getFrom()));
+            m.setFrom(new InternetAddress(AppConfig.getProperty("gmail.username")));
             m.addRecipient(Message.RecipientType.TO, new InternetAddress(mail.getRecipient()));
             m.setSubject(mail.getSubject());
             m.setContent(mail.getContent(), mail.getType());
@@ -36,4 +37,5 @@ public class SendMail {
             throw new RuntimeException(e);
         }
     }
+
 }

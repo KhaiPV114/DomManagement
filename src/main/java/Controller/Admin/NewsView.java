@@ -25,10 +25,9 @@ public class NewsView extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Common common = new Common();
         List<NewsDto> newsDtoList = common.getListNewsDto();
-        System.out.println("newsDtoList: " + newsDtoList);
 
         req.setAttribute("newsDtoList", newsDtoList);
-
+        common.setTitle(req, "new");
         req.getRequestDispatcher(VIEW_PATH).forward(req, resp);
     }
 }

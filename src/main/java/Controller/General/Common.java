@@ -40,41 +40,57 @@ public class Common {
     private final NewsService newsService = new NewsServiceImpl();
     private final DomResidentService domResidentService = new DomResidentServiceImpl();
 
-    public void setTitle(HttpServletRequest req, String title){
+    public void setTitle(HttpServletRequest req, String title) {
         HttpSession session = req.getSession();
         session.setAttribute("title", title);
     }
 
-    public List<DomResidentDto> getDomResidentDto(){
-        List<DomResidentDto> domResidentDtoList = new ArrayList<>();
+    public List<DomResidentDto> getDomResidentDto() {
+//        List<DomResidentDto> domResidentDtoList = new ArrayList<>();
         List<DomResident> domResidentList = domResidentService.getAll();
-        List<Bed> bedList = bedService.getAll();
+//        List<Bed> bedList = bedService.getAll();
 
-        for (Bed bed : bedList){
-            for (DomResident domResident : domResidentList){
-                if(domResident.getBedId() == bed.getBedId()){
-                    DomResidentDto residentDto = DomResidentDto.builder()
-                            .price(domResident.getBalance())
-                            .checkOutDate(String.valueOf(domResident.getCheckOutDate()))
-                            .year(domResident.getCheckInDate().getYear())
-                            .checkInDate(String.valueOf(domResident.getCheckInDate()))
-                            .studentId(domResident.getRollId())
-                            .bedInformation(String.valueOf(domResident.getBedId()))
-                            .semester(domResident.getTermId()).build();
-                    domResidentDtoList.add(residentDto);
+//        for (Bed bed : bedList) {
+//            for (DomResident domResident : domResidentList) {
+//                if (domResident.getBedId() == bed.getBedId()) {
+//                    DomResidentDto residentDto = DomResidentDto.builder()
+//                            .price(domResident.getBalance())
+//                            .checkOutDate(String.valueOf(domResident.getCheckOutDate()))
+//                            .year(domResident.getCheckInDate().getYear())
+//                            .checkInDate(String.valueOf(domResident.getCheckInDate()))
+//                            .studentId(domResident.getRollId())
+//                            .bedInformation(String.valueOf(domResident.getBedId()))
+//                            .semester(domResident.getTermId()).build();
+//                    domResidentDtoList.add(residentDto);
+//                }
+//            }
+//        }
+
+        List<DomResidentDto> domResidentDtoList = domResidentList.stream().map(x -> {
+                    int year = Integer.valueOf(String.valueOf(x.getCheckInDate()).substring(0, 3));
+                   return DomResidentDto.builder()
+                            .studentId(x.getRollId())
+                            .semester(x.getTermId())
+                            .checkInDate(String.valueOf(x.getCheckInDate()))
+                            .checkOutDate(String.valueOf(x.getCheckOutDate()))
+                            .price(x.getBalance())
+                            .bedInformation(x.getRoomName() + " - " + x.getBedId())
+                            .year(year)
+                            .build();
                 }
-            }
-        }
+        ).toList();
+
         return domResidentDtoList;
     }
-    public List<NewsDto> getListNewsDto (){
+
+    public List<NewsDto> getListNewsDto() {
         List<NewsDto> newsDtoList = new ArrayList<>();
         List<News> newsList = newsService.getAll(0, 15);
         List<Users> usersList = userService.getALl();
 
-        for (Users user : usersList){
-            for (News news : newsList){
-                if(user.getUserId() == news.getAuthor()){
+        for (Users user : usersList) {
+            for (News news : newsList) {
+                if (user.getUserId() == news.getAuthor()) {
                     NewsDto newsDto = NewsDto.builder()
                             .newsId(news.getNewsId())
                             .newsTitle(news.getNewsTitle())
@@ -88,6 +104,7 @@ public class Common {
         }
         return newsDtoList;
     }
+
     public List<DomTotalDto> getListDomDto() {
         List<DomTotalDto> domTotalDtoList = new ArrayList<>();
         Map<String, String> domNames = dormService.getAll().stream().collect(Collectors.toMap(Dom::getDomName, Dom::getDomGender));

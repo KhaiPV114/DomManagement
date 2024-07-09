@@ -11,6 +11,7 @@ import java.util.Map;
 @Builder
 @ToString
 public class RoomBillDto {
+    private Integer billId;
     private String roomName;
     private List<EWUsageDto> ewUsages;
     private long baseWaterMoney;
@@ -19,6 +20,10 @@ public class RoomBillDto {
     private String term;
     private int year;
     private String totalAmount;
+    private long electricNumber;
+    private long waterNumber;
+    private String electricMoney;
+    private String waterMoney;
     private String status;
     private String description;
 }

@@ -15,4 +15,6 @@ public interface RoomBillService {
     void saveAll(List<RoomBill> roomBills);
 
     List<RoomBill> getAll();
+
+    void updateStatus(Integer id, String status);
 }
