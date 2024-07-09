@@ -42,10 +42,10 @@
                                 <td>
                                     <div class="flex justify-center">
                                         <div class="btn-action" style="width: fit-content;">
-                                            <a href="<%=request.getContextPath()%>/admin/request/approved?id=${request.requestId}">Approved</a>
+                                            <a onclick="if(confirm('Are you sure?')) submitApprove(${request.requestId})">Approved</a>
                                         </div>
                                         <div class="btn-action" style="width: fit-content; margin-left: 30px">
-                                            <a href="<%=request.getContextPath()%>/admin/request/reject?id=${request.requestId}">Reject</a>
+                                            <a onclick="if(confirm('Are you sure?')) submitReject(${request.requestId})">Reject</a>
                                         </div>
                                     </div>
                                 </td>
@@ -72,6 +72,32 @@
     </div>
 </div>
 
+<script >
+    function submitApprove(id) {
+        $.ajax({
+            type: 'get',
+            url: '<%=request.getContextPath()%>/admin/request/approved?id=' + id,
+            data:{
+                id: id
+            },
+            success: function(response) {
+                window.location.href = '<%=request.getContextPath()%>/admin/request';
+            },
+        });
+    }
+    function submitReject(id) {
+        $.ajax({
+            type: 'get',
+            url: '<%=request.getContextPath()%>/admin/request/reject?id=' + id,
+            data:{
+                id: id
+            },
+            success: function(response) {
+                window.location.href =  '<%=request.getContextPath()%>' + '/admin/request';
+            },
+        });
+    }
+</script>
 <%@ include file="../footer.jsp" %>
 </body>
 </html>
