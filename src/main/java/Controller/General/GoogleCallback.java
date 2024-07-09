@@ -7,6 +7,7 @@ import Service.Impl.StudentServiceImpl;
 import Service.NewsService;
 import Service.StudentService;
 import Utils.AppConfig;
+import com.google.api.client.util.Strings;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -39,14 +40,14 @@ public class GoogleCallback extends HttpServlet {
         String accessToken = getToken(code);
         JSONObject user = getUserInformation(accessToken);
         String email = user.getString("email");
-//        if(!Strings.isNullOrEmpty(email) && !email.endsWith(END_POINT)){
-//            response.sendRedirect(request.getContextPath() + "/views/error.jsp");
-//        }else {
-        Student student = studentService.getByGmail("khaipvhe171008@fpt.edu.vn");
-        HttpSession session = request.getSession();
-        session.setAttribute("student", student);
-        response.sendRedirect(request.getContextPath()+"/student/home");
-//        }
+        if (!Strings.isNullOrEmpty(email) && !email.endsWith(END_POINT)) {
+            response.sendRedirect(request.getContextPath() + "/views/error.jsp");
+        } else {
+            Student student = studentService.getByGmail(email);
+            HttpSession session = request.getSession();
+            session.setAttribute("student", student);
+            response.sendRedirect(request.getContextPath() + "/student/home");
+        }
     }
 
 
