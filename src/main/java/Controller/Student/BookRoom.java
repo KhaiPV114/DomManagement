@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @WebServlet("/student/book-room-request")
@@ -33,6 +34,13 @@ public class BookRoom extends HttpServlet {
         Student student = common.getStudentSession(req);
         if (Objects.isNull(student)) {
             resp.sendRedirect("/views/error.jsp");
+            return;
+        }
+
+        boolean isCheck = requestService.checkRequestByRollNameAndTermAndYearAndType(student.getRollId(), common.getSemester(), LocalDate.now().getYear(), RequestType.CHECKIN.name());
+
+        if(isCheck){
+            resp.sendRedirect(req.getContextPath() + "/student/choose-room?message=Request existed already!");
             return;
         }
 

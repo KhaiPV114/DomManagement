@@ -17,4 +17,5 @@ public interface RoomBillDao extends GenericDao<RoomBill> {
     List<RoomBill> getByTermAndYear(String term, int year);
 
     void saveAll(List<RoomBill> roomBills);
+    void updateStatus(Integer id, String status);
 }

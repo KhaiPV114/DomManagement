@@ -78,6 +78,7 @@ public class BillView extends HttpServlet {
                 .build()).toList();
         req.setAttribute("roomBills", roomBillAdminDtos);
         req.setAttribute("term", term);
+        common.setTitle(req, "ew");
         req.getRequestDispatcher("/views/admin/bill.jsp").forward(req, resp);
     }
 }

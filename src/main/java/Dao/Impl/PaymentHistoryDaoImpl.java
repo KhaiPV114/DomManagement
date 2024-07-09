@@ -29,7 +29,21 @@ public class PaymentHistoryDaoImpl extends GenericDaoImpl<Payment> implements Pa
 
     @Override
     public List<Payment> getByRollId(String rollId) {
-        String sql = "SELECT * FROM PaymentHistory WHERE rollId = ?";
+        String sql = "SELECT * FROM PaymentHistory WHERE rollId = ? ORDER BY paymentId desc";
         return query(sql, new PaymentMap(), rollId);
+    }
+
+    @Override
+    public void savePaymentRoom(Payment payment) {
+        String sql = "INSERT INTO PaymentHistory(rollId, term, description, totalAmount, totalAmountPaid, totalAmountRemain, bed, createDate, type, roomName, status) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        insert(sql, payment.getRollId(), payment.getTerm(), payment.getDescription(), payment.getTotalAmount(), payment.getTotalAmountPaid(),
+                payment.getTotalAmountRemain(), payment.getBed(), payment.getCreateDate(), payment.getType(), payment.getRoomName(), payment.getStatus());
+    }
+
+    @Override
+    public void savePaymentEW(Payment payment) {
+        String sql = "INSERT INTO PaymentHistory(rollId, term, description, totalAmount, totalAmountPaid, totalAmountRemain, bed, createDate, type, roomName, status, billId) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+        insert(sql, payment.getRollId(), payment.getTerm(), payment.getDescription(), payment.getTotalAmount(), payment.getTotalAmountPaid(),
+                payment.getTotalAmountRemain(), payment.getBed(), payment.getCreateDate(), payment.getType(), payment.getRoomName(), payment.getStatus(), payment.getBillId());
     }
 }

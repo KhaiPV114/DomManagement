@@ -37,37 +37,38 @@
             <%
                 HttpSession sessions = request.getSession();
                 Users users = (Users) sessions.getAttribute("admin");
+                String title = (String) sessions.getAttribute("title");
             %>
             <div class="">
                 <p class="sidebar-name" style="margin-bottom: 8px;"><%= users.getFullName()%></p>
             </div>
         </div>
         <div id="sidebarLinkFull" class="sidebar-link">
-            <a href="#" class="sidebar-linkItem flex items-center sidebar-linkItem-active">
+            <a href="#" class="sidebar-linkItem flex items-center  <%= title.equals("Home") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>Dashboard</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/dorm" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/dorm" class="sidebar-linkItem flex items-center  <%= title.equals("bed") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>Dorm</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/setting-money" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/setting-money" class="sidebar-linkItem flex items-center  <%= title.equals("money") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>Money Setting</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/bill" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/bill" class="sidebar-linkItem flex items-center  <%= title.equals("ew") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>Bill electric and water</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/user" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/user" class="sidebar-linkItem flex items-center  <%= title.equals("user") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>User</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/student" class="sidebar-linkItem flex items-center ">
+            <a href="<%=request.getContextPath()%>/admin/student" class="sidebar-linkItem flex items-center  <%= title.equals("student") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>Student</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/request" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/request" class="sidebar-linkItem flex items-center  <%= title.equals("request") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>Request</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/dom-resident" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/dom-resident" class="sidebar-linkItem flex items-center  <%= title.equals("domResident") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>Dorm Risedent</p>
             </a>
-            <a href="<%=request.getContextPath()%>/admin/news" class="sidebar-linkItem flex items-center">
+            <a href="<%=request.getContextPath()%>/admin/news" class="sidebar-linkItem flex items-center <%= title.equals("new") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>News</p>
             </a>
         </div>

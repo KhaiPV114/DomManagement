@@ -16,10 +16,7 @@ public class UserDelete extends HttpServlet {
     private static final UserService userService = new UserServiceImpl();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("IDID : " + req.getParameter("id"));
-
         int userId = Integer.parseInt(req.getParameter("id"));
-
         userService.deleteById(userId);
     }
 }

@@ -48,5 +48,11 @@ public class RoomBillDaoImpl extends GenericDaoImpl<RoomBill> implements RoomBil
         }
     }
 
+    @Override
+    public void updateStatus(Integer id, String status) {
+        String sql = "UPDATE RoomBill SET billStatus = ? WHERE billId = ?";
+        update(sql, status, id);
+    }
+
 
 }

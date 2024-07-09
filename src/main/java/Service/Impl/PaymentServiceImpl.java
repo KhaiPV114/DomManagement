@@ -24,4 +24,14 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment getById(Integer id) {
         return paymentHistoryDao.findById(id);
     }
+
+    @Override
+    public void savePaymentRoom(Payment payment) {
+        paymentHistoryDao.savePaymentRoom(payment);
+    }
+
+    @Override
+    public void savePaymentEW(Payment payment) {
+        paymentHistoryDao.savePaymentEW(payment);
+    }
 }

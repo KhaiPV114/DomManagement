@@ -13,4 +13,7 @@ public interface PaymentHistoryDao extends GenericDao<Payment> {
     List<Payment> findAll();
 
     List<Payment> getByRollId(String rollId);
+
+    void savePaymentRoom(Payment payment);
+    void savePaymentEW(Payment payment);
 }

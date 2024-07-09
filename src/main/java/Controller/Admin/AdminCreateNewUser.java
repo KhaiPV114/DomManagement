@@ -37,8 +37,7 @@ public class AdminCreateNewUser extends HttpServlet {
         String gmail = req.getParameter("gmail");
         String password = req.getParameter("password");
         String gender = req.getParameter("gender");
-        String status = req.getParameter("status");
-        String role = req.getParameter("role");
+
 
         if(!gmail.endsWith(END_POINT)){
             //check o fontend nwa ne

@@ -13,6 +13,7 @@ import Service.Impl.MoneyServiceImpl;
 import Service.Impl.RoomBillServiceImpl;
 import Service.MoneyService;
 import Service.RoomBillService;
+import com.google.api.client.util.Strings;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,7 +58,6 @@ public class ElectricWaterUsageView extends HttpServlet {
         }
 
         RoomBill roomBill = roomBillService.getByRollNameAndTermAndYear(student.getRollId(), term, year);
-        System.out.println(roomBill);
         if(Objects.isNull(roomBill)){
             req.setAttribute("roomBill", null);
             req.getRequestDispatcher("/views/student/ew-bed-usages.jsp").forward(req, resp);
@@ -90,37 +90,26 @@ public class ElectricWaterUsageView extends HttpServlet {
         }).toList();
 
         RoomBillDto dto = RoomBillDto.builder()
+                .billId(roomBill.getBillId())
                 .roomName(roomBill.getRoomName())
                 .rollName(roomBill.getRollName())
                 .status(roomBill.getBillStatus())
                 .description(roomBill.getDescription())
                 .year(roomBill.getYear())
                 .term(roomBill.getTerm())
+                .electricNumber(roomBill.getElectricNumber())
+                .waterNumber(roomBill.getWaterNumber())
+                .electricMoney(common.convertAmount(roomBill.getElectricMoney()))
+                .waterMoney(common.convertAmount(roomBill.getWaterMoney()))
                 .totalAmount(common.convertAmount(roomBill.getTotalAmount()))
                 .ewUsages(ewUsageDtos)
                 .build();
         common.setTitle(req, "EW");
+        String message = Strings.isNullOrEmpty(req.getParameter("message")) ? null : req.getParameter("message");
         req.setAttribute("roomBill", dto);
+        req.setAttribute("message", message);
         req.getRequestDispatcher("/views/student/ew-bed-usages.jsp").forward(req, resp);
     }
 
-    private Map<Integer, Map<String, Integer>> getUsage(String term) {
-        Map<Integer, Map<String, Integer>> mapUsage = new HashMap<>();
-        int x = 0;
-        int y = 0;
-        if (Semester.XUAN.name().equals(term)) {
-            x = 1;
-            y = 4;
-        } else if (Semester.HA.name().equals(term)) {
-            x = 5;
-            y = 8;
-        } else {
-            x = 9;
-            y = 12;
-        }
-        for (int i = x; i <= y ; i++) {
-            mapUsage.put(i, new HashMap<>());
-        }
-        return mapUsage;
-    }
+
 }

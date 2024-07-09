@@ -49,5 +49,11 @@ public class ResidentRequestServiceImpl implements ResidentRequestService {
         }
     }
 
+    @Override
+    public boolean checkRequestByRollNameAndTermAndYearAndType(String rollName, String term, int year, String type) {
+
+        return residentRequestDao.checkByRollNameAndTermAndYearAndType(rollName, term, year, type);
+    }
+
 
 }

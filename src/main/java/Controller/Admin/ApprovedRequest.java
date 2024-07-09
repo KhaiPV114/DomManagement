@@ -2,7 +2,9 @@ package Controller.Admin;
 
 import Entity.Bed;
 import Entity.DomResident;
+import Entity.Mail;
 import Entity.Money;
+import Entity.Payment;
 import Entity.Request;
 import Entity.Student;
 import Enum.RequestType;
@@ -12,9 +14,11 @@ import Service.DomResidentService;
 import Service.Impl.BedServiceImpl;
 import Service.Impl.DomResidentServiceImpl;
 import Service.Impl.MoneyServiceImpl;
+import Service.Impl.PaymentServiceImpl;
 import Service.Impl.RequestServiceImpl;
 import Service.Impl.StudentServiceImpl;
 import Service.MoneyService;
+import Service.PaymentService;
 import Service.RequestService;
 
 import javax.servlet.ServletException;
@@ -24,9 +28,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import Enum.RequestStatus;
 import Service.StudentService;
+import Utils.SendMail;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
 
 @WebServlet("/admin/request/approved")
 public class ApprovedRequest extends HttpServlet {
@@ -38,6 +44,8 @@ public class ApprovedRequest extends HttpServlet {
     private final DomResidentService domResidentService = new DomResidentServiceImpl();
 
     private final StudentService studentService = new StudentServiceImpl();
+
+    private final PaymentService paymentService = new PaymentServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -65,6 +73,31 @@ public class ApprovedRequest extends HttpServlet {
             Student student = studentService.getByRollId(request.getRollId());
             long balance = student.getBalance() - money.getAmount() * 4;
             studentService.updateBalance(student.getRollId(), balance);
+
+            Payment payment = Payment.builder()
+                    .rollId(student.getRollId())
+                    .term(domResident.getTermId())
+                    .description("Thanh toan tien phong ky: " + domResident.getTermId())
+                    .totalAmount(money.getAmount() * 4)
+                    .totalAmountPaid(money.getAmount() * 4)
+                    .totalAmountRemain(0L)
+                    .bed(domResident.getBedId())
+                    .createDate(new Timestamp(System.currentTimeMillis()))
+                    .type(1)
+                    .status("Paid in full")
+                    .roomName(domResident.getRoomName())
+                    .build();
+
+            paymentService.savePaymentRoom(payment);
+//
+//            Mail mail = Mail.builder()
+//                    .type("text/html")
+//                    .subject("Mail thong bao dang ky phong thanh cong")
+//
+//                    .content("Ban da duoc xet vao phong: "+ domResident.getRoomName() + " , giuong so: " + domResident.getBedId())
+//                    .build();
+//            SendMail.sendMail(mail);
+
             resp.sendRedirect(req.getContextPath() + "/admin/request");
         }
 

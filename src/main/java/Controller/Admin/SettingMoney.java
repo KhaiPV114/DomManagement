@@ -36,6 +36,7 @@ public class SettingMoney extends HttpServlet {
                         .build()).toList();
         req.setAttribute("room", moneyDtos.stream().filter(x -> "ROOM".equals(x.getMoneyType())).toList());
         req.setAttribute("ew", moneyDtos.stream().filter(x -> !"ROOM".equals(x.getMoneyType())).toList());
+        common.setTitle(req, "money");
         req.getRequestDispatcher("/views/admin/setting-money.jsp").forward(req, resp);
     }
 
