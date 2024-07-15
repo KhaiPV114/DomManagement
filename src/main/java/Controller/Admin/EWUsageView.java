@@ -47,7 +47,7 @@ public class EWUsageView extends HttpServlet {
         int month = Strings.isNullOrEmpty(req.getParameter("month")) ? LocalDate.now().getMonthValue() : Integer.valueOf(req.getParameter("month"));
         int year = Strings.isNullOrEmpty(req.getParameter("year")) ? LocalDate.now().getYear() : Integer.valueOf(req.getParameter("year"));
         long electricNumber = Strings.isNullOrEmpty(req.getParameter("electric")) ? 0 : Long.parseLong(req.getParameter("electric"));
-        long waterNumber = Strings.isNullOrEmpty(req.getParameter("electric")) ? 0 : Long.parseLong(req.getParameter("electric"));
+        long waterNumber = Strings.isNullOrEmpty(req.getParameter("water")) ? 0 : Long.parseLong(req.getParameter("water"));
         String roomName = req.getParameter("roomName");
 
         if (ewUsageService.checkBillByRoomNameAndMonthAndYear(roomName, month, LocalDate.now().getYear())) {

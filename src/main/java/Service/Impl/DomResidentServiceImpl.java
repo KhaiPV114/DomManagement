@@ -2,6 +2,7 @@ package Service.Impl;
 
 import Dao.DomResidentDao;
 import Dao.Impl.DomResidentDaoImpl;
+import Dto.UsagePersonalDto;
 import Entity.DomResident;
 import Service.DomResidentService;
 
@@ -53,6 +54,15 @@ public class DomResidentServiceImpl implements DomResidentService {
     @Override
     public void save(DomResident domResident) {
         domResidentDao.save(domResident);
+    }
+
+    @Override
+    public List<UsagePersonalDto> getUsagePersonal(int month, List<String> roomName) {
+        return domResidentDao.getUsagePersonal(month, roomName);
+    }
+
+    public List<DomResident> getByRollIdAndYear(String rollId, int year){
+        return domResidentDao.getByRollIdAndYear(rollId, year);
     }
 
 

@@ -65,7 +65,6 @@ public class ElectricWaterUsageView extends HttpServlet {
 
         int studentInRoom = domResidentService.countUserInRoomAndTermAndYear(roomBill.getRoomName(), term, year);
 
-
         List<Money> monies = moneyService.getByListMoneyType(List.of("ELECTRIC","WATER"));
 
         Map<String, Long> mapMoney = monies.stream().collect(Collectors.toMap(Money::getMoneyType, Money::getAmount));

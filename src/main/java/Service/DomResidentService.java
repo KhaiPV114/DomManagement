@@ -1,5 +1,6 @@
 package Service;
 
+import Dto.UsagePersonalDto;
 import Entity.DomResident;
 
 import java.util.List;
@@ -20,4 +21,8 @@ public interface DomResidentService {
     List<DomResident> getAll();
 
     void save(DomResident domResident);
+
+    List<UsagePersonalDto> getUsagePersonal(int month, List<String> roomName);
+
+    public List<DomResident> getByRollIdAndYear(String rollId, int year);
  }

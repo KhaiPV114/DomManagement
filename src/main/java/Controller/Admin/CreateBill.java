@@ -53,7 +53,6 @@ public class CreateBill extends HttpServlet {
 
         List<DomResident> domResidents = domResidentService.getBySemesterAndYear(term, year);
         Set<String> roomNames = domResidents.stream().map(DomResident::getRoomName).collect(Collectors.toSet());
-        System.out.println(roomNames);
         List<RoomBill> roomBillList = roomBillService.getByTermAndYear(term, year);
         Set<String> roomNamesInBill = roomBillList.stream().map(RoomBill::getRoomName).collect(Collectors.toSet());
         roomNames.removeAll(roomNamesInBill);
