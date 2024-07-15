@@ -17,8 +17,8 @@ public class NewsDaoImpl extends GenericDaoImpl<News> implements NewsDao {
 
     @Override
     public void update(News news) {
-        String sql = "UPDATE News SET newsTitle = ?, newsDetail = ?, picture = ?, authorId = ?, createdTime = ? WHERE newsId = ?";
-        update(sql, news.getNewsTitle(), news.getNewsDetail(), news.getPicture(), news.getAuthor(), news.getCreatedTime(), news.getNewsId());
+        String sql = "UPDATE News SET newsTitle = ?, newsDetail = ? WHERE newsId = ?";
+        update(sql, news.getNewsTitle(), news.getNewsDetail(), news.getNewsId());
     }
 
     @Override

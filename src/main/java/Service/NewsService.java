@@ -9,4 +9,6 @@ public interface NewsService {
     News getById(int id);
 
     void insert(News news);
+
+    void update(News news);
 }

@@ -23,4 +23,11 @@ public class NewsServiceImpl implements NewsService {
     public void insert(News news) {
         newsDao.insert(news);
     }
+
+    @Override
+    public void update(News news) {
+        newsDao.update(news);
+    }
+
+
 }
