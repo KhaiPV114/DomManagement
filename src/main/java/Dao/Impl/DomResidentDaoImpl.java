@@ -47,7 +47,7 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
 
     @Override
     public List<DomResident> getByTermAndYear(String term, int year) {
-        String sql = "  Select * from DomResident where termId = ? AND YEAR(checkInDate) = ?";
+        String sql = "  Select d.* from DomResident d join Student s ON d.rollId = s.rollId where d.termId = ? AND YEAR(d.checkInDate) = ? AND s.status = 'RESIDENT' ";
         return query(sql, new DomResidentMap(), term, year);
     }
 

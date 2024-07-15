@@ -31,7 +31,10 @@ import Service.StudentService;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @WebServlet("/admin/request/approved")
 public class ApprovedRequest extends HttpServlet {
@@ -52,13 +55,12 @@ public class ApprovedRequest extends HttpServlet {
         Request request = requestService.getById(id);
         request.setRequestStatus(RequestStatus.ACCEPTED.name());
         requestService.updateStatus(request);
-
+        System.out.println(request.toString());
         if (request.getRequestType().equals(RequestType.CHECKIN.name())) {
             Money money = moneyService.getByMoneyTypeAndRoomType("ROOM", request.getRoomType());
 
             Bed bed = bedService.randomBedByFloorAndDomNameAndRoomType(request.getFloor(), request.getDomName(), request.getRoomType());
 
-            System.out.println(bed);
             LocalDateTime newDateTime = request.getCreateDate().toLocalDateTime().plusMonths(4);
 
             Timestamp checkOutDate = Timestamp.valueOf(newDateTime);
@@ -79,8 +81,8 @@ public class ApprovedRequest extends HttpServlet {
             Student student = studentService.getByRollId(request.getRollId());
             long balance = student.getBalance() - money.getAmount() * 4;
             student.setBalance(balance);
-            studentService.updateBalance(student.getRollId(),balance);
-            studentService.updateStatus(student.getRollId(),"RESIDENT");
+            studentService.updateBalance(student.getRollId(), balance);
+            studentService.updateStatus(student.getRollId(), "RESIDENT");
             Payment payment = Payment.builder()
                     .rollId(student.getRollId())
                     .term(domResident.getTermId())
@@ -96,15 +98,45 @@ public class ApprovedRequest extends HttpServlet {
                     .build();
 
             paymentService.savePaymentRoom(payment);
-//
-//            Mail mail = Mail.builder()
-//                    .type("text/html")
-//                    .subject("Mail thong bao dang ky phong thanh cong")
-//
-//                    .content("Ban da duoc xet vao phong: "+ domResident.getRoomName() + " , giuong so: " + domResident.getBedId())
-//                    .build();
-//            SendMail.sendMail(mail);
+            resp.sendRedirect(req.getContextPath() + "/admin/request");
+        }
 
+        if (request.getRequestType().equals(RequestType.CHECKOUT.name())) {
+            Money money = moneyService.getByMoneyTypeAndRoomType("ROOM", request.getRoomType());
+            Bed bed = bedService.randomBedByFloorAndDomNameAndRoomType(request.getFloor(), request.getDomName(), request.getRoomType());
+            DomResident domResident = DomResident.builder()
+                    .balance(money.getAmount())
+                    .rollId(request.getRollId())
+                    .floor(request.getFloor())
+                    .bedId(bed.getBedId())
+                    .checkInDate(request.getCreateDate())
+                    .checkOutDate(request.getCheckOutDate())
+                    .roomName(bed.getRoomName())
+                    .termId(request.getTerm())
+                    .build();
+            domResidentService.save(domResident);
+            bed.setBedStatus(BedStatus.valueOf(BedStatus.NOTAVAILABLE.name()));
+            bedService.updateStatus(bed);
+            LocalDate startDate;
+            LocalDate endDate;
+            if ("XUAN".equals(request.getTerm())) {
+                startDate = LocalDate.of(LocalDate.now().getYear(), 1, 1);
+                endDate = LocalDate.of(LocalDate.now().getYear(), 4, 30);
+            } else if ("HA".equals(request.getTerm())) {
+                startDate = LocalDate.of(LocalDate.now().getYear(), 5, 1);
+                endDate = LocalDate.of(LocalDate.now().getYear(), 8, 31);
+            } else {
+                startDate = LocalDate.of(LocalDate.now().getYear(), 9, 1);
+                endDate = LocalDate.of(LocalDate.now().getYear(), 12, 31);
+            }
+            long daysBetweenTerm = ChronoUnit.DAYS.between(startDate, endDate);
+            long amountOfDay = money.getAmount() * 4 / daysBetweenTerm;
+            long days = daysBetweenTerm - ChronoUnit.DAYS.between(startDate, LocalDate.now());
+            long amountBack = days * amountOfDay;
+            Student student = studentService.getByRollId(request.getRollId());
+            long balance = student.getBalance() + amountBack;
+            student.setBalance(balance);
+            studentService.updateBalance(student.getRollId(), balance);
             resp.sendRedirect(req.getContextPath() + "/admin/request");
         }
 

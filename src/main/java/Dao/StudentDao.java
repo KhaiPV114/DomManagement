@@ -21,4 +21,6 @@ public interface StudentDao extends GenericDao<Student> {
     void updateStatus(String rollId, String status);
 
     void updateBalance(String rollId, Long balance);
+
+    List<Student> getByDate();
 }

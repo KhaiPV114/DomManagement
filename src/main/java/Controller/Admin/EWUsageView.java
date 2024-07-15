@@ -1,18 +1,12 @@
 package Controller.Admin;
 
 import Controller.General.Common;
-import Entity.DomResident;
 import Entity.ElectricWaterUsage;
 import Entity.Room;
-import Entity.RoomBill;
-import Entity.Student;
-import Service.DomResidentService;
+import Enum.Semester;
 import Service.EWUsageService;
-import Service.Impl.DomResidentServiceImpl;
 import Service.Impl.EWUsageServiceImpl;
-import Service.Impl.RoomBillServiceImpl;
 import Service.Impl.RoomServiceImpl;
-import Service.RoomBillService;
 import Service.RoomService;
 import com.google.api.client.util.Strings;
 
@@ -24,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 @WebServlet("/admin/room-detail/ew-usage")
 public class EWUsageView extends HttpServlet {
@@ -63,13 +55,21 @@ public class EWUsageView extends HttpServlet {
             return;
         }
         Room room = roomService.getByRoomName(roomName);
+        String term;
+        if (month < 5) {
+            term = Semester.XUAN.name();
+        } else if (month < 9) {
+            term = Semester.HA.name();
+        } else {
+            term = Semester.DONG.name();
+        }
         ElectricWaterUsage usage = ElectricWaterUsage.builder()
                 .domName("DOM" + roomName.substring(0, 1))
                 .electricNumber(electricNumber)
                 .waterNumber(waterNumber)
                 .floor(room.getFloor())
-                .term(common.getSemester())
-                .year(LocalDate.now().getYear())
+                .term(term)
+                .year(year)
                 .roomName(roomName)
                 .month(month)
                 .build();

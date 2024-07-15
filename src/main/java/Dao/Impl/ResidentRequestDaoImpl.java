@@ -52,16 +52,16 @@ public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements R
 
     @Override
     public void createRequestOther(Request request) {
-        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, bedId) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, bedId, roomType) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
-                request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getBed());
+                request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getBed(), request.getRoomType());
     }
 
     @Override
     public void createRequestCheckOut(Request request) {
-        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, bedId, checkOutDate) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Request (requestStatus, requestDetail, rollId, requestType, domName, floor, roomName, termId, createDate, bedId, checkOutDate, roomType) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
         insert(sql, request.getRequestStatus(), request.getRequestDetail(), request.getRollId(), request.getRequestType(),
-                request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getBed(), request.getCheckOutDate());
+                request.getDomName(), request.getFloor(), request.getRoomName(), request.getTerm(), request.getCreateDate(), request.getBed(), request.getCheckOutDate(), request.getRoomType());
 
     }
 
@@ -73,7 +73,7 @@ public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements R
 
     @Override
     public boolean checkByRollNameAndTermAndYearAndType(String rollName, String term, int year, String type) {
-        String sql = "SELECT * FROM Request WHERE rollId = ? AND termId = ? AND year(createDate) = ? AND requestType = ?";
+        String sql = "SELECT * FROM Request WHERE rollId = ? AND termId = ? AND year(createDate) = ? AND requestType = ? AND requestStatus = 'WAITING'";
         return query(sql, new RequestMap(), rollName, term, year, type).size() > 0;
     }
 

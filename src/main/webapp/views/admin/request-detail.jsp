@@ -39,7 +39,7 @@
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Status</dt>
-                    <dd class="dd">WAITTING</dd>
+                    <dd class="dd">WAITING</dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt class="dt">Date</dt>

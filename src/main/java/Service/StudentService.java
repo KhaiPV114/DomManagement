@@ -17,4 +17,6 @@ public interface StudentService {
 
     void update(Student student);
 
+    List<Student> getByDate();
+
 }

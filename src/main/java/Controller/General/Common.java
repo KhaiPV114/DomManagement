@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Common {
@@ -52,29 +53,12 @@ public class Common {
     }
 
     public List<DomResidentDto> getDomResidentDto() {
-//        List<DomResidentDto> domResidentDtoList = new ArrayList<>();
         List<DomResident> domResidentList = domResidentService.getAll();
-//        List<Bed> bedList = bedService.getAll();
 
-//        for (Bed bed : bedList) {
-//            for (DomResident domResident : domResidentList) {
-//                if (domResident.getBedId() == bed.getBedId()) {
-//                    DomResidentDto residentDto = DomResidentDto.builder()
-//                            .price(domResident.getBalance())
-//                            .checkOutDate(String.valueOf(domResident.getCheckOutDate()))
-//                            .year(domResident.getCheckInDate().getYear())
-//                            .checkInDate(String.valueOf(domResident.getCheckInDate()))
-//                            .studentId(domResident.getRollId())
-//                            .bedInformation(String.valueOf(domResident.getBedId()))
-//                            .semester(domResident.getTermId()).build();
-//                    domResidentDtoList.add(residentDto);
-//                }
-//            }
-//        }
 
         List<DomResidentDto> domResidentDtoList = domResidentList.stream().map(x -> {
-                    int year = Integer.valueOf(String.valueOf(x.getCheckInDate()).substring(0, 3));
-                   return DomResidentDto.builder()
+                    int year = Integer.valueOf(String.valueOf(x.getCheckInDate()).substring(0, 4));
+                    return DomResidentDto.builder()
                             .studentId(x.getRollId())
                             .semester(x.getTermId())
                             .checkInDate(String.valueOf(x.getCheckInDate()))
@@ -90,25 +74,16 @@ public class Common {
     }
 
     public List<NewsDto> getListNewsDto() {
-        List<NewsDto> newsDtoList = new ArrayList<>();
         List<News> newsList = newsService.getAll(0, 15);
-        List<Users> usersList = userService.getALl();
+        Map<Integer, Users> usersList = userService.getALl().stream().collect(Collectors.toMap(Users::getUserId, Function.identity()));
 
-        for (Users user : usersList) {
-            for (News news : newsList) {
-                if (user.getUserId() == news.getAuthor()) {
-                    NewsDto newsDto = NewsDto.builder()
-                            .newsId(news.getNewsId())
-                            .newsTitle(news.getNewsTitle())
-                            .newsDetail(news.getNewsDetail())
-                            .createdTime(news.getCreatedTime())
-                            .author(user.getFullName())
-                            .authorId(user.getUserId()).build();
-                    newsDtoList.add(newsDto);
-                }
-            }
-        }
-        return newsDtoList;
+        return newsList.stream().map(n -> NewsDto.builder()
+                .newsId(n.getNewsId())
+                .newsTitle(n.getNewsTitle())
+                .newsDetail(n.getNewsDetail())
+                .createdTime(n.getCreatedTime())
+                .author(usersList.get(n.getAuthor()).getFullName())
+                .authorId(n.getAuthor()).build()).collect(Collectors.toList());
     }
 
     public List<DomTotalDto> getListDomDto() {
@@ -174,7 +149,7 @@ public class Common {
     }
 
     public Student getStudentSession(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-       Student login = (Student) req.getSession().getAttribute("student");
+        Student login = (Student) req.getSession().getAttribute("student");
         if (Objects.isNull(login)) {
             resp.sendRedirect(req.getContextPath() + "/views/error.jsp");
             return null;

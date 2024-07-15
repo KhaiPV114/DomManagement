@@ -44,16 +44,17 @@
                             <td>${student.gmail}</td>
                             <td>${student.gender}</td>
                             <td>${student.balance}</td>
+                            <td>${student.studentStatus.name()}</td>
                             <td>
                                 <div class="flex justify-center">
                                     <div class="btn-action" style="width: fit-content;">
                                         <form class="chang" action="<%=request.getContextPath()%>/admin/student/status" method="post" onsubmit="return confirmSubmit(this);">
                                             <input type="hidden" name="rollId" value="${student.rollId}"/>
                                             <c:if test="${student.studentStatus == 'BANNED'}">
-                                                <button type="submit" class="btn-danger rounded">${student.studentStatus}</button>
+                                                <button type="submit" class="btn-danger rounded">ACTIVE</button>
                                             </c:if>
-                                              <c:if test="${student.studentStatus == 'ACTIVE'}">
-                                                <button type="submit" class="btn-primary rounded">${student.studentStatus}</button>
+                                              <c:if test="${student.studentStatus != 'BANNED'}">
+                                                <button type="submit" class="btn-primary rounded">BANNED</button>
                                             </c:if>
                                         </form>
                                     </div>
