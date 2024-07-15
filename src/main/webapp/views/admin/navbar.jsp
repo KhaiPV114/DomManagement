@@ -15,7 +15,7 @@
                 </svg>
             </div>
             <a href="#" class="logo">
-                <img src="https://ocd.fpt.edu.vn/Content/images/landing/logo.png" alt="logo">
+                <img src="<%=request.getContextPath()%>/assets/images/logo.png" alt="logo">
             </a>
         </div>
         <h1 class="big-title flex items-center" style="margin: 0;">

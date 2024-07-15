@@ -53,4 +53,10 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements StudentDa
         update(sql, balance, rollId);
     }
 
+    @Override
+    public List<Student> getByDate() {
+        String sql = "SELECT s.* FROM Student s JOIN DomResident d ON s.rollId = d.rollId WHERE CAST(d.checkOutDate AS DATE) = CAST(GETDATE() AS DATE)";
+        return query(sql, new StudentMap());
+    }
+
 }

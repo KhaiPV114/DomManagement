@@ -53,6 +53,7 @@ public class CreateBill extends HttpServlet {
 
         List<DomResident> domResidents = domResidentService.getBySemesterAndYear(term, year);
         Set<String> roomNames = domResidents.stream().map(DomResident::getRoomName).collect(Collectors.toSet());
+        System.out.println(roomNames);
         List<RoomBill> roomBillList = roomBillService.getByTermAndYear(term, year);
         Set<String> roomNamesInBill = roomBillList.stream().map(RoomBill::getRoomName).collect(Collectors.toSet());
         roomNames.removeAll(roomNamesInBill);
@@ -61,11 +62,15 @@ public class CreateBill extends HttpServlet {
             resp.sendRedirect(req.getContextPath()+ "/admin/bill?result=Da tao hoa don cua ky: "+ term);
         } else {
             List<ElectricWaterUsage> usages = ewUsageService.getByTermAndYear(term, year);
+
             Map<String, List<ElectricWaterUsage>> usagesMap = usages.stream().collect(Collectors.groupingBy(ElectricWaterUsage::getRoomName));
+
             Map<String, List<String>> mapRollNames = domResidents.stream()
                     .collect(Collectors.groupingBy(DomResident::getRoomName)).entrySet().stream()
                     .filter(x -> roomNames.contains(x.getKey()))
                     .collect(Collectors.toMap(x -> x.getKey(), x -> x.getValue().stream().map(DomResident::getRollId).toList()));
+
+
             List<Money> monies = moneyService.getByListMoneyType(List.of("ELECTRIC", "WATER"));
             Map<String, Long> mapMoney = monies.stream().collect(Collectors.toMap(Money::getMoneyType, Money::getAmount));
             List<RoomBill> addRoomBills = new ArrayList<>();

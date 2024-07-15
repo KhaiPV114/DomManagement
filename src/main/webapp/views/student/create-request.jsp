@@ -23,7 +23,7 @@
                 <div class="flex-1 hidden" id="date-check-out" style="margin-bottom: 24px;">
                     <label class="SBB-input-label no-margin" for="checkOutDate">Date check-out</label>
                     <div class="" style="width: 100%;">
-                        <input class="SBB-input" type="date" name="checkOutDate" id="checkOutDate">
+                        <input class="SBB-input" type="date" name="checkOutDate" id="checkOutDate" min="">
                     </div>
                 </div>
                 <div class="flex-1">
@@ -49,7 +49,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5); /* Màu nền đục */
+            background-color: rgba(0, 0, 0, 0.5); /* Màu nền đục */
             z-index: 9999; /* Lớp z-index để nằm trên các phần tử khác */
             overflow: auto; /* Cho phép cuộn khi nội dung dài hơn */
         }
@@ -100,10 +100,16 @@
             $("#checkOutDate").prop("required", false);
         }
     }
+
     function closePopup() {
         var popup = document.getElementById("myPopup");
         popup.style.display = "none";
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+    });
 </script>
 <%@ include file="../footer.jsp" %>
 </body>

@@ -15,4 +15,8 @@ public interface StudentService {
 
     void updateBalance(String rollId, Long balance);
 
+    void update(Student student);
+
+    List<Student> getByDate();
+
 }

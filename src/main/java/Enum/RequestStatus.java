@@ -9,6 +9,6 @@ package Enum;
  * @author ADMIN
  */
 public enum RequestStatus {
-    WAITTING, ACCEPTED, DENIED
+    WAITING, ACCEPTED, DENIED
 }
 

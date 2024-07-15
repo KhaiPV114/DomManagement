@@ -15,7 +15,7 @@ public class DomResidentMap implements RowMapper<DomResident> {
                     .userId(rs.getInt("userId"))
                     .balance(rs.getLong("balance"))
                     .checkInDate(rs.getTimestamp("checkInDate"))
-                    .checkOutDate(rs.getTimestamp("checkInDate"))
+                    .checkOutDate(rs.getTimestamp("checkOutDate"))
                     .termId(rs.getString("termId"))
                     .roomName(rs.getString("roomName"))
                     .rollId(rs.getString("rollId"))

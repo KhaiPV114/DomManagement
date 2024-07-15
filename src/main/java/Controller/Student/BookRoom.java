@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Objects;
 
 @WebServlet("/student/book-room-request")
 public class BookRoom extends HttpServlet {
@@ -31,11 +30,7 @@ public class BookRoom extends HttpServlet {
         String dom = req.getParameter("domId");
         String roomType = req.getParameter("roomType");
 
-        Student student = common.getStudentSession(req);
-        if (Objects.isNull(student)) {
-            resp.sendRedirect("/views/error.jsp");
-            return;
-        }
+        Student student = common.getStudentSession(req, resp);
 
         boolean isCheck = requestService.checkRequestByRollNameAndTermAndYearAndType(student.getRollId(), common.getSemester(), LocalDate.now().getYear(), RequestType.CHECKIN.name());
 
@@ -50,7 +45,7 @@ public class BookRoom extends HttpServlet {
                 .floor(Integer.valueOf(floor))
                 .createDate(new Timestamp(System.currentTimeMillis()))
                 .rollId(student.getRollId())
-                .requestStatus(RequestStatus.WAITTING.name())
+                .requestStatus(RequestStatus.WAITING.name())
                 .roomType(roomType)
                 .term(common.getSemester())
                 .requestDetail(note)

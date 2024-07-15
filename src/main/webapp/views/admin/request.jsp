@@ -34,11 +34,11 @@
                             <td>${request.requestDetail}</td>
                             <td>${request.requestStatus}</td>
                             <td>${request.createDate}</td>
-                            <c:if test="${request.requestStatus != 'WAITTING'}">
+                            <c:if test="${request.requestStatus != 'WAITING'}">
                                 <td></td>
                             </c:if>
 
-                            <c:if test="${request.requestStatus == 'WAITTING'}">
+                            <c:if test="${request.requestStatus == 'WAITING'}">
                                 <td>
                                     <div class="flex justify-center">
                                         <div class="btn-action" style="width: fit-content;">

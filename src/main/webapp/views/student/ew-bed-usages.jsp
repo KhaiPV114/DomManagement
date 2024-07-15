@@ -8,6 +8,14 @@
     <div class="container-fluid my-container">
         <div class="">
             <h1 class="big-title">Electricity water usage</h1>
+            <div class="flex justify-start">
+                <div class="flex justify-end" style="margin: 10px 10px">
+                    <button id="block-usage" class="orange-btn">Block usage</button>
+                </div>
+                <div class="flex justify-end" style="margin: 10px 0">
+                    <button id="personal-usage" class="orange-btn">Personal usage</button>
+                </div>
+            </div>
             <c:if test="${roomBill == null}">
                 <%@ include file="no-record.jsp" %>
             </c:if>

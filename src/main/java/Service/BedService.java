@@ -13,7 +13,7 @@ public interface BedService {
 
     Bed getByBedAndRoomName(Integer bedId, String roomName);
 
-    Bed randomBedByFloorAndDomName(int floor, String domName);
+    Bed randomBedByFloorAndDomNameAndRoomType(int floor, String domName, String roomType);
 
     void updateStatus(Bed bed);
 }

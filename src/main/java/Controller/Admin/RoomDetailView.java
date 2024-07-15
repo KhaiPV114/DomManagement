@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -38,7 +39,7 @@ public class RoomDetailView extends HttpServlet {
         Room room = roomService.getByRoomName(roomName);
         String term = common.getSemester();
         int year = LocalDate.now().getYear();
-        Set<StudentBedDto> studentList = studentService.getByRoomNameAndSemesterAndYear(roomName, term, year).stream().collect(Collectors.toSet());
+        Set<StudentBedDto> studentList = new HashSet<>(studentService.getByRoomNameAndSemesterAndYear(roomName, term, year));
         List<Integer> usedBed = studentList.stream().map(StudentBedDto::getBed).toList();
         List<Integer> freeBed = new ArrayList<>();
         Money money = moneyService.getByMoneyTypeAndRoomType("ROOM", room.getRoomType());

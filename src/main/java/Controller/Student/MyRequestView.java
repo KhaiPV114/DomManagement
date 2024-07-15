@@ -5,6 +5,7 @@ import Entity.Request;
 import Entity.Student;
 import Service.Impl.ResidentRequestServiceImpl;
 import Service.ResidentRequestService;
+import com.google.api.client.util.Strings;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,13 +24,10 @@ public class MyRequestView extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Student student = common.getStudentSession(req);
-        if (Objects.isNull(student)) {
-            resp.sendRedirect("/views/error.jsp");
-            return;
-        }
-
+        Student student = common.getStudentSession(req, resp);
         List<Request> requestList = residentRequestService.getByRollId(student.getRollId());
+        String message = Strings.isNullOrEmpty(req.getParameter("message")) ? null : req.getParameter("message");
+        req.setAttribute("message", message);
         req.setAttribute("requests", requestList);
         common.setTitle(req, "request");
         req.getRequestDispatcher("/views/student/my-request.jsp").forward(req, resp);

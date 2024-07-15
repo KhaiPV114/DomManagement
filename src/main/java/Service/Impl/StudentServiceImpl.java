@@ -38,4 +38,14 @@ public class StudentServiceImpl implements StudentService {
     public void updateBalance(String rollId, Long balance) {
         studentDao.updateBalance(rollId, balance);
     }
+
+    @Override
+    public void update(Student student) {
+        studentDao.update(student);
+    }
+
+    @Override
+    public List<Student> getByDate() {
+        return studentDao.getByDate();
+    }
 }
