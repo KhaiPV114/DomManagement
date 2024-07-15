@@ -47,10 +47,14 @@
                             <td>
                                 <div class="flex justify-center">
                                     <div class="btn-action" style="width: fit-content;">
-                                        <form action="<%=request.getContextPath()%>/admin/student/status" method="post">
+                                        <form class="chang" action="<%=request.getContextPath()%>/admin/student/status" method="post" onsubmit="return confirmSubmit(this);">
                                             <input type="hidden" name="rollId" value="${student.rollId}"/>
-                                            <button type="submit" class="btn-primary rounded">${student.studentStatus}
-                                            </button>
+                                            <c:if test="${student.studentStatus == 'BANNED'}">
+                                                <button type="submit" class="btn-danger rounded">${student.studentStatus}</button>
+                                            </c:if>
+                                              <c:if test="${student.studentStatus == 'ACTIVE'}">
+                                                <button type="submit" class="btn-primary rounded">${student.studentStatus}</button>
+                                            </c:if>
                                         </form>
                                     </div>
                                 </div>
@@ -76,6 +80,11 @@
     </div>
 </div>
 <%@ include file="../footer.jsp" %>
+<script>
+    function confirmSubmit(form) {
+        return confirm("Are you sure you want to change the status of this student?");
+    }
+</script>
 </body>
 
 </html>

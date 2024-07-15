@@ -32,7 +32,10 @@
                                 <td>
                         <div class="flex justify-center">
                             <div class="btn-action" style="width: fit-content;">
-                                <a href="#">Detail</a>
+                                <form action="<%=request.getContextPath()%>/admin/news/detail" method="get">
+                                    <input type="hidden" name="id" value="${news.newsId}">
+                                    <button>Details</button>
+                                </form>
                             </div>
                         </div>
                         </td>
@@ -59,5 +62,6 @@
 </div>
 
 <%@ include file="../footer.jsp" %>
+
 </body>
 </html>
