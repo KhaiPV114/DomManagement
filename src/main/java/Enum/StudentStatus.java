@@ -1,5 +1,5 @@
 package Enum;
 
 public enum StudentStatus {
-    ACTIVE, BANNED
+    ACTIVE, BANNED, RESIDENT
 }

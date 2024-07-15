@@ -42,8 +42,8 @@ public class BedDaoImpl extends GenericDaoImpl<Bed> implements BedDao {
     }
 
     @Override
-    public Bed getRandomByFloorAndDomName(int floor, String domName) {
-        String sql = "SELECT * FROM Bed b JOIN Room r ON r.roomName = b.roomName JOIN Dom d ON d.domId = r.domId WHERE b.floor = ? AND b.bedStatus = 'NOTAVAILABLE' AND d.domName = ?";
-        return query(sql, new BedMap(), floor, domName).stream().findFirst().orElse(null);
+    public Bed getRandomByFloorAndDomNameAndRoomType(int floor, String domName, String roomType) {
+        String sql = "SELECT * FROM Bed b JOIN Room r ON r.roomName = b.roomName JOIN Dom d ON d.domId = r.domId WHERE b.floor = ? AND b.bedStatus = 'NOTAVAILABLE' AND d.domName = ? AND r.roomType = ?";
+        return query(sql, new BedMap(), floor, domName, roomType).stream().findFirst().orElse(null);
     }
 }

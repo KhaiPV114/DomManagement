@@ -35,12 +35,7 @@ public class PaymentEW extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         String jsonResponse;
-        Student studentLogin = common.getStudentSession(req);
-        if (Objects.isNull(studentLogin)) {
-            resp.sendRedirect("/views/error.jsp");
-            return;
-        }
-        Student student = studentService.getByRollId(studentLogin.getRollId());
+        Student student = common.getStudentSession(req, resp);
         RoomBill roomBill = roomBillService.getById(id);
         if(!student.getRollId().equals(roomBill.getRollName())){
             throw new RuntimeException();

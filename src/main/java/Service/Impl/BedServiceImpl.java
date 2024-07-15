@@ -31,8 +31,8 @@ public class BedServiceImpl implements BedService {
     }
 
     @Override
-    public Bed randomBedByFloorAndDomName(int floor, String domName) {
-        return bedDao.getRandomByFloorAndDomName(floor, domName);
+    public Bed randomBedByFloorAndDomNameAndRoomType(int floor, String domName, String roomType) {
+        return bedDao.getRandomByFloorAndDomNameAndRoomType(floor, domName, roomType);
     }
 
     @Override

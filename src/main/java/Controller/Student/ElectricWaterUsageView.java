@@ -39,11 +39,8 @@ public class ElectricWaterUsageView extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Student student = common.getStudentSession(req);
-        if (Objects.isNull(student)) {
-            resp.sendRedirect("/views/error.jsp");
-            return;
-        }
+        Student student = common.getStudentSession(req, resp);
+
         LocalDate localDate = LocalDate.now();
         int month = localDate.getMonth().getValue();
         int year = localDate.getYear();

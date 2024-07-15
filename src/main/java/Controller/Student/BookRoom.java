@@ -31,11 +31,7 @@ public class BookRoom extends HttpServlet {
         String dom = req.getParameter("domId");
         String roomType = req.getParameter("roomType");
 
-        Student student = common.getStudentSession(req);
-        if (Objects.isNull(student)) {
-            resp.sendRedirect("/views/error.jsp");
-            return;
-        }
+        Student student = common.getStudentSession(req, resp);
 
         boolean isCheck = requestService.checkRequestByRollNameAndTermAndYearAndType(student.getRollId(), common.getSemester(), LocalDate.now().getYear(), RequestType.CHECKIN.name());
 

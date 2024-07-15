@@ -5,6 +5,7 @@ import Entity.DomResident;
 import Entity.Request;
 import Entity.Student;
 import Enum.RequestStatus;
+import Enum.StudentStatus;
 import Service.DomResidentService;
 import Service.Impl.DomResidentServiceImpl;
 import Service.Impl.ResidentRequestServiceImpl;
@@ -30,6 +31,12 @@ public class RequestView extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Student student = common.getStudentSession(req, resp);
+
+        if (!StudentStatus.RESIDENT.equals(student.getStudentStatus())){
+            resp.sendRedirect(req.getContextPath() + "/student/request?message=Can't create request");
+            return;
+        }
         req.getRequestDispatcher("/views/student/create-request.jsp").forward(req, resp);
     }
 
@@ -39,11 +46,7 @@ public class RequestView extends HttpServlet {
         String checkOutDate = req.getParameter("checkOutDate");
         String requestDetail = req.getParameter("requestDetail");
 
-        Student student = common.getStudentSession(req);
-        if (Objects.isNull(student)) {
-            resp.sendRedirect("/views/error.jsp");
-            return;
-        }
+        Student student = common.getStudentSession(req, resp);
 
         DomResident domResident = domResidentService.getByRollIdAndSemesterAndYear(student.getRollId(), common.getSemester(), LocalDate.now().getYear());
         Request.RequestBuilder request = Request.builder();

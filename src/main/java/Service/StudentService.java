@@ -15,4 +15,6 @@ public interface StudentService {
 
     void updateBalance(String rollId, Long balance);
 
+    void update(Student student);
+
 }

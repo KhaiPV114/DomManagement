@@ -24,18 +24,14 @@ public class ResidentHistoryView extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Student student = common.getStudentSession(req);
-        if(Objects.isNull(student)){
-            resp.sendRedirect("/views/error.jsp");
-            return;
-        }
+        Student student = common.getStudentSession(req, resp);
         List<DomResident> domResident = domResidentService.getByRollId(student.getRollId());
 
         List<DomResidentDto> dtos = domResident.stream().map(x ->
                 DomResidentDto.builder()
                         .studentId(x.getRollId())
                         .checkInDate(common.convertTimeToStringYYYYMMDD(x.getCheckInDate()))
-                        .checkOutDate("Keep bed")
+                        .checkOutDate(common.convertTimeToStringYYYYMMDD(x.getCheckOutDate()))
                         .price(x.getBalance())
                         .semester(x.getTermId())
                         .year(x.getCheckInDate().getYear())

@@ -2,7 +2,6 @@ package Controller.Admin;
 
 import Entity.Bed;
 import Entity.DomResident;
-import Entity.Mail;
 import Entity.Money;
 import Entity.Payment;
 import Entity.Request;
@@ -28,11 +27,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import Enum.RequestStatus;
 import Service.StudentService;
-import Utils.SendMail;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @WebServlet("/admin/request/approved")
 public class ApprovedRequest extends HttpServlet {
@@ -56,7 +55,13 @@ public class ApprovedRequest extends HttpServlet {
 
         if (request.getRequestType().equals(RequestType.CHECKIN.name())) {
             Money money = moneyService.getByMoneyTypeAndRoomType("ROOM", request.getRoomType());
-            Bed bed = bedService.randomBedByFloorAndDomName(request.getFloor(), request.getDomName());
+
+            Bed bed = bedService.randomBedByFloorAndDomNameAndRoomType(request.getFloor(), request.getDomName(), request.getRoomType());
+
+            System.out.println(bed);
+            LocalDateTime newDateTime = request.getCreateDate().toLocalDateTime().plusMonths(4);
+
+            Timestamp checkOutDate = Timestamp.valueOf(newDateTime);
 
             DomResident domResident = DomResident.builder()
                     .balance(money.getAmount())
@@ -64,6 +69,7 @@ public class ApprovedRequest extends HttpServlet {
                     .floor(request.getFloor())
                     .bedId(bed.getBedId())
                     .checkInDate(request.getCreateDate())
+                    .checkOutDate(checkOutDate)
                     .roomName(bed.getRoomName())
                     .termId(request.getTerm())
                     .build();
@@ -72,8 +78,9 @@ public class ApprovedRequest extends HttpServlet {
             bedService.updateStatus(bed);
             Student student = studentService.getByRollId(request.getRollId());
             long balance = student.getBalance() - money.getAmount() * 4;
-            studentService.updateBalance(student.getRollId(), balance);
-
+            student.setBalance(balance);
+            studentService.updateBalance(student.getRollId(),balance);
+            studentService.updateStatus(student.getRollId(),"RESIDENT");
             Payment payment = Payment.builder()
                     .rollId(student.getRollId())
                     .term(domResident.getTermId())
@@ -102,4 +109,5 @@ public class ApprovedRequest extends HttpServlet {
         }
 
     }
+
 }

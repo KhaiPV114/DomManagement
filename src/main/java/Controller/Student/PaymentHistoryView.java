@@ -23,7 +23,7 @@ public class PaymentHistoryView extends HttpServlet {
     private final Common common = new Common();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Student student = common.getStudentSession(req);
+        Student student = common.getStudentSession(req, resp);
         if(Objects.isNull(student)){
             resp.sendRedirect("/views/error.jsp");
             return;

@@ -9,6 +9,7 @@
         <h1 class="big-title">My request</h1>
         <div class="">
             <a class="orange-btn" href="<%=request.getContextPath() %>/student/create-request">Create request</a>
+            <div class="text-danger">${message}</div>
             <h4 style="margin: 10px 0">Your processing CIM request: ${requests.size()}</h4>
             <c:if test="${requests.size() > 0}">
                 <div class="container-block">

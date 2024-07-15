@@ -1,4 +1,3 @@
-<%@ page import="Entity.GoogleUser" %>
 <%@ page import="Entity.Student" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,7 +15,7 @@
                 </svg>
             </div>
             <a href="/Student" class="logo">
-                <img src="../../assets/images/logo.png" alt="logo">
+                <img src="<%=request.getContextPath()%>/assets/images/logo.png" alt="logo">
             </a>
         </div>
         <div class="flex justify-end" style="margin: 10px 0">

@@ -38,4 +38,9 @@ public class StudentServiceImpl implements StudentService {
     public void updateBalance(String rollId, Long balance) {
         studentDao.updateBalance(rollId, balance);
     }
+
+    @Override
+    public void update(Student student) {
+        studentDao.update(student);
+    }
 }

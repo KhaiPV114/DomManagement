@@ -19,18 +19,23 @@ import Service.Impl.BedServiceImpl;
 import Service.Impl.DomResidentServiceImpl;
 import Service.Impl.DomServiceImpl;
 import Service.Impl.NewsServiceImpl;
+import Service.Impl.StudentServiceImpl;
 import Service.Impl.UserServiceImpl;
 import Service.NewsService;
+import Service.StudentService;
 import Service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Common {
@@ -38,6 +43,7 @@ public class Common {
     private final BedService bedService = new BedServiceImpl();
     private final UserService userService = new UserServiceImpl();
     private final NewsService newsService = new NewsServiceImpl();
+    private final StudentService studentService = new StudentServiceImpl();
     private final DomResidentService domResidentService = new DomResidentServiceImpl();
 
     public void setTitle(HttpServletRequest req, String title) {
@@ -167,8 +173,13 @@ public class Common {
         return sb.toString();
     }
 
-    public Student getStudentSession(HttpServletRequest req) {
-        return (Student) req.getSession().getAttribute("student");
+    public Student getStudentSession(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+       Student login = (Student) req.getSession().getAttribute("student");
+        if (Objects.isNull(login)) {
+            resp.sendRedirect(req.getContextPath() + "/views/error.jsp");
+            return null;
+        }
+        return studentService.getByRollId(login.getRollId());
     }
 
     public String getSemester() {
