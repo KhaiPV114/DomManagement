@@ -23,10 +23,12 @@ public class UpdateStudentStatus extends HttpServlet {
         String rollId = req.getParameter("rollId");
         System.out.println("RollId  + " + rollId);
         Student student = studentService.getByRollId(rollId);
-        if(student.getStudentStatus().equals("ACTIVE")){
+        if(student.getStudentStatus().toString().equals("ACTIVE")){
             studentService.updateStatus(rollId, "BANNED");
         }
-        else studentService.updateStatus(rollId, "ACTIVE");
-       resp.sendRedirect(req.getContextPath() + "/admin/student");
+        if(student.getStudentStatus().toString().equals("BANNED")){
+            studentService.updateStatus(rollId, "ACTIVE");
+        }
+        resp.sendRedirect(req.getContextPath() + "/admin/student");
     }
 }
