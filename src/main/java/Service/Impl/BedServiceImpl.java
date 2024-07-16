@@ -39,4 +39,9 @@ public class BedServiceImpl implements BedService {
     public void updateStatus(Bed bed) {
         bedDao.update(bed);
     }
+
+    @Override
+    public Bed getByStudent(String rollId) {
+        return bedDao.getBedByStudent(rollId);
+    }
 }

@@ -1,13 +1,16 @@
 package Listener;
 
+import Entity.Bed;
 import Entity.Student;
+import Enum.BedStatus;
+import Service.BedService;
+import Service.Impl.BedServiceImpl;
 import Service.Impl.StudentServiceImpl;
 import Service.StudentService;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
@@ -16,6 +19,7 @@ import java.util.TimerTask;
 @WebListener
 public class ScheduledTaskListener implements ServletContextListener {
     private final StudentService studentService = new StudentServiceImpl();
+    private final BedService bedService = new BedServiceImpl();
 
     private Timer timer;
 
@@ -26,10 +30,12 @@ public class ScheduledTaskListener implements ServletContextListener {
         TimerTask dailyTask = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Run Ngay");
                 List<Student> students = studentService.getByDate();
                 students.forEach(x -> {
                     studentService.updateStatus(x.getRollId(), "ACTIVE");
+                    Bed bed = bedService.getByStudent(x.getRollId());
+                    bed.setBedStatus(BedStatus.NOTAVAILABLE);
+                    bedService.updateStatus(bed);
                 });
             }
         };

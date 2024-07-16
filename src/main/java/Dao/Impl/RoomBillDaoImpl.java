@@ -34,6 +34,12 @@ public class RoomBillDaoImpl extends GenericDaoImpl<RoomBill> implements RoomBil
     }
 
     @Override
+    public List<RoomBill> getByRoomNameAndTermAndYear(String roomName, String term, int year) {
+        String sql = "SELECT * FROM RoomBill WHERE roomName = ? AND term = ? AND year = ?";
+        return query(sql, new RoomBillMap(), roomName, term, year);
+    }
+
+    @Override
     public List<RoomBill> getByTermAndYear(String term, int year) {
         String sql = "SELECT * FROM RoomBill WHERE term = ? AND year = ?";
         return query(sql, new RoomBillMap(), term, year);

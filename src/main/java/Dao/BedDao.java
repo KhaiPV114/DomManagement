@@ -17,4 +17,6 @@ public interface BedDao extends GenericDao<Bed> {
     List<Bed> getByRoomTypeAndGender(String type, String gender);
 
     Bed getRandomByFloorAndDomNameAndRoomType(int floor, String domName, String roomType);
+
+    Bed getBedByStudent(String rollId);
 }

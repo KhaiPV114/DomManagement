@@ -9,6 +9,7 @@ import java.util.List;
 
 public class RoomBillServiceImpl implements RoomBillService {
     private final RoomBillDao roomBillDao = new RoomBillDaoImpl();
+
     @Override
     public RoomBill getById(Integer id) {
         return roomBillDao.findById(id);
@@ -32,6 +33,11 @@ public class RoomBillServiceImpl implements RoomBillService {
     @Override
     public List<RoomBill> getAll() {
         return roomBillDao.findAll();
+    }
+
+    @Override
+    public List<RoomBill> getByRoomNameAndTermAndYear(String roomName, String term, int year) {
+        return roomBillDao.getByRoomNameAndTermAndYear(roomName, term, year);
     }
 
     @Override

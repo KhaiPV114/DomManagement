@@ -1,6 +1,7 @@
 package Dao;
 
 import Dao.GenericDao.GenericDao;
+import Dto.UsagePersonalDto;
 import Entity.Dom;
 import Entity.DomResident;
 
@@ -23,4 +24,8 @@ public interface DomResidentDao extends GenericDao<DomResident> {
     List<DomResident> getByPreMonthAndYear(int month, int year);
 
     void save(DomResident domResident);
+
+    int getUsagePersonal(String term, String roomName);
+
+    public List<DomResident> getByRollIdAndYear(String rollId, int year);
 }

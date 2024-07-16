@@ -13,6 +13,7 @@ public interface RoomBillDao extends GenericDao<RoomBill> {
     List<RoomBill> findAll();
 
     RoomBill getByRollNameAndTermAndYear(String rollName, String term, int year);
+    List<RoomBill> getByRoomNameAndTermAndYear(String roomName, String term, int year);
 
     List<RoomBill> getByTermAndYear(String term, int year);
 

@@ -2,10 +2,13 @@ package Dao.Impl;
 
 import Dao.DomResidentDao;
 import Dao.GenericDao.Impl.GenericDaoImpl;
+import Dto.UsagePersonalDto;
 import Entity.DomResident;
 import Mapper.DomResidentMap;
+import Mapper.UsagePersonalMap;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements DomResidentDao {
     @Override
@@ -75,5 +78,17 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
         String sql = "INSERT INTO DomResident(floor, rollId, roomName, termId, bedId, balance, checkInDate, checkOutDate) VALUES(?,?,?,?,?,?,?,?)";
         insert(sql, domResident.getFloor(), domResident.getRollId(), domResident.getRoomName(), domResident.getTermId(),
                 domResident.getBedId(), domResident.getBalance(), domResident.getCheckInDate(), domResident.getCheckOutDate());
+    }
+
+    @Override
+    public int getUsagePersonal(String term, String roomName) {
+        String sql = "SELECT termId, roomName , Count(*) AS numOfUser From DomResident WHERE termId = ? AND roomName = ? GROUP BY termId , roomName";
+        return query(sql, new UsagePersonalMap(), term, roomName).stream().findFirst().map(UsagePersonalDto::getNumOfUser).orElse(0);
+    }
+
+    @Override
+    public List<DomResident> getByRollIdAndYear(String rollId, int year) {
+        String sql = "SELECT * FROM DomResident WHERE rollId = ? AND YEAR(checkInDate) = ?";
+        return query(sql, new DomResidentMap(), rollId, year);
     }
 }

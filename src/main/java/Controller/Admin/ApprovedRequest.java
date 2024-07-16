@@ -115,28 +115,6 @@ public class ApprovedRequest extends HttpServlet {
                     .termId(request.getTerm())
                     .build();
             domResidentService.save(domResident);
-            bed.setBedStatus(BedStatus.valueOf(BedStatus.NOTAVAILABLE.name()));
-            bedService.updateStatus(bed);
-            LocalDate startDate;
-            LocalDate endDate;
-            if ("XUAN".equals(request.getTerm())) {
-                startDate = LocalDate.of(LocalDate.now().getYear(), 1, 1);
-                endDate = LocalDate.of(LocalDate.now().getYear(), 4, 30);
-            } else if ("HA".equals(request.getTerm())) {
-                startDate = LocalDate.of(LocalDate.now().getYear(), 5, 1);
-                endDate = LocalDate.of(LocalDate.now().getYear(), 8, 31);
-            } else {
-                startDate = LocalDate.of(LocalDate.now().getYear(), 9, 1);
-                endDate = LocalDate.of(LocalDate.now().getYear(), 12, 31);
-            }
-            long daysBetweenTerm = ChronoUnit.DAYS.between(startDate, endDate);
-            long amountOfDay = money.getAmount() * 4 / daysBetweenTerm;
-            long days = daysBetweenTerm - ChronoUnit.DAYS.between(startDate, LocalDate.now());
-            long amountBack = days * amountOfDay;
-            Student student = studentService.getByRollId(request.getRollId());
-            long balance = student.getBalance() + amountBack;
-            student.setBalance(balance);
-            studentService.updateBalance(student.getRollId(), balance);
             resp.sendRedirect(req.getContextPath() + "/admin/request");
         }
 

@@ -16,5 +16,6 @@
   <script src="<%=request.getContextPath()%>/assets/js/jquery-ui.js"></script>
   <script src="<%=request.getContextPath()%>/assets/js/jquery-ui.min.js"></script>
   <script src="<%=request.getContextPath()%>/assets/js/moza.js"></script>
+  <script src="<%=request.getContextPath()%>/assets/js/fontawesome.js"></script>
 </head>
 

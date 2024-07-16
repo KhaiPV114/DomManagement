@@ -44,7 +44,7 @@
             </div>
         </div>
         <div id="sidebarLinkFull" class="sidebar-link">
-            <a href="#" class="sidebar-linkItem flex items-center  <%= title.equals("Home") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
+            <a href="<%=request.getContextPath()%>/admin/dashboard" class="sidebar-linkItem flex items-center  <%= title.equals("Home") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">
                 <p>Dashboard</p>
             </a>
             <a href="<%=request.getContextPath()%>/admin/dorm" class="sidebar-linkItem flex items-center  <%= title.equals("bed") ? "sidebar-linkItem-active sidebar-icon-active" : "" %>">

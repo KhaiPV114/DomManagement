@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 @WebServlet("/admin/room-detail/ew-usage")
@@ -34,6 +35,7 @@ public class EWUsageView extends HttpServlet {
             year--;
         }
         List<ElectricWaterUsage> usages = ewUsageService.getByRoomNameAndYear(roomName, year);
+        usages.sort(Comparator.comparingInt(ElectricWaterUsage::getMonth));
         req.setAttribute("usages", usages);
         req.setAttribute("message", message);
         req.setAttribute("roomName", roomName);
@@ -47,8 +49,13 @@ public class EWUsageView extends HttpServlet {
         int month = Strings.isNullOrEmpty(req.getParameter("month")) ? LocalDate.now().getMonthValue() : Integer.valueOf(req.getParameter("month"));
         int year = Strings.isNullOrEmpty(req.getParameter("year")) ? LocalDate.now().getYear() : Integer.valueOf(req.getParameter("year"));
         long electricNumber = Strings.isNullOrEmpty(req.getParameter("electric")) ? 0 : Long.parseLong(req.getParameter("electric"));
-        long waterNumber = Strings.isNullOrEmpty(req.getParameter("electric")) ? 0 : Long.parseLong(req.getParameter("electric"));
+        long waterNumber = Strings.isNullOrEmpty(req.getParameter("water")) ? 0 : Long.parseLong(req.getParameter("water"));
         String roomName = req.getParameter("roomName");
+
+        if(month >= LocalDate.now().getMonthValue() && year >= LocalDate.now().getYear()){
+            resp.sendRedirect(req.getContextPath() + "/admin/room-detail/ew-usage?message=Don't enter month more than month now!&roomName=" + roomName);
+            return;
+        }
 
         if (ewUsageService.checkBillByRoomNameAndMonthAndYear(roomName, month, LocalDate.now().getYear())) {
             resp.sendRedirect(req.getContextPath() + "/admin/room-detail/ew-usage?message=Existed already!&roomName=" + roomName);
