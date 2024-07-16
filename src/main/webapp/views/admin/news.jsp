@@ -31,10 +31,14 @@
                                 <td>${news.author}</td>
                                 <td>
                         <div class="flex justify-center">
-                            <div class="btn-action" style="width: fit-content;">
-                                <form action="<%=request.getContextPath()%>/admin/news/detail" method="get">
+                            <div class="btn-action d-flex justify-content-center" style="width: fit-content;">
+                                <form class="col-lg-6" action="<%=request.getContextPath()%>/admin/news/detail" method="get">
                                     <input type="hidden" name="id" value="${news.newsId}">
-                                    <button>Details</button>
+                                    <button class="btn-primary">Details</button>
+                                </form>
+                                <form class="col-lg-6" action="<%=request.getContextPath()%>/admin/news/delete" method="get">
+                                    <input type="hidden" name="id" value="${news.newsId}">
+                                    <button class="btn-danger">Delete</button>
                                 </form>
                             </div>
                         </div>

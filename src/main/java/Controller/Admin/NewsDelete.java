@@ -11,20 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/news/update")
-public class NewsUpdate extends HttpServlet {
+@WebServlet("/admin/news/delete")
+public class NewsDelete extends HttpServlet {
 
     private static final String VIEW_PATH =  "/admin/news";
     private static final NewsService newsService = new NewsServiceImpl();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        String title = req.getParameter("newsTitle");
-        String detail = req.getParameter("newsDetail");
-        News newsUpdate = News.builder().newsTitle(title).newsDetail(detail).newsId(id).build();
-        System.out.printf("NEWS UPDATE " + newsUpdate);
-        newsService.update(newsUpdate);
-        resp.sendRedirect(req.getContextPath() +  VIEW_PATH);
+        News newsDelete = News.builder().newsId(id).build();
+        System.out.println("NEW DLEETE " + newsDelete);
+        newsService.delete(newsDelete);
+        resp.sendRedirect(req.getContextPath() + VIEW_PATH);
     }
 }
