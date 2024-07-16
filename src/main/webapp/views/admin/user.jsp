@@ -19,7 +19,6 @@
                         <th>Gmail</th>
                         <th>Gender</th>
                         <th>Role</th>
-                        <th>Status</th>
                         <th></th>
                     </tr>
                     </thead>

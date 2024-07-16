@@ -7,7 +7,7 @@
 <div id="content-body" class="content-body pl-328">
   <div class="container-fluid my-container">
     <h1 class="big-title">Create request</h1>
-    <form action="<%=request.getContextPath()%>/admin/news/update" method="post" style="width: 50%;">
+    <form onsubmit="return confirmSubmit(this);" action="<%=request.getContextPath()%>/admin/news/update" method="post" style="width: 50%;">
       <h5 class="text-danger">${message}</h5>
       <input type="hidden" value="${news.newsId}" name="id">
       <div class="">
@@ -23,11 +23,9 @@
             <textarea class="SBB-l-content" name="newsDetail">${news.newsDetail}</textarea>
           </div>
         </div>
-        <div style=" margin-top: 24px;">
+        <div class="d-flex justify-end" style=" margin-top: 24px;">
           <div class="flex justify-end">
-            <input type="submit" value="Update" class="orange-btn">
-          </div>
-          <div class="flex justify-end">
+            <input type="submit" value="Update" class="orange-btn pr-1">
             <a class="orange-btn">Back</a>
           </div>
         </div>
@@ -89,6 +87,9 @@
   function closePopup() {
     var popup = document.getElementById("myPopup");
     popup.style.display = "none";
+  }
+  function confirmSubmit(form) {
+    return confirm("Are you sure you want to change the status of this student?");
   }
 </script>
 </body>

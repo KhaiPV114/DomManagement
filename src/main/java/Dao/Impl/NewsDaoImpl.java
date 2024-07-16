@@ -39,4 +39,10 @@ public class NewsDaoImpl extends GenericDaoImpl<News> implements NewsDao {
         String sql = "INSERT INTO News (newsTitle, newsDetail, createdTime, authorId) VALUES (?, ?, ?, ?)";
         insert(sql, news.getNewsTitle(), news.getNewsDetail(), news.getCreatedTime(), news.getAuthor());
     }
+
+    @Override
+    public void delete(News news) {
+        String sql = "DELETE FROM News WHERE newsId = ?";
+        delete(sql, news.getNewsId());
+    }
 }
