@@ -3,6 +3,7 @@ package Controller.Student;
 import Controller.General.Common;
 import Dto.EWUsageDto;
 import Dto.RoomBillDto;
+import Dto.UsagePersonalDto;
 import Entity.*;
 import Enum.Semester;
 import Service.DomResidentService;
@@ -22,10 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @WebServlet("/student/EWBedUsages")
@@ -54,24 +52,40 @@ public class ElectricWaterUsageView extends HttpServlet {
             term = Semester.HA.name();
         }
 
+        List<DomResident> domResident = domResidentService.getByRollIdAndYear(student.getRollId(), LocalDate.now().getYear());
+        Map<String, String> domResidentMap = domResident.stream().collect(Collectors.toMap(DomResident::getTermId, DomResident::getRoomName));
+
+        List<EWUsageDto> ewUsages = new ArrayList<>();
+        domResidentMap.forEach((key, value) -> {
+            int numOfUser = domResidentService.getUsagePersonal(key, value);
+            List<ElectricWaterUsage> usages = ewUsageService.getByRoomNameAndYearAndTerm(value, LocalDate.now().getYear(), key);
+            usages.forEach(u -> {
+                EWUsageDto ew = EWUsageDto.builder()
+                        .id(u.getId())
+                        .electricNumber(u.getElectricNumber() / numOfUser)
+                        .waterNumber(u.getWaterNumber() / numOfUser)
+                        .month(u.getMonth())
+                        .year(LocalDate.now().getYear())
+                        .build();
+                ewUsages.add(ew);
+            });
+        });
+        ewUsages.sort(Comparator.comparingInt(EWUsageDto::getMonth));
+        req.setAttribute("ewUsages",ewUsages);
+
         RoomBill roomBill = roomBillService.getByRollNameAndTermAndYear(student.getRollId(), term, year);
-        if(Objects.isNull(roomBill)){
+        if (Objects.isNull(roomBill)) {
             req.setAttribute("roomBill", null);
             req.getRequestDispatcher("/views/student/ew-bed-usages.jsp").forward(req, resp);
             return;
         }
-
-        List<ElectricWaterUsage> usages = ewUsageService.getByRoomNameAndYearAndTerm(roomBill.getRoomName(),year, roomBill.getTerm());
-
+        List<ElectricWaterUsage> usages = ewUsageService.getByRoomNameAndYearAndTerm(roomBill.getRoomName(), year, roomBill.getTerm());
         int studentInRoom = domResidentService.countUserInRoomAndTermAndYear(roomBill.getRoomName(), term, year);
-
-        List<Money> monies = moneyService.getByListMoneyType(List.of("ELECTRIC","WATER"));
-
+        List<Money> monies = moneyService.getByListMoneyType(List.of("ELECTRIC", "WATER"));
         Map<String, Long> mapMoney = monies.stream().collect(Collectors.toMap(Money::getMoneyType, Money::getAmount));
-
         List<EWUsageDto> ewUsageDtos = usages.stream().map(x -> {
             long electricNumber = x.getElectricNumber() / studentInRoom;
-            long waterNumber = x.getWaterNumber() /studentInRoom;
+            long waterNumber = x.getWaterNumber() / studentInRoom;
             long electricMoney = electricNumber * mapMoney.get("ELECTRIC");
             long waterMoney = waterNumber * mapMoney.get("WATER");
             return EWUsageDto.builder()

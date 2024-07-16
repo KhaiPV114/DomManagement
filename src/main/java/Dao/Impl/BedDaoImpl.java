@@ -46,4 +46,10 @@ public class BedDaoImpl extends GenericDaoImpl<Bed> implements BedDao {
         String sql = "SELECT * FROM Bed b JOIN Room r ON r.roomName = b.roomName JOIN Dom d ON d.domId = r.domId WHERE b.floor = ? AND b.bedStatus = 'NOTAVAILABLE' AND d.domName = ? AND r.roomType = ?";
         return query(sql, new BedMap(), floor, domName, roomType).stream().findFirst().orElse(null);
     }
+
+    @Override
+    public Bed getBedByStudent(String rollId) {
+        String sql = "SELECT b.* FROM Bed b JOIN DomResident d ON d.bedId = b.bedId JOIN Student s ON d.rollId = s.rollId WHERE s.rollId = ? AND CAST(d.checkOutDate AS DATE) = GETDATE()";
+        return query(sql, new BedMap(), rollId).stream().findFirst().orElse(null);
+    }
 }

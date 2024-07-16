@@ -81,12 +81,9 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
     }
 
     @Override
-    public List<UsagePersonalDto> getUsagePersonal(int month, List<String> roomNames) {
-        StringBuilder roomName = new StringBuilder("'");
-        roomName.append(roomNames.stream().collect(Collectors.joining("','")));
-        roomName.append("'");
-        String sql = "SELECT termId , Count(*) AS numOfUser From DomResident WHERE MONTH(checkInDate) < ? AND roomName IN (?) GROUP BY termId";
-        return query(sql, new UsagePersonalMap(), month, roomName);
+    public int getUsagePersonal(String term, String roomName) {
+        String sql = "SELECT termId, roomName , Count(*) AS numOfUser From DomResident WHERE termId = ? AND roomName = ? GROUP BY termId , roomName";
+        return query(sql, new UsagePersonalMap(), term, roomName).stream().findFirst().map(UsagePersonalDto::getNumOfUser).orElse(0);
     }
 
     @Override

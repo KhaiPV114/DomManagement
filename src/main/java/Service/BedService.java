@@ -16,4 +16,6 @@ public interface BedService {
     Bed randomBedByFloorAndDomNameAndRoomType(int floor, String domName, String roomType);
 
     void updateStatus(Bed bed);
+
+    Bed getByStudent(String rollId);
 }

@@ -27,8 +27,6 @@ public class HomeView extends HttpServlet {
     private final Common common = new Common();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Calendar now = Calendar.getInstance();
-        System.out.println(now.toString());
         List<NewsDto> newsDtoList = common.getListNewsDto();
         req.setAttribute("news", newsDtoList);
         common.setTitle(req, "Home");

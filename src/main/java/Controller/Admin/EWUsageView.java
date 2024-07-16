@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 @WebServlet("/admin/room-detail/ew-usage")
@@ -34,6 +35,7 @@ public class EWUsageView extends HttpServlet {
             year--;
         }
         List<ElectricWaterUsage> usages = ewUsageService.getByRoomNameAndYear(roomName, year);
+        usages.sort(Comparator.comparingInt(ElectricWaterUsage::getMonth));
         req.setAttribute("usages", usages);
         req.setAttribute("message", message);
         req.setAttribute("roomName", roomName);

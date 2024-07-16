@@ -22,7 +22,7 @@ public interface DomResidentService {
 
     void save(DomResident domResident);
 
-    List<UsagePersonalDto> getUsagePersonal(int month, List<String> roomName);
+    int getUsagePersonal(String term, String roomName);
 
     public List<DomResident> getByRollIdAndYear(String rollId, int year);
  }

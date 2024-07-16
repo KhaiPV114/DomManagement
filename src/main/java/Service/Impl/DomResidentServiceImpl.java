@@ -57,8 +57,8 @@ public class DomResidentServiceImpl implements DomResidentService {
     }
 
     @Override
-    public List<UsagePersonalDto> getUsagePersonal(int month, List<String> roomName) {
-        return domResidentDao.getUsagePersonal(month, roomName);
+    public int getUsagePersonal(String term, String roomName) {
+        return domResidentDao.getUsagePersonal(term, roomName);
     }
 
     public List<DomResident> getByRollIdAndYear(String rollId, int year){
