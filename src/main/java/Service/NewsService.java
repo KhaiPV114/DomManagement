@@ -11,4 +11,6 @@ public interface NewsService {
     void insert(News news);
 
     void update(News news);
+
+    void delete(News news);
 }

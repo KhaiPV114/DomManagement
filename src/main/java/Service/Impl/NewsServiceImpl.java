@@ -29,5 +29,8 @@ public class NewsServiceImpl implements NewsService {
         newsDao.update(news);
     }
 
-
+    @Override
+    public void delete(News news) {
+        newsDao.delete(news);
+    }
 }
