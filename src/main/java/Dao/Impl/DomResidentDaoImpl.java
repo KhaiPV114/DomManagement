@@ -5,6 +5,7 @@ import Dao.GenericDao.Impl.GenericDaoImpl;
 import Dto.UsagePersonalDto;
 import Entity.DomResident;
 import Mapper.DomResidentMap;
+import Mapper.StudentMap;
 import Mapper.UsagePersonalMap;
 
 import java.util.List;
@@ -34,6 +35,14 @@ public class DomResidentDaoImpl extends GenericDaoImpl<DomResident> implements D
     public List<DomResident> findAll() {
         String sql = "SELECT * FROM DomResident";
         return query(sql, new DomResidentMap());
+    }
+
+    @Override
+    public List<DomResident> findAll(String param, int offset, int limit) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM DomResident Where rollId LIKE '%");
+        sql.append(param).append("%' OR roomName LIKE '%").append(param).append("%' ORDER BY rollId ");
+        sql.append(" OFFSET ").append(offset).append(" ROWS FETCH NEXT ").append(limit).append(" ROWS ONLY");
+        return query(sql.toString(), new DomResidentMap());
     }
 
     @Override

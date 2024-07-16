@@ -3,6 +3,7 @@ package Dao.Impl;
 import Dao.GenericDao.Impl.GenericDaoImpl;
 import Dao.RoomBillDao;
 import Entity.RoomBill;
+import Mapper.RequestMap;
 import Mapper.RoomBillMap;
 
 import java.util.List;
@@ -25,6 +26,15 @@ public class RoomBillDaoImpl extends GenericDaoImpl<RoomBill> implements RoomBil
     public List<RoomBill> findAll() {
         String sql = "SELECT * FROM RoomBill";
         return query(sql, new RoomBillMap());
+    }
+
+    @Override
+    public List<RoomBill> findAll(String param, int offset, int limit) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM RoomBill Where rollName LIKE '%");
+        sql.append(param).append("%' OR roomName LIKE '%").append(param)
+                .append("%' OR term LIKE '%").append(param).append("%' ORDER BY dayCreated desc ")
+                .append(" OFFSET ").append(offset).append(" ROWS FETCH NEXT ").append(limit).append(" ROWS ONLY");
+        return query(sql.toString(), new RoomBillMap());
     }
 
     @Override

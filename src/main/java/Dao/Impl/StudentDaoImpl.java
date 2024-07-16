@@ -30,6 +30,14 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements StudentDa
     }
 
     @Override
+    public List<Student> findAll(String param, int offset, int limit) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM Student Where rollId LIKE '%");
+        sql.append(param).append("%' OR fullName LIKE '%").append(param).append("%' ORDER BY rollId ");
+        sql.append(" OFFSET ").append(offset).append(" ROWS FETCH NEXT ").append(limit).append(" ROWS ONLY");
+        return query(sql.toString(), new StudentMap());
+    }
+
+    @Override
     public Student findByGmail(String gmail) {
         String sql = "SELECT * FROM Student WHERE gmail = ?";
         return query(sql, new StudentMap(), gmail).stream().findFirst().orElse(null);
@@ -38,7 +46,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student> implements StudentDa
     @Override
     public List<StudentBedDto> getByRoomNameAndSemesterAndYear(String roomName, String semester, int year) {
         String sql = "SELECT s.rollId, s.fullName, s.gender, s.gmail, d.bedId FROM Student s JOIN DomResident d ON s.rollId = d.rollId WHERE d.roomName = ? AND d.termId = ? AND year(checkInDate) = ?";
-        return query(sql, new StudentBedDtoMap(), roomName, semester, year );
+        return query(sql, new StudentBedDtoMap(), roomName, semester, year);
     }
 
     @Override

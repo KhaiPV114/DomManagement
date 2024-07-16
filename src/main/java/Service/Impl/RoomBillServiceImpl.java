@@ -36,6 +36,11 @@ public class RoomBillServiceImpl implements RoomBillService {
     }
 
     @Override
+    public List<RoomBill> getAll(String param, int offset, int limit) {
+        return roomBillDao.findAll(param, offset, limit);
+    }
+
+    @Override
     public List<RoomBill> getByRoomNameAndTermAndYear(String roomName, String term, int year) {
         return roomBillDao.getByRoomNameAndTermAndYear(roomName, term, year);
     }

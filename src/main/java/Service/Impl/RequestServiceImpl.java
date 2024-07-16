@@ -16,6 +16,11 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    public List<Request> getAll(String param, int offset, int limit) {
+        return residentRequestDao.findAll(param, offset, limit);
+    }
+
+    @Override
     public Request getById(Integer id) {
         return residentRequestDao.findById(id);
     }

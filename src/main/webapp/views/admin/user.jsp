@@ -29,11 +29,10 @@
                             <td>${user.gmail}</td>
                             <td>${user.gender}</td>
                             <td>${user.role}</td>
-                            <td>${user.status}</td>
                             <td>
                                 <div class="flex justify-center">
                                     <div class="btn-action" style="width: fit-content;">
-                                        <button onclick="if(confirm('Are you sure you want to delete?')) submitDelete(${user.userId});" class="btn-danger">Delete</button>
+                                        <a onclick="if(confirm('Are you sure you want to delete?')) submitDelete(${user.userId});" class="btn-danger">Delete</a>
                                     </div>
                                 </div>
                         </tr>

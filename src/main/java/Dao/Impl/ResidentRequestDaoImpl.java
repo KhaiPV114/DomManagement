@@ -7,6 +7,7 @@ package Dao.Impl;
 import Dao.GenericDao.Impl.GenericDaoImpl;
 import Dao.ResidentRequestDao;
 import Entity.Request;
+import Mapper.DomResidentMap;
 import Mapper.RequestMap;
 
 import java.util.List;
@@ -35,6 +36,14 @@ public class ResidentRequestDaoImpl extends GenericDaoImpl<Request> implements R
     public List<Request> findAll() {
         String sql = "SELECT * FROM Request ORDER BY requestId desc";
         return query(sql, new RequestMap());
+    }
+
+    @Override
+    public List<Request> findAll(String param, int offset, int limit) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM Request Where rollId LIKE '%");
+        sql.append(param).append("%' OR roomName LIKE '%").append(param).append("%' ORDER BY createDate desc ");
+        sql.append(" OFFSET ").append(offset).append(" ROWS FETCH NEXT ").append(limit).append(" ROWS ONLY");
+        return query(sql.toString(), new RequestMap());
     }
 
     @Override

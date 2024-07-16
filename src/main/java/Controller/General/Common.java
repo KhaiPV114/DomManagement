@@ -47,34 +47,35 @@ public class Common {
     private final StudentService studentService = new StudentServiceImpl();
     private final DomResidentService domResidentService = new DomResidentServiceImpl();
 
+
     public void setTitle(HttpServletRequest req, String title) {
         HttpSession session = req.getSession();
         session.setAttribute("title", title);
     }
 
-    public List<DomResidentDto> getDomResidentDto() {
-        List<DomResident> domResidentList = domResidentService.getAll();
+//    public List<DomResidentDto> getDomResidentDto() {
+//        List<DomResident> domResidentList = domResidentService.getAll();
+//
+//
+//        List<DomResidentDto> domResidentDtoList = domResidentList.stream().map(x -> {
+//                    int year = Integer.valueOf(String.valueOf(x.getCheckInDate()).substring(0, 4));
+//                    return DomResidentDto.builder()
+//                            .studentId(x.getRollId())
+//                            .semester(x.getTermId())
+//                            .checkInDate(String.valueOf(x.getCheckInDate()))
+//                            .checkOutDate(String.valueOf(x.getCheckOutDate()))
+//                            .price(x.getBalance())
+//                            .bedInformation(x.getRoomName() + " - " + x.getBedId())
+//                            .year(year)
+//                            .build();
+//                }
+//        ).toList();
 
+//        return domResidentDtoList;
+//    }
 
-        List<DomResidentDto> domResidentDtoList = domResidentList.stream().map(x -> {
-                    int year = Integer.valueOf(String.valueOf(x.getCheckInDate()).substring(0, 4));
-                    return DomResidentDto.builder()
-                            .studentId(x.getRollId())
-                            .semester(x.getTermId())
-                            .checkInDate(String.valueOf(x.getCheckInDate()))
-                            .checkOutDate(String.valueOf(x.getCheckOutDate()))
-                            .price(x.getBalance())
-                            .bedInformation(x.getRoomName() + " - " + x.getBedId())
-                            .year(year)
-                            .build();
-                }
-        ).toList();
-
-        return domResidentDtoList;
-    }
-
-    public List<NewsDto> getListNewsDto() {
-        List<News> newsList = newsService.getAll(0, 15);
+    public List<NewsDto> getListNewsDto(int page) {
+        List<News> newsList = newsService.getAll(page - 1, 10);
         Map<Integer, Users> usersList = userService.getALl().stream().collect(Collectors.toMap(Users::getUserId, Function.identity()));
 
         return newsList.stream().map(n -> NewsDto.builder()

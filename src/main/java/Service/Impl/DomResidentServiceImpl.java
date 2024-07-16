@@ -52,6 +52,11 @@ public class DomResidentServiceImpl implements DomResidentService {
     }
 
     @Override
+    public List<DomResident> getAll(String param, int offset, int limit) {
+        return domResidentDao.findAll(param, offset, limit);
+    }
+
+    @Override
     public void save(DomResident domResident) {
         domResidentDao.save(domResident);
     }
@@ -61,7 +66,7 @@ public class DomResidentServiceImpl implements DomResidentService {
         return domResidentDao.getUsagePersonal(term, roomName);
     }
 
-    public List<DomResident> getByRollIdAndYear(String rollId, int year){
+    public List<DomResident> getByRollIdAndYear(String rollId, int year) {
         return domResidentDao.getByRollIdAndYear(rollId, year);
     }
 
