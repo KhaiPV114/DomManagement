@@ -50,6 +50,11 @@ public class EWUsageView extends HttpServlet {
         long waterNumber = Strings.isNullOrEmpty(req.getParameter("water")) ? 0 : Long.parseLong(req.getParameter("water"));
         String roomName = req.getParameter("roomName");
 
+        if(month >= LocalDate.now().getMonthValue() && year >= LocalDate.now().getYear()){
+            resp.sendRedirect(req.getContextPath() + "/admin/room-detail/ew-usage?message=Don't enter month more than month now!&roomName=" + roomName);
+            return;
+        }
+
         if (ewUsageService.checkBillByRoomNameAndMonthAndYear(roomName, month, LocalDate.now().getYear())) {
             resp.sendRedirect(req.getContextPath() + "/admin/room-detail/ew-usage?message=Existed already!&roomName=" + roomName);
             return;

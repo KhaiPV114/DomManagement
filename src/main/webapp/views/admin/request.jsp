@@ -31,9 +31,13 @@
                             <td>${request.domName}</td>
                             <td>${request.floor}</td>
                             <td>${request.term}</td>
-                            <td>${request.requestDetail}</td>
+                            <td>
+                                <a onclick="handleShowModal(${request.requestId})" class="btn-action"> VIEW
+                                </a>
+                                <p style="display: none" id="content-${request.requestId}">${request.requestDetail}</p>
+                            </td>
                             <td>${request.requestStatus}</td>
-                            <td>${request.createDate}</td>
+                            <td>${request.createDate.toString().substring(0,19)}</td>
                             <c:if test="${request.requestStatus != 'WAITING'}">
                                 <td></td>
                             </c:if>
@@ -55,49 +59,134 @@
                     </tbody>
                 </table>
             </div>
-            <div class="flex justify-center">
-                <div class="pagination-container">
-                    <ul class="pagination">
-                        <li class="disabled PagedList-skipToFirst"><a>««</a></li>
-                        <li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li>
-                        <li class="active"><a>1</a></li>
-                        <li><a href="/Student/News?page=2">2</a></li>
-                        <li><a href="/Student/News?page=3">3</a></li>
-                        <li class="PagedList-skipToNext"><a href="/Student/News?page=2" rel="next">»</a></li>
-                        <li class="PagedList-skipToLast"><a href="/Student/News?page=3">»»</a></li>
-                    </ul>
+            <%--            <div class="flex justify-center">--%>
+            <%--                <div class="pagination-container">--%>
+            <%--                    <ul class="pagination">--%>
+            <%--                        <li class="disabled PagedList-skipToFirst"><a>««</a></li>--%>
+            <%--                        <li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li>--%>
+            <%--                        <li class="active"><a>1</a></li>--%>
+            <%--                        <li><a href="/Student/News?page=2">2</a></li>--%>
+            <%--                        <li><a href="/Student/News?page=3">3</a></li>--%>
+            <%--                        <li class="PagedList-skipToNext"><a href="/Student/News?page=2" rel="next">»</a></li>--%>
+            <%--                        <li class="PagedList-skipToLast"><a href="/Student/News?page=3">»»</a></li>--%>
+            <%--                    </ul>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
+            <%--        </div>--%>
+            <style>
+                .ew-modal-container {
+                    position: fixed;
+                    z-index: 2000;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(30, 30, 30, 0.8);
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .modal-ew {
+                    width: 50%;
+                    padding: 60px 90px;
+                    background: #ffffff;
+                    border-radius: 13px;
+                }
+
+                .modal-title {
+                    font-weight: bold;
+                    font-size: 36px;
+                    line-height: 120%;
+                    text-align: center;
+                    color: var(--blue-color);
+                    margin-top: 16px;
+                    margin-bottom: 24px;
+                }
+
+                .close-Modal {
+                    position: absolute;
+                    top: -20px;
+                    right: -20px;
+                    background: #0803a2;
+                    box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.09);
+                    border-radius: 100%;
+                    width: 40px;
+                    height: 40px;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            </style>
+            <div id="content-modal" class="ew-modal-container hidden">
+                <div class="modal-ew relative">
+                    <div class="close-Modal" onclick="handleCloseModal()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path
+                                    d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                                    fill="white"></path>
+                        </svg>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        <span id="title-request"></span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<script >
-    function submitApprove(id) {
-        $.ajax({
-            type: 'get',
-            url: '<%=request.getContextPath()%>/admin/request/approved?id=' + id,
-            data:{
-                id: id
-            },
-            success: function(response) {
-                window.location.href = '<%=request.getContextPath()%>/admin/request';
-            },
-        });
-    }
-    function submitReject(id) {
-        $.ajax({
-            type: 'get',
-            url: '<%=request.getContextPath()%>/admin/request/reject?id=' + id,
-            data:{
-                id: id
-            },
-            success: function(response) {
-                window.location.href =  '<%=request.getContextPath()%>' + '/admin/request';
-            },
-        });
-    }
-</script>
-<%@ include file="../footer.jsp" %>
+    <script>
+        function submitApprove(id) {
+            $.ajax({
+                type: 'get',
+                url: '<%=request.getContextPath()%>/admin/request/approved?id=' + id,
+                data: {
+                    id: id
+                },
+                success: function (response) {
+                    window.location.href = '<%=request.getContextPath()%>/admin/request';
+                },
+            });
+        }
+
+        function submitReject(id) {
+            $.ajax({
+                type: 'get',
+                url: '<%=request.getContextPath()%>/admin/request/reject?id=' + id,
+                data: {
+                    id: id
+                },
+                success: function (response) {
+                    window.location.href = '<%=request.getContextPath()%>' + '/admin/request';
+                },
+            });
+        }
+
+        const EWModalTag = document.getElementById("content-modal");
+        const button = document.getElementById("btn-view");
+        const titleRequest = $("#title-request");
+
+
+        // Thêm sự kiện click
+        // button.addEventListener("click", function () {
+        //     handleShowModal();
+        // });
+
+        const handleShowModal = (id) => {
+            EWModalTag.style.display = "flex";
+            if (EWModalTag.classList.contains("hidden")) {
+                EWModalTag.classList.remove("hidden")
+            }
+            const content = $("#content-" + id);
+            const text = content.text();
+            titleRequest.empty();
+            titleRequest.append(text);
+        };
+
+        const handleCloseModal = () => {
+            EWModalTag.style.display = "none";
+        };
+    </script>
+    <%@ include file="../footer.jsp" %>
 </body>
 </html>

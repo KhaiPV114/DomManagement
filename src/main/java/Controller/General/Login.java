@@ -34,7 +34,7 @@ public class Login extends HttpServlet {
 
         req.getSession().setAttribute("admin", users);
         req.getSession().setAttribute("title", "Home");
-        resp.sendRedirect(req.getContextPath() + "/views/admin/dashboard.jsp");
+        resp.sendRedirect(req.getContextPath() + "/admin/dashboard");
     }
 
 }
