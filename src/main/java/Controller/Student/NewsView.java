@@ -30,18 +30,13 @@ public class NewsView extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int page = Strings.isNullOrEmpty(req.getParameter("page")) ? 0 : Integer.valueOf(req.getParameter("offset"));
-        List<News> news = newsService.getAll(page * 10, 10);
-        Map<Integer, Users> usersList = userService.getALl().stream().collect(Collectors.toMap(Users::getUserId, Function.identity()));
-
-        List<NewsDto> newsDtoList = news.stream().map(n -> NewsDto.builder()
-                .newsId(n.getNewsId())
-                .newsTitle(n.getNewsTitle())
-                .newsDetail(n.getNewsDetail())
-                .createdTime(n.getCreatedTime())
-                .author(usersList.get(n.getAuthor()).getFullName())
-                .authorId(n.getAuthor()).build()).collect(Collectors.toList());
+        int page = Strings.isNullOrEmpty(req.getParameter("page")) ? 1 : Integer.valueOf(req.getParameter("page"));
+        List<NewsDto> newsDtoList = common.getListNewsDto(page);
+        long total = newsService.getAll().stream().count();
         req.setAttribute("news", newsDtoList);
+        req.setAttribute("page", page - 1);
+        req.setAttribute("totalPage", (int) Math.ceil(total / 10));
+        req.setAttribute("newsDtoList", newsDtoList);
         common.setTitle(req, "News");
         req.getRequestDispatcher("/views/student/news.jsp").forward(req, resp);
     }

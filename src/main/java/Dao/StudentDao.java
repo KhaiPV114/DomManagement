@@ -13,6 +13,7 @@ public interface StudentDao extends GenericDao<Student> {
     void update(Student Student);
 
     List<Student> findAll();
+    List<Student> findAll(String param, int offset, int limit);
 
     Student findByGmail(String gmail);
 

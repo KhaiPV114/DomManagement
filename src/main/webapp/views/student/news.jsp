@@ -38,14 +38,26 @@
                     </a>
                 </c:forEach>
             </div>
-<%--            <div class="flex justify-center">--%>
-<%--                <div class="pagination-container">--%>
-<%--                    <ul class="pagination">--%>
-<%--                        <li class=" ${page == 0 ? disabled } disabled PagedList-skipToFirst"><a>««</a></li>--%>
-<%--                        <li class="PagedList-skipToLast"><a href="/Student/News?page=3">»»</a></li>--%>
-<%--                    </ul>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <c:if test="${totalPage > 1}">
+                <div class="flex justify-center">
+                    <div class="pagination-container">
+                        <ul class="pagination">
+                            <li class="${page == 1  ? 'disabled' : ''} PagedList-skipToFirst"><a
+                                    href="<%=request.getContextPath()%>/student/news?page=1">««</a>
+                            </li>
+                            <c:forEach begin="1" end="${totalPage}" varStatus="i">
+                                <li>
+                                    <a class="${page == i.count ? 'active' : ''}"
+                                       href="<%=request.getContextPath()%>/student/news?page=${i.count}">${i.count}</a>
+                                </li>
+                            </c:forEach>
+                            <li class="${page == totalPage  ? 'disabled' : ''} PagedList-skipToLast"><a
+                                    href="<%=request.getContextPath()%>/student/news?page=${totalPage}">»»</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </c:if>
         </div>
     </div>
 </div>

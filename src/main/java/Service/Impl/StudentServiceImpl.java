@@ -26,6 +26,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<Student> getAll(String param, int offset, int limit) {
+        return studentDao.findAll(param, offset, limit);
+    }
+
+    @Override
     public List<StudentBedDto> getByRoomNameAndSemesterAndYear(String roomName, String semester, int year) {
         return studentDao.getByRoomNameAndSemesterAndYear(roomName, semester, year);
     }

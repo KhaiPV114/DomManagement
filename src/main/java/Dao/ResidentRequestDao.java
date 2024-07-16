@@ -20,6 +20,7 @@ public interface ResidentRequestDao  extends GenericDao<Request>{
     void update (Request request);
 
     List<Request> findAll();
+    List<Request> findAll(String param, int offset, int limit);
 
     List<Request> getByRollId(String rollId);
 

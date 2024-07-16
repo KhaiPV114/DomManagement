@@ -11,6 +11,7 @@ public interface RoomBillDao extends GenericDao<RoomBill> {
     void update(RoomBill RoomBill);
 
     List<RoomBill> findAll();
+    List<RoomBill> findAll(String param, int offset, int limit);
 
     RoomBill getByRollNameAndTermAndYear(String rollName, String term, int year);
     List<RoomBill> getByRoomNameAndTermAndYear(String roomName, String term, int year);

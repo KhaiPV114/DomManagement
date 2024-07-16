@@ -15,6 +15,7 @@ public interface RoomBillService {
     void saveAll(List<RoomBill> roomBills);
 
     List<RoomBill> getAll();
+    List<RoomBill> getAll(String param, int offset, int limit);
     List<RoomBill> getByRoomNameAndTermAndYear(String roomName, String term, int year);
 
     void updateStatus(Integer id, String status);

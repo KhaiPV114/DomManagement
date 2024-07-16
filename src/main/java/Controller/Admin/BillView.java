@@ -35,9 +35,12 @@ public class BillView extends HttpServlet {
 
     private final RoomBillService roomBillService = new RoomBillServiceImpl();
     private final Common common = new Common();
+    private final int LIMIT = 10;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String keySearch = Strings.isNullOrEmpty(req.getParameter("keySearch")) ? "" : req.getParameter("keySearch");
+        int page = Strings.isNullOrEmpty(req.getParameter("page")) ? 1 : Integer.valueOf(req.getParameter("page"));
         LocalDate date = LocalDate.now().minusMonths(1);
         int month = date.getMonthValue();
         int year = date.getYear();
@@ -65,7 +68,8 @@ public class BillView extends HttpServlet {
             req.setAttribute("result", result);
         }
         List<RoomBill> roomBills = roomBillService.getAll();
-        List<RoomBillAdminDto> roomBillAdminDtos = roomBills.stream().map(x -> RoomBillAdminDto.builder()
+        List<RoomBill> roomBillList = roomBillService.getAll(keySearch, page - 1, LIMIT);
+        List<RoomBillAdminDto> roomBillAdminDtos = roomBillList.stream().map(x -> RoomBillAdminDto.builder()
                 .billId(x.getBillId())
                 .billStatus(x.getBillStatus())
                 .rollName(x.getRollName())
@@ -82,6 +86,9 @@ public class BillView extends HttpServlet {
                 .build()).toList();
         req.setAttribute("roomBills", roomBillAdminDtos);
         req.setAttribute("term", term);
+        req.setAttribute("page", page - 1);
+        req.setAttribute("keySearch", keySearch);
+        req.setAttribute("totalPage", (int) Math.ceil(roomBills.size() / LIMIT));
         common.setTitle(req, "ew");
         req.getRequestDispatcher("/views/admin/bill.jsp").forward(req, resp);
     }

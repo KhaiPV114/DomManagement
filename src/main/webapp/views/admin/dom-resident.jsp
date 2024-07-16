@@ -7,6 +7,22 @@
 <div id="content-body" class="content-body pl-328">
     <div class="container-fluid my-container">
         <h1 class="big-title">Dorm Risedent</h1>
+        <form action="<%=request.getContextPath()%>/admin/dom-resident">
+            <div class="SBB-layout" style="margin-bottom: 24px;">
+                <div class="flex items-center justify-between">
+                    <div class="flex-1" style="margin-right: 10px;">
+                        <input class="SBB-input text-box single-line" placeholder="Search..." id="keySearch"
+                               name="keySearch"
+                               type="text" value="${keySearch}">
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Note"
+                              data-valmsg-replace="true"></span>
+                    </div>
+                    <div>
+                        <input type="submit" value="Search" class="orange-btn">
+                    </div>
+                </div>
+            </div>
+        </form>
         <div class="container-block">
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-advance table-hover">
@@ -38,19 +54,26 @@
                     </tbody>
                 </table>
             </div>
-<%--            <div class="flex justify-center">--%>
-<%--                <div class="pagination-container">--%>
-<%--                    <ul class="pagination">--%>
-<%--                        <li class="disabled PagedList-skipToFirst"><a>««</a></li>--%>
-<%--                        <li class="disabled PagedList-skipToPrevious"><a rel="prev">«</a></li>--%>
-<%--                        <li class="active"><a>1</a></li>--%>
-<%--                        <li><a href="/Student/News?page=2">2</a></li>--%>
-<%--                        <li><a href="/Student/News?page=3">3</a></li>--%>
-<%--                        <li class="PagedList-skipToNext"><a href="/Student/News?page=2" rel="next">»</a></li>--%>
-<%--                        <li class="PagedList-skipToLast"><a href="/Student/News?page=3">»»</a></li>--%>
-<%--                    </ul>--%>
-<%--                </div>--%>
-<%--            </div>--%>
+            <c:if test="${totalPage > 1}">
+                <div class="flex justify-center">
+                    <div class="pagination-container">
+                        <ul class="pagination">
+                            <li class="${page == 1  ? 'disabled' : ''} PagedList-skipToFirst"><a
+                                    href="<%=request.getContextPath()%>/admin/dom-resident?keySearch=${keySearch}&page=1">««</a>
+                            </li>
+                            <c:forEach begin="1" end="${totalPage}" varStatus="i">
+                                <li>
+                                    <a class="${page == i.count ? 'active' : ''}"
+                                       href="<%=request.getContextPath()%>/admin/dom-resident?keySearch=${keySearch}&page=${i.count}">${i.count}</a>
+                                </li>
+                            </c:forEach>
+                            <li class="${page == totalPage  ? 'disabled' : ''} PagedList-skipToLast"><a
+                                    href="<%=request.getContextPath()%>/admin/dom-resident?keySearch=${keySearch}&page=${totalPage}">»»</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </c:if>
         </div>
     </div>
 </div>
